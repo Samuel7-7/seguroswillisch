@@ -1,35 +1,272 @@
-{
-  "hero": {
-    "src": "assets/img/hero.jpg",
-    "title": "P1180005",
-    "creator": "El Caganer",
-    "creator_url": "https://www.flickr.com/photos/78317199@N00",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/78317199@N00/4093304858",
-    "source": "flickr"
-  },
-  "safety-training": {
-    "src": "assets/img/safety-training.jpg",
-    "title": "Humphreys' firemen train for the inevitable",
-    "creator": "USAG-Humphreys",
-    "creator_url": "https://www.flickr.com/photos/31687107@N07",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/31687107@N07/4504025165",
-    "source": "flickr"
-  },
-  "industrial-site": {
-    "src": "assets/img/industrial-site.jpg",
-    "title": "Surveying equipment on an industrial site",
-    "creator": "HalifaxArchvie",
-    "creator_url": "https://www.flickr.com/photos/164460414@N05",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/164460414@N05/44590795511",
-    "source": "flickr"
-  }
+﻿{
+    "arl-workers":  {
+                        "src":  "assets/img/arl-workers.jpg",
+                        "title":  "Building Professional Employee 276231 Edited 2020",
+                        "creator":  "chimpwithcan",
+                        "source":  "flickr",
+                        "license":  "by",
+                        "license_url":  "https://creativecommons.org/licenses/by/2.0/",
+                        "original":  "https://www.flickr.com/photos/188454520@N02/49921365887"
+                    },
+    "cumplimiento":  {
+                         "src":  "assets/img/cumplimiento.jpg",
+                         "title":  "engineer team working in office with blueprints, inspection in workplace for architectural plan, construction project ,Business construction",
+                         "creator":  "EU-Ukraine cooperation",
+                         "source":  "flickr",
+                         "license":  "by-sa",
+                         "license_url":  "https://creativecommons.org/licenses/by-sa/2.0/",
+                         "original":  "https://www.flickr.com/photos/149400054@N04/54438940730"
+                     },
+    "hero-main":  {
+                      "src":  "assets/img/hero-main.jpg",
+                      "title":  "Free construction site image",
+                      "creator":  null,
+                      "source":  "rawpixel",
+                      "license":  "cc0",
+                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                      "original":  "https://www.rawpixel.com/image/5928023/photo-image-background-public-domain-person"
+                  },
+    "proc-1":  {
+                   "src":  "assets/img/proc-1.jpg",
+                   "title":  "Dynamic Emotions in Manager-Employee Meeting",
+                   "creator":  "userpilot1",
+                   "source":  "flickr",
+                   "license":  "by",
+                   "license_url":  "https://creativecommons.org/licenses/by/2.0/",
+                   "original":  "https://www.flickr.com/photos/198537127@N06/52969126446"
+               },
+    "proc-2":  {
+                   "src":  "assets/img/proc-2.jpg",
+                   "title":  "Business Men",
+                   "creator":  "Direct Media",
+                   "source":  "stocksnap",
+                   "license":  "cc0",
+                   "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                   "original":  "https://stocksnap.io/photo/business-men-2PI9JGADVT"
+               },
+    "proc-3":  {
+                   "src":  "assets/img/proc-3.jpg",
+                   "title":  "Office Work",
+                   "creator":  "Ch%E2u%20Th%F4ng%20Phan",
+                   "source":  "stocksnap",
+                   "license":  "cc0",
+                   "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                   "original":  "https://stocksnap.io/photo/office-work-UP9J4EZYNJ"
+               },
+    "proc-4":  {
+                   "src":  "assets/img/proc-4.jpg",
+                   "title":  "Video Meeting",
+                   "creator":  "Direct Media",
+                   "source":  "stocksnap",
+                   "license":  "cc0",
+                   "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                   "original":  "https://stocksnap.io/photo/video-meeting-NDASNYJJ6P"
+               },
+    "sec-comercio":  {
+                         "src":  "assets/img/sec-comercio.jpg",
+                         "title":  "2016 - Ouverture du MarchÃ© Adonis Griffintown",
+                         "creator":  "Indrid__Cold",
+                         "source":  "flickr",
+                         "license":  "by-sa",
+                         "license_url":  "https://creativecommons.org/licenses/by-sa/2.0/",
+                         "original":  "https://www.flickr.com/photos/29442760@N00/49614327818"
+                     },
+    "sec-construccion":  {
+                             "src":  "assets/img/sec-construccion.jpg",
+                             "title":  "Construction site ZÃ¼rich, Switzerland",
+                             "creator":  null,
+                             "source":  "rawpixel",
+                             "license":  "cc0",
+                             "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                             "original":  "https://www.rawpixel.com/image/3300851/free-photo-image-construction-buildings-cc0"
+                         },
+    "sec-educacion":  {
+                          "src":  "assets/img/sec-educacion.jpg",
+                          "title":  "Kagan-22",
+                          "creator":  "Harvard Law Record",
+                          "source":  "flickr",
+                          "license":  "by",
+                          "license_url":  "https://creativecommons.org/licenses/by/2.0/",
+                          "original":  "https://www.flickr.com/photos/42563778@N02/4595184795"
+                      },
+    "sec-financiero":  {
+                           "src":  "assets/img/sec-financiero.jpg",
+                           "title":  "City Buildings",
+                           "creator":  "Mike Moloney",
+                           "source":  "stocksnap",
+                           "license":  "cc0",
+                           "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                           "original":  "https://stocksnap.io/photo/city-buildings-ZJAMY1RLNW"
+                       },
+    "sec-hidrocarburos":  {
+                              "src":  "assets/img/sec-hidrocarburos.jpg",
+                              "title":  "Oil refinery chimney",
+                              "creator":  "U.S. Army",
+                              "source":  "rawpixel",
+                              "license":  "cc0",
+                              "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                              "original":  "https://www.rawpixel.com/image/10995768/oil-refinery-chimney"
+                          },
+    "sec-industria":  {
+                          "src":  "assets/img/sec-industria.jpg",
+                          "title":  "Metalworking equipment",
+                          "creator":  "Artem Beliaikin",
+                          "source":  "flickr",
+                          "license":  "cc0",
+                          "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                          "original":  "https://www.flickr.com/photos/157635012@N07/49390254106"
+                      },
+    "sec-inmobiliario":  {
+                             "src":  "assets/img/sec-inmobiliario.jpg",
+                             "title":  "City Building",
+                             "creator":  "Mike Moloney",
+                             "source":  "stocksnap",
+                             "license":  "cc0",
+                             "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                             "original":  "https://stocksnap.io/photo/city-building-R1VCWX07W6"
+                         },
+    "sec-manufactura":  {
+                            "src":  "assets/img/sec-manufactura.jpg",
+                            "title":  null,
+                            "creator":  null,
+                            "source":  "rawpixel",
+                            "license":  "cc0",
+                            "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                            "original":  "https://www.rawpixel.com/image/5945466/free-public-domain-cc0-photo"
+                        },
+    "sec-operativas":  {
+                           "src":  "assets/img/sec-operativas.jpg",
+                           "title":  "City Harvest Lead Distribution Center",
+                           "creator":  "U.S. Department of Agriculture",
+                           "source":  "rawpixel",
+                           "license":  "cc0",
+                           "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                           "original":  "https://www.rawpixel.com/image/3306677/free-photo-image-warehouse-industrial-food-employee"
+                       },
+    "sec-salud":  {
+                      "src":  "assets/img/sec-salud.jpg",
+                      "title":  "Female Nurse",
+                      "creator":  "Direct Media",
+                      "source":  "stocksnap",
+                      "license":  "cc0",
+                      "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                      "original":  "https://stocksnap.io/photo/female-nurse-XYNYITNTU1"
+                  },
+    "sec-servicios":  {
+                          "src":  "assets/img/sec-servicios.jpg",
+                          "title":  "Home Office",
+                          "creator":  "Matt Bango",
+                          "source":  "stocksnap",
+                          "license":  "cc0",
+                          "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                          "original":  "https://stocksnap.io/photo/home-office-TTSZNHYKJD"
+                      },
+    "sec-transporte":  {
+                           "src":  "assets/img/sec-transporte.jpg",
+                           "title":  "20201119-TFAA-LSC-0470",
+                           "creator":  "USDAgov",
+                           "source":  "flickr",
+                           "license":  "pdm",
+                           "license_url":  "https://creativecommons.org/publicdomain/mark/1.0/",
+                           "original":  "https://www.flickr.com/photos/41284017@N08/50699878778"
+                       },
+    "serv-acompanamiento":  {
+                                "src":  "assets/img/serv-acompanamiento.jpg",
+                                "title":  "Business People",
+                                "creator":  "Direct Media",
+                                "source":  "stocksnap",
+                                "license":  "cc0",
+                                "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                                "original":  "https://stocksnap.io/photo/business-people-ZZG16IZGRV"
+                            },
+    "serv-alturas":  {
+                         "src":  "assets/img/serv-alturas.jpg",
+                         "title":  "Construction Worker Houston Texas 1",
+                         "creator":  "billjacobus1",
+                         "source":  "flickr",
+                         "license":  "by",
+                         "license_url":  "https://creativecommons.org/licenses/by/2.0/",
+                         "original":  "https://www.flickr.com/photos/67513462@N00/122497422"
+                     },
+    "serv-app":  {
+                     "src":  "assets/img/serv-app.jpg",
+                     "title":  "iPhone iWatch and notebook_2",
+                     "creator":  "freestocks.org",
+                     "source":  "flickr",
+                     "license":  "cc0",
+                     "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                     "original":  "https://www.flickr.com/photos/135396164@N05/31295798342"
+                 },
+    "serv-asesor-integral":  {
+                                 "src":  "assets/img/serv-asesor-integral.jpg",
+                                 "title":  "Business Man",
+                                 "creator":  "Direct Media",
+                                 "source":  "stocksnap",
+                                 "license":  "cc0",
+                                 "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                                 "original":  "https://stocksnap.io/photo/business-man-0B9JNUXH33"
+                             },
+    "serv-asesor-prev":  {
+                             "src":  "assets/img/serv-asesor-prev.jpg",
+                             "title":  "Two Power Plant Workers in Personal Protective Equipment Turning the Valve on Industrial Piping",
+                             "creator":  "EU-Ukraine cooperation",
+                             "source":  "flickr",
+                             "license":  "by-sa",
+                             "license_url":  "https://creativecommons.org/licenses/by-sa/2.0/",
+                             "original":  "https://www.flickr.com/photos/149400054@N04/54435322282"
+                         },
+    "serv-beneficios":  {
+                            "src":  "assets/img/serv-beneficios.jpg",
+                            "title":  "Shopping in supermarket store, mall",
+                            "creator":  "www.readyelements.com",
+                            "source":  "flickr",
+                            "license":  "cc0",
+                            "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                            "original":  "https://www.flickr.com/photos/155753322@N06/43712540391"
+                        },
+    "serv-domiciliaria":  {
+                              "src":  "assets/img/serv-domiciliaria.jpg",
+                              "title":  "Health Care",
+                              "creator":  "Direct Media",
+                              "source":  "stocksnap",
+                              "license":  "cc0",
+                              "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                              "original":  "https://stocksnap.io/photo/health-care-0DCSAGJ9CM"
+                          },
+    "serv-especialistas":  {
+                               "src":  "assets/img/serv-especialistas.jpg",
+                               "title":  "NRC Browns Ferry 95003 Inspection Team - May 2013",
+                               "creator":  "NRCgov",
+                               "source":  "flickr",
+                               "license":  "by",
+                               "license_url":  "https://creativecommons.org/licenses/by/2.0/",
+                               "original":  "https://www.flickr.com/photos/69383258@N08/8741361107"
+                           },
+    "serv-mediciones":  {
+                            "src":  "assets/img/serv-mediciones.jpg",
+                            "title":  "Measuring Instruments",
+                            "creator":  "jacqui.brown33",
+                            "source":  "flickr",
+                            "license":  "by-sa",
+                            "license_url":  "https://creativecommons.org/licenses/by-sa/2.0/",
+                            "original":  "https://www.flickr.com/photos/120600995@N07/14125629331"
+                        },
+    "serv-microempresa":  {
+                              "src":  "assets/img/serv-microempresa.jpg",
+                              "title":  "20171027-AMS-LSC-1031",
+                              "creator":  "USDAgov",
+                              "source":  "flickr",
+                              "license":  "pdm",
+                              "license_url":  "https://creativecommons.org/publicdomain/mark/1.0/",
+                              "original":  "https://www.flickr.com/photos/41284017@N08/38037043622"
+                          },
+    "serv-traslado":  {
+                          "src":  "assets/img/serv-traslado.jpg",
+                          "title":  "Writing Papers",
+                          "creator":  "Helloquence",
+                          "source":  "stocksnap",
+                          "license":  "cc0",
+                          "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
+                          "original":  "https://stocksnap.io/photo/writing-papers-Y01VDYAX63"
+                      }
 }
