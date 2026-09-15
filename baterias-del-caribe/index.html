@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baterías del Caribe GW — Batería a domicilio en Barranquilla</title>
+<meta name="description" content="Batería a domicilio en Barranquilla. Willard, Duncan, MAC y Coéxito. Diagnóstico e instalación gratis, atención 24/7. 20% de descuento para clientes de Seguros Willisch.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0a'/%3E%3Crect x='14' y='22' width='36' height='24' fill='%23ffcc00'/%3E%3Crect x='14' y='22' width='16' height='24' fill='%23e2231c'/%3E%3Cpath d='M33 22l-7 12h7l-6 12 16-16h-7l6-8z' fill='%230a0a0a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+
+/* ============ TOKENS ============ */
+:root{
+  --ink:#0a0a0a;
+  --ink-2:#141414;
+  --ink-3:#1d1d1d;
+  --steel:#2c2f35;
+  --yellow:#ffcc00;
+  --yellow-deep:#e0ac00;
+  --red:#e2231c;
+  --blue:#2432c7;
+  --blue-2:#4655e8;
+  --green:#25D366;
+  --green-2:#1fb958;
+  --paper:#f4f3ee;
+  --paper-2:#eae8e0;
+  --text:#141414;
+  --text-mute:#5c5c58;
+  --line:rgba(20,20,20,0.12);
+  --on-dark:#f5f4f0;
+  --on-dark-mute:rgba(245,244,240,0.68);
+  --radius:22px;
+  --nav-h:88px;
+  --bar-h:4px;
+  --action-h:64px;
+}
+
+body{
+  font-family:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--text);
+  line-height:1.5;
+  padding-bottom:var(--action-h);
+}
+.mono{font-family:"JetBrains Mono",ui-monospace,"Courier New",monospace}
+h1,h2,h3,h4{font-family:"Space Grotesk",sans-serif;line-height:1.05;letter-spacing:-0.01em;font-weight:800}
+
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:20px}
+@media (min-width:768px){ .container{padding-inline:36px} }
+section{position:relative}
+.pad{padding-block:64px}
+@media (min-width:900px){ .pad{padding-block:96px} }
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--red);
+}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.6s ease-in-out infinite}
+.eyebrow.on-dark{color:var(--yellow)}
+.eyebrow.on-dark .dot{background:var(--yellow)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@media (prefers-reduced-motion: reduce){ .eyebrow .dot{animation:none} }
+
+.htitle{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-top:12px;max-width:18ch}
+.hsub{color:var(--text-mute);font-size:1.02rem;max-width:52ch;margin-top:14px}
+.shead{margin-bottom:40px}
+.shead.center{text-align:center;margin-inline:auto}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 28px;border-radius:999px;font-weight:700;font-size:.96rem;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease;
+  white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-wa{background:var(--green);color:#fff;box-shadow:0 14px 28px -10px rgba(37,211,102,.55)}
+.btn-wa:hover{transform:translateY(-3px);background:var(--green-2)}
+.btn-line{border:2px solid var(--ink);color:var(--ink)}
+.btn-line:hover{transform:translateY(-3px);background:var(--ink);color:#fff}
+.btn-line-dark{border:2px solid rgba(245,244,240,.35);color:var(--on-dark)}
+.btn-line-dark:hover{transform:translateY(-3px);background:rgba(245,244,240,.12)}
+.btn-yellow{background:var(--yellow);color:var(--ink)}
+.btn-yellow:hover{transform:translateY(-3px);box-shadow:0 14px 28px -10px rgba(255,204,0,.55)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{transform:translateY(-3px);background:var(--blue-2);box-shadow:0 14px 28px -10px rgba(36,50,199,.55)}
+.btn-line-blue{border:2px solid rgba(120,140,255,.55);color:#fff}
+.btn-line-blue:hover{transform:translateY(-3px);background:rgba(36,50,199,.22);border-color:var(--blue-2)}
+.btn-block{width:100%}
+
+/* ============ CHARGE BAR ============ */
+.charge-rail{position:fixed;top:0;left:0;right:0;height:var(--bar-h);z-index:200;background:rgba(20,20,20,.5)}
+.charge-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--red),var(--yellow) 60%,var(--green));transition:width .08s linear}
+.charge-pct{
+  position:fixed;top:14px;right:18px;z-index:200;
+  display:none;align-items:center;gap:6px;
+  background:var(--ink);color:var(--yellow);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:12px;
+  padding:6px 11px;border-radius:999px;border:1px solid rgba(255,204,0,.4);
+}
+.charge-pct svg{width:12px;height:12px}
+@media (min-width:640px){ .charge-pct{display:flex} }
+
+/* ============ TOP RIBBON ============ */
+.ribbon{
+  position:relative;margin-top:var(--bar-h);background:var(--ink);color:var(--on-dark);
+  text-align:center;font-size:12.5px;font-weight:700;padding:10px 44px;
+}
+.ribbon a{color:var(--yellow);border-bottom:1px solid rgba(255,204,0,.5)}
+.ribbon a:hover{border-bottom-color:transparent}
+.ribbon .wch{color:var(--blue-2);font-weight:800}
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky;top:calc(var(--bar-h));z-index:100;height:var(--nav-h);
+  display:flex;align-items:center;background:rgba(10,10,10,.92);backdrop-filter:blur(12px) saturate(160%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand-logo{height:50px;width:auto;object-fit:contain;flex:none}
+@media (min-width:480px){ .brand-logo{height:62px} }
+@media (min-width:640px){ .brand-logo{height:72px} }
+.brand-name{color:#fff;font-weight:800;font-size:12.5px;white-space:nowrap;display:block}
+@media (min-width:480px){ .brand-name{font-size:15px} }
+@media (min-width:640px){ .brand-name{font-size:16.5px} }
+.brand-willisch{height:34px;width:auto;object-fit:contain;display:block;flex:none;padding-left:14px;border-left:1px solid rgba(70,90,232,.5)}
+@media (min-width:480px){ .brand-willisch{height:46px} }
+@media (min-width:640px){ .brand-willisch{height:54px} }
+
+.nav-desktop{display:none}
+@media (min-width:980px){
+  .nav-desktop{display:flex;align-items:center;gap:26px}
+  .nav-desktop a{font-size:14px;font-weight:600;color:var(--on-dark-mute);position:relative;padding-block:6px}
+  .nav-desktop a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--yellow);transition:right .3s cubic-bezier(.2,.8,.2,1)}
+  .nav-desktop a:hover{color:#fff}
+  .nav-desktop a:hover::after{right:0}
+}
+.head-actions{display:flex;align-items:center;gap:10px}
+.nav-wa-wrap{position:relative;display:none}
+@media (min-width:980px){ .nav-wa-wrap{display:block} }
+.nav-wa-wrap .btn-wa{padding:11px 20px;font-size:13.5px}
+.nav-wa-menu{
+  position:absolute;top:calc(100% + 12px);right:0;z-index:10;
+  min-width:230px;background:#fff;border-radius:16px;padding:8px;
+  box-shadow:0 20px 40px -14px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;gap:3px;
+  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;
+  transition:opacity .22s cubic-bezier(.2,.8,.2,1), transform .22s cubic-bezier(.2,.8,.2,1);
+}
+.nav-wa-menu.is-open{opacity:1;transform:none;pointer-events:auto}
+.nav-wa-menu a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:10px;font-size:13.5px;font-weight:700;color:var(--text)}
+.nav-wa-menu a svg{width:17px;height:17px;color:var(--green);flex:none}
+.nav-wa-menu a:hover{background:var(--paper)}
+
+.hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.08)}
+@media (min-width:980px){ .hamburger{display:none} }
+.hamburger span{display:block;width:20px;height:2px;background:#fff;margin-inline:auto;border-radius:2px;transition:transform .3s ease, opacity .3s ease}
+.hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.is-open span:nth-child(2){opacity:0}
+.hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{
+  position:fixed;inset:0;z-index:99;background:rgba(8,8,8,.98);
+  display:flex;flex-direction:column;
+  padding:calc(var(--nav-h) + var(--bar-h) + 26px) 24px 26px;
+  transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.2,.8,.2,1);overflow-y:auto;
+}
+.mobile-menu.is-open{transform:translateX(0)}
+@media (min-width:980px){ .mobile-menu{display:none} }
+/* scroll lock + header pinned while the mobile menu is open */
+html.menu-lock, html.menu-lock body{overflow:hidden;touch-action:none;overscroll-behavior:none}
+html.menu-lock .site-header{position:fixed;top:var(--bar-h);left:0;right:0}
+.mobile-menu a:not(.btn){display:block;padding:15px 4px;font-size:1.3rem;font-weight:700;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-menu-wa-label{color:var(--on-dark-mute);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:26px;margin-bottom:14px}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;z-index:0;background:var(--ink);color:var(--on-dark);overflow:clip;
+  padding-top:56px;padding-bottom:56px;
+}
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  filter:blur(9px) brightness(.9) saturate(1.15);
+  transform:scale(1.12);
+}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(65% 55% at 88% 10%, rgba(226,35,28,.16), transparent 60%),
+    linear-gradient(100deg, rgba(10,10,10,.68) 0%, rgba(10,10,10,.4) 42%, rgba(10,10,10,.12) 72%, rgba(10,10,10,.05) 100%),
+    linear-gradient(180deg, transparent 0%, transparent 80%, var(--ink) 100%);
+}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+@media (min-width:960px){ .hero-grid{grid-template-columns:1.05fr .95fr;gap:20px} }
+
+.hero-title{font-size:clamp(2.3rem,6vw,3.6rem);margin-top:14px;text-wrap:balance;text-shadow:0 2px 20px rgba(0,0,0,.7), 0 1px 3px rgba(0,0,0,.8)}
+.hero-title .zap{
+  color:var(--yellow);display:inline-block;
+  text-shadow:0 0 18px rgba(255,204,0,.55);
+  animation:flicker 3.4s ease-in-out infinite;
+}
+@keyframes flicker{0%,92%,100%{opacity:1}94%{opacity:.55}96%{opacity:1}98%{opacity:.7}}
+@media (prefers-reduced-motion: reduce){ .hero-title .zap{animation:none} }
+.hero-sub{color:var(--on-dark-mute);font-size:1.1rem;max-width:48ch;margin-top:18px;text-shadow:0 2px 14px rgba(0,0,0,.75)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.trust-row{display:flex;flex-wrap:wrap;gap:22px;margin-top:34px}
+.trust-row li{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--on-dark-mute);font-weight:600}
+.trust-row svg{width:17px;height:17px;color:var(--yellow);flex:none}
+
+/* ---- hero promo: electric 20% OFF, no shapes ---- */
+.hero-product{display:flex;flex-direction:column;align-items:center}
+.hero-product-img{
+  width:min(300px,66vw);height:auto;margin-bottom:-14px;
+  filter:drop-shadow(0 26px 40px rgba(0,0,0,.55));
+  animation:productFloat 4.5s ease-in-out infinite;
+}
+@keyframes productFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media (prefers-reduced-motion: reduce){ .hero-product-img{animation:none} }
+.promo-zap{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;
+  padding:26px 10px;text-align:center;margin-inline:auto;max-width:340px;
+}
+.promo-zap-text{display:flex;align-items:baseline;gap:12px;justify-content:center}
+.promo-zap-text b{
+  font-family:"JetBrains Mono",monospace;font-weight:700;line-height:1;
+  font-size:clamp(3.4rem,13vw,5.6rem);color:var(--yellow);
+  text-shadow:0 0 12px rgba(255,204,0,.95), 0 0 34px rgba(255,204,0,.65), 0 0 70px rgba(255,204,0,.35);
+  animation:zapFlicker 3s linear infinite;
+}
+.promo-zap-text em{
+  font-style:normal;font-weight:800;letter-spacing:.04em;
+  font-size:clamp(1.5rem,6vw,2.2rem);color:#fff;
+  text-shadow:0 0 10px rgba(255,255,255,.7), 0 0 26px rgba(255,204,0,.4);
+  animation:zapFlicker 3s linear infinite;
+  animation-delay:.12s;
+}
+@keyframes zapFlicker{
+  0%,18.9%,20.9%,22.9%,79%,100%{opacity:1}
+  19.5%{opacity:.25}
+  21.5%{opacity:.8}
+  22.4%{opacity:.4}
+  79.6%{opacity:.6}
+}
+.promo-zap-sub{font-size:12px;font-weight:700;color:var(--on-dark-mute);text-transform:uppercase;letter-spacing:.06em}
+.zap-bolt{
+  position:absolute;width:38px;height:38px;color:var(--yellow);
+  filter:drop-shadow(0 0 10px rgba(255,204,0,.85));
+  animation:boltFlash 3s ease-in-out infinite;
+}
+.zap-bolt--l{left:-6%;top:6%;animation-delay:.35s}
+.zap-bolt--r{right:-6%;bottom:20%;transform:scaleX(-1);animation-delay:1.5s}
+@keyframes boltFlash{
+  0%,100%{opacity:.15;transform:scale(.85)}
+  8%{opacity:1;transform:scale(1.15)}
+  14%{opacity:.3;transform:scale(.9)}
+  50%{opacity:.2}
+  58%{opacity:1;transform:scale(1.1)}
+  64%{opacity:.35}
+}
+.zap-spark{width:min(240px,70vw);height:auto;margin-top:2px}
+.zap-spark path{
+  fill:none;stroke:var(--yellow);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 0 6px rgba(255,204,0,.8));
+  animation:zapFlicker 3s linear infinite;
+  animation-delay:.06s;
+}
+@keyframes zapGlowSoft{0%,100%{opacity:1}50%{opacity:.7}}
+@media (prefers-reduced-motion: reduce){
+  .promo-zap-text b, .promo-zap-text em, .zap-bolt, .zap-spark path{
+    animation:zapGlowSoft 3.2s ease-in-out infinite;
+  }
+}
+
+/* ============ ALIANZA WILLISCH ============ */
+.alianza{
+  background:linear-gradient(135deg,var(--ink) 0%,#3a1210 100%);color:var(--on-dark);
+  clip-path:polygon(0 3.5%,100% 0,100% 96.5%,0 100%);
+}
+.alianza-head{max-width:680px;margin-inline:auto;text-align:center;padding-top:88px}
+.alianza-head h2{color:#fff;font-size:clamp(1.6rem,3.4vw,2.2rem);margin-top:10px}
+.alianza-head p{color:var(--on-dark-mute);margin-top:14px;font-size:1.02rem}
+
+.alianza-split{display:grid;grid-template-columns:1fr;gap:48px;margin-top:52px;padding-bottom:90px}
+@media (min-width:900px){ .alianza-split{grid-template-columns:1fr 1px 1fr;gap:0} }
+.alianza-divider{display:none}
+@media (min-width:900px){
+  .alianza-divider{display:block;background:linear-gradient(180deg, transparent, rgba(255,255,255,.16) 12%, rgba(255,255,255,.16) 88%, transparent)}
+}
+.alianza-col{position:relative;z-index:0;overflow:clip;text-align:center;padding:36px 8px;border-radius:24px}
+@media (min-width:900px){ .alianza-col{padding:8px 44px} }
+.alianza-col h3{color:#fff;font-size:1.3rem;margin-top:10px}
+.alianza-col > p{color:var(--on-dark-mute);margin-top:10px;font-size:.95rem;max-width:44ch;margin-inline:auto}
+.alianza-col .btn{margin-top:28px}
+.alianza-col-bdc{background:radial-gradient(60% 55% at 50% 0%, rgba(255,204,0,.09), transparent 70%)}
+.alianza-col-will{background:radial-gradient(60% 55% at 50% 0%, rgba(36,50,199,.2), transparent 70%)}
+.alianza-col-logo{
+  position:absolute;z-index:-1;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:62%;max-width:230px;height:auto;opacity:.12;pointer-events:none;
+}
+.alianza-note{display:block;margin-top:16px;font-size:11.5px;color:var(--on-dark-mute);max-width:30ch;margin-inline:auto}
+.alianza-col-will .eyebrow.on-dark{color:var(--blue-2);justify-content:center}
+
+.alianza-num{
+  font-family:"JetBrains Mono",monospace;font-weight:700;font-size:clamp(3.4rem,8vw,5rem);
+  color:var(--yellow);line-height:.85;
+  text-shadow:0 0 14px rgba(255,204,0,.85), 0 0 40px rgba(255,204,0,.5), 0 0 90px rgba(255,204,0,.3);
+  animation:alianzaGlow 2.4s ease-in-out infinite;
+}
+.alianza-num sup{font-size:.35em;vertical-align:super}
+@keyframes alianzaGlow{
+  0%,100%{text-shadow:0 0 14px rgba(255,204,0,.85), 0 0 40px rgba(255,204,0,.5), 0 0 90px rgba(255,204,0,.3)}
+  50%{text-shadow:0 0 20px rgba(255,204,0,1), 0 0 56px rgba(255,204,0,.7), 0 0 110px rgba(255,204,0,.4)}
+}
+@media (prefers-reduced-motion: reduce){ .alianza-num{animation:zapGlowSoft 3.2s ease-in-out infinite} }
+
+.alianza-services{display:flex;flex-direction:column;gap:16px;margin:26px auto 0;max-width:320px}
+.as-item{display:flex;align-items:flex-start;gap:12px;text-align:left}
+.as-icon{flex:none;display:flex;align-items:flex-start;justify-content:center;padding-top:2px}
+.as-icon svg{width:34px;height:34px;color:var(--yellow);filter:drop-shadow(0 0 6px rgba(255,204,0,.35))}
+.as-item strong{display:block;color:#fff;font-size:14px}
+.as-item span{display:block;color:var(--on-dark-mute);font-size:12.5px;margin-top:2px;max-width:38ch}
+
+.riesgo-vehicles{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:28px}
+.rv-item{display:flex;flex-direction:column;align-items:center;gap:9px}
+.rv-icon{
+  width:54px;height:54px;border-radius:50%;background:rgba(36,50,199,.16);
+  border:1px solid rgba(70,90,232,.4);display:flex;align-items:center;justify-content:center;
+}
+.rv-icon svg{width:25px;height:25px;color:var(--blue-2)}
+.rv-item span:last-child{font-size:11px;font-weight:700;color:var(--on-dark-mute);text-transform:uppercase;letter-spacing:.04em}
+.riesgo-list{display:flex;flex-direction:column;align-items:flex-start;gap:13px;margin:26px auto 0;width:fit-content}
+.riesgo-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--on-dark-mute);text-align:left}
+.riesgo-list li svg{width:16px;height:16px;color:var(--blue-2);flex:none;margin-top:2px}
+
+/* ============ CONTACTO ============ */
+.contacto{background:var(--ink);color:var(--on-dark);overflow:clip}
+.contacto-grid{display:grid;grid-template-columns:1fr;gap:40px}
+@media (min-width:900px){ .contacto-grid{grid-template-columns:1.1fr .9fr} }
+.status-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);font-size:13px;font-weight:700}
+.status-pill .sd{width:9px;height:9px;border-radius:50%}
+.status-pill.open .sd{background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.2)}
+.status-pill.closed .sd{background:#f87171}
+.contacto h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-top:14px;max-width:16ch}
+.big-phone{
+  display:flex;align-items:baseline;gap:10px;margin-top:26px;font-family:"JetBrains Mono",monospace;
+  font-weight:700;font-size:clamp(1.7rem,4.2vw,2.5rem);color:var(--yellow);
+}
+.contact-lines{margin-top:26px;display:flex;flex-direction:column;gap:13px}
+.contact-lines a,.contact-lines div{display:flex;align-items:center;gap:12px;font-size:.95rem;color:var(--on-dark-mute)}
+.contact-lines svg{width:18px;height:18px;color:var(--yellow);flex:none}
+.contact-lines a:hover{color:#fff}
+.contacto-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.willisch-note{
+  margin-top:30px;padding:20px 22px;border-radius:16px;background:rgba(36,50,199,.1);
+  border:1px solid rgba(70,90,232,.35);display:flex;flex-direction:column;gap:14px;
+}
+.wn-head{display:flex;align-items:center;gap:12px}
+.wn-head img{height:30px;width:auto;flex:none}
+.wn-head strong{display:block;color:#fff;font-size:14.5px}
+.wn-head span{display:block;font-size:12.5px;color:var(--on-dark-mute);margin-top:2px}
+.wn-tags{display:flex;flex-wrap:wrap;gap:8px}
+.wn-tags li{
+  list-style:none;background:rgba(36,50,199,.18);border:1px solid rgba(70,90,232,.4);
+  color:var(--on-dark-mute);font-size:10.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.03em;padding:5px 11px;border-radius:999px;
+}
+.wn-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.wn-actions .btn{padding:10px 18px;font-size:13px}
+.wn-actions a[target]{font-size:12.5px;color:var(--blue-2);font-weight:700}
+
+.map-card{border-radius:var(--radius);overflow:clip;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.map-card iframe{width:100%;height:280px;display:block;filter:grayscale(.3) invert(.92) contrast(.85)}
+.map-card .mc-foot{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px}
+.map-card .mc-foot a{font-weight:700;color:var(--yellow)}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.is-visible{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
+
+/* ============ FOOTER ============ */
+.site-footer{background:var(--ink);color:var(--on-dark-mute);padding-block:40px 24px;border-top:4px solid var(--yellow)}
+.footer-top{display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center}
+@media (min-width:800px){ .footer-top{flex-direction:row;justify-content:space-between;text-align:left} }
+.footer-brand{display:flex;flex-direction:column;gap:12px;align-items:center}
+@media (min-width:800px){ .footer-brand{align-items:flex-start} }
+.footer-brand img{height:44px}
+.footer-brand p{font-size:13px;max-width:34ch;line-height:1.6}
+.footer-links{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center}
+@media (min-width:800px){ .footer-links{justify-content:flex-end} }
+.footer-links a{font-size:13px}
+.footer-links a:hover{color:#fff}
+.footer-bottom{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:12px}
+
+/* ============ BOTTOM ACTION BAR ============ */
+.action-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:150;height:var(--action-h);
+  display:flex;border-top:3px solid var(--yellow);box-shadow:0 -10px 30px -14px rgba(0,0,0,.4);
+}
+.action-bar > a, .a-wa-wrap{flex:1;display:flex}
+.action-bar .a-call{align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:14.5px;background:var(--ink);color:#fff}
+.a-wa-wrap{position:relative}
+.a-wa-wrap .a-wa{width:100%;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:14.5px;background:var(--green);color:#fff}
+.action-bar svg{width:19px;height:19px}
+.a-wa-menu{
+  position:absolute;left:10px;right:10px;bottom:calc(100% + 10px);z-index:10;
+  background:#fff;border-radius:16px;padding:8px;
+  box-shadow:0 -14px 34px -12px rgba(0,0,0,.4);
+  display:flex;flex-direction:column;gap:3px;
+  opacity:0;transform:translateY(8px);pointer-events:none;
+  transition:opacity .22s cubic-bezier(.2,.8,.2,1), transform .22s cubic-bezier(.2,.8,.2,1);
+}
+.a-wa-menu.is-open{opacity:1;transform:none;pointer-events:auto}
+.a-wa-menu a{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;font-size:14px;font-weight:700;color:var(--text)}
+.a-wa-menu a svg{width:18px;height:18px;color:var(--green);flex:none}
+.a-wa-menu a:hover{background:var(--paper)}
+</style>
+</head>
+<body class="no-js">
+
+<div class="charge-rail"><div class="charge-fill" data-charge-fill></div></div>
+<div class="charge-pct" data-charge-pct><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg><span>0%</span></div>
+
+<div class="ribbon">⚡ ¿Cliente de <span class="wch">Seguros Willisch</span>? Tienes <a href="#alianza">20% de descuento en tu batería →</a></div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" data-header>
+  <div class="container">
+    <div class="brand">
+      <img class="brand-logo" src="../assets/logos/baterias_del_caribe_gw_sin_fondo.png" alt="Baterías del Caribe GW">
+      <span class="brand-name">Baterías del Caribe</span>
+      <img class="brand-willisch" src="../assets/logos/logo-willisch.png" alt="Seguros Willisch">
+    </div>
+
+    <nav class="nav-desktop">
+      <a href="#alianza">20% Seguros Willisch</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="head-actions">
+      <div class="nav-wa-wrap" data-wa-group>
+        <button class="btn btn-wa" data-wa-toggle aria-haspopup="true" aria-expanded="false">WhatsApp</button>
+        <div class="nav-wa-menu" data-wa-group-menu>
+          <a href="#" data-wa="bdc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>Baterías del Caribe</a>
+          <a href="#" data-wa="willisch"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>Seguros Willisch</a>
+        </div>
+      </div>
+      <button class="hamburger" data-menu-toggle aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" data-mobile-menu>
+  <a href="#alianza" data-menu-link>20% Seguros Willisch</a>
+  <a href="#contacto" data-menu-link>Contacto</a>
+  <p class="mobile-menu-wa-label">Escríbenos por WhatsApp:</p>
+  <a class="btn btn-wa btn-block" data-wa="bdc" href="#">Baterías del Caribe</a>
+  <a class="btn btn-wa btn-block" data-wa="willisch" href="#" style="margin-top:12px">Seguros Willisch</a>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="../assets/img/hero-tecnico.jpg" alt="" onerror="this.parentElement.remove()">
+    </div>
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow reveal"><span class="dot"></span>Servicio de baterías a domicilio en Barranquilla</span>
+        <h1 class="hero-title reveal">¿Batería agotada? Te la cambiamos <span class="zap">donde estés</span></h1>
+        <p class="hero-sub reveal">Diagnóstico gratuito y montaje rápido, sin salir de tu lugar.</p>
+        <div class="hero-actions reveal">
+          <a href="#" class="btn btn-wa" data-wa="bdc">Pedir batería ahora</a>
+          <a href="tel:+573016163418" class="btn btn-line-dark">Llamar: 301 616 3418</a>
+        </div>
+        <ul class="trust-row reveal">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Instalación gratis</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Garantía hasta 24 meses</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Atención 7 días y festivos</li>
+        </ul>
+      </div>
+
+      <div class="hero-product reveal">
+        <img class="hero-product-img" src="../assets/img/baterias/duncan-750-n60.png" alt="Batería Duncan para carro">
+        <a href="#alianza" class="promo-zap" aria-label="20% de descuento para clientes de Seguros Willisch">
+          <svg class="zap-bolt zap-bolt--l" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          <svg class="zap-bolt zap-bolt--r" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          <span class="promo-zap-text"><b>20%</b><em>OFF</em></span>
+          <svg class="zap-spark" viewBox="0 0 300 40" aria-hidden="true"><path d="M0,20 L28,9 L54,29 L82,6 L108,31 L138,11 L164,26 L192,7 L218,29 L248,13 L280,23 L300,16"/></svg>
+          <small class="promo-zap-sub">Clientes Seguros Willisch</small>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ALIANZA WILLISCH ============ -->
+  <section class="alianza" id="alianza">
+    <div class="container alianza-head reveal">
+      <span class="eyebrow on-dark">Alianza Baterías del Caribe con Seguros Willisch</span>
+      <h2>Un aliado para tu batería, un aliado para tu vehículo</h2>
+      <p>Si eres cliente de Seguros Willisch, tienes 20% de descuento en tu batería. Y con Seguros Willisch también puedes proteger tu carro, moto, camión o bicicleta eléctrica con Todo Riesgo.</p>
+    </div>
+
+    <div class="container alianza-split">
+      <div class="alianza-col alianza-col-bdc reveal">
+        <img class="alianza-col-logo" src="../assets/logos/baterias_del_caribe_gw_sin_fondo.png" alt="" aria-hidden="true">
+        <div class="alianza-num">20<sup>%</sup></div>
+        <h3>Descuento en tu batería</h3>
+
+        <ul class="alianza-services">
+          <li class="as-item">
+            <span class="as-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11v8H2z"/><path d="M13 11h4l3 3v2h-7z"/><circle cx="6" cy="18" r="1.7" fill="currentColor"/><circle cx="17" cy="18" r="1.7" fill="currentColor"/></svg></span>
+            <div>
+              <strong>Entrega a Domicilio</strong>
+              <span>Gratis solo a los servicios en la ciudad de Barranquilla.</span>
+            </div>
+          </li>
+          <li class="as-item">
+            <span class="as-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.8"/><path d="M18.4 14.2a1.55 1.55 0 0 0 .31 1.71l.06.06a1.88 1.88 0 1 1-2.66 2.66l-.06-.06a1.55 1.55 0 0 0-1.71-.31 1.55 1.55 0 0 0-.94 1.42V20a1.88 1.88 0 0 1-3.76 0v-.09a1.55 1.55 0 0 0-1-1.42 1.55 1.55 0 0 0-1.71.31l-.06.06a1.88 1.88 0 1 1-2.66-2.66l.06-.06a1.55 1.55 0 0 0 .31-1.71 1.55 1.55 0 0 0-1.42-.94H4.6a1.88 1.88 0 0 1 0-3.76h.09a1.55 1.55 0 0 0 1.42-1 1.55 1.55 0 0 0-.31-1.71l-.06-.06A1.88 1.88 0 1 1 8.4 4.5l.06.06a1.55 1.55 0 0 0 1.71.31H10.2a1.55 1.55 0 0 0 .94-1.42V3.4a1.88 1.88 0 0 1 3.76 0v.09a1.55 1.55 0 0 0 .94 1.42 1.55 1.55 0 0 0 1.71-.31l.06-.06a1.88 1.88 0 1 1 2.66 2.66l-.06.06a1.55 1.55 0 0 0-.31 1.71V9.09a1.55 1.55 0 0 0 1.42.94H21a1.88 1.88 0 0 1 0 3.76h-.09a1.55 1.55 0 0 0-1.42.94z"/></svg></span>
+            <div>
+              <strong>Instalación Gratis</strong>
+              <span>Nuestros técnicos certificados instalan tu batería sin cargo extra.</span>
+            </div>
+          </li>
+          <li class="as-item">
+            <span class="as-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3.2 6.4L3 20l1.3-3.9A7.96 7.96 0 0 1 4 12z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div>
+              <strong>Asesoría Experta</strong>
+              <span>Ayuda profesional para elegir la batería perfecta para tu vehículo.</span>
+            </div>
+          </li>
+        </ul>
+
+        <a href="#" class="btn btn-yellow" data-wa="bdc-promo">Reclamar mi 20%</a>
+        <span class="alianza-note">Válido presentando tu póliza vigente de Seguros Willisch</span>
+      </div>
+
+      <div class="alianza-divider" aria-hidden="true"></div>
+
+      <div class="alianza-col alianza-col-will reveal">
+        <img class="alianza-col-logo" src="../assets/logos/logo-willisch.png" alt="" aria-hidden="true">
+        <span class="eyebrow on-dark">Seguros Willisch</span>
+        <h3>Todo Riesgo para tu vehículo</h3>
+        <p>Más allá de la batería: asesoría personalizada para proteger tu carro, moto, camión o bicicleta eléctrica con una póliza Todo Riesgo.</p>
+
+        <div class="riesgo-vehicles">
+          <div class="rv-item">
+            <span class="rv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13l1.6-4.8A2 2 0 0 1 6.5 7h11a2 2 0 0 1 1.9 1.2L21 13"/><rect x="2.5" y="13" width="19" height="5" rx="1.5"/><circle cx="7" cy="18" r="1.6" fill="currentColor"/><circle cx="17" cy="18" r="1.6" fill="currentColor"/></svg></span>
+            <span>Autos</span>
+          </div>
+          <div class="rv-item">
+            <span class="rv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l4-7h4l4 7M10 10L8 6h3"/></svg></span>
+            <span>Motos</span>
+          </div>
+          <div class="rv-item">
+            <span class="rv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8h11v8H2z"/><path d="M13 11h4l3 3v2h-7z"/><circle cx="6" cy="18" r="1.7" fill="currentColor"/><circle cx="17" cy="18" r="1.7" fill="currentColor"/></svg></span>
+            <span>Camiones</span>
+          </div>
+          <div class="rv-item">
+            <span class="rv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l5-9 4 5h3M9 10h3"/><path d="M14.5 9.5l1.8 2.2"/></svg></span>
+            <span>E-bike</span>
+          </div>
+        </div>
+
+        <ul class="riesgo-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Asesoría personalizada</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Todo Riesgo para tu vehículo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>También Salud, Vida, Hogar, Empresariales y ARL</li>
+        </ul>
+
+        <a href="#" class="btn btn-blue" data-wa="willisch-riesgo">Cotizar Todo Riesgo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="contacto pad" id="contacto">
+    <div class="container contacto-grid">
+      <div class="reveal">
+        <span class="status-pill" data-status><span class="sd"></span><span data-status-text>Verificando horario…</span></span>
+        <h2>Habla con nosotros ahora mismo</h2>
+        <div class="big-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="width:26px;height:26px;flex:none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+          <a href="tel:+573016163418">301 616 3418</a>
+        </div>
+        <div class="contact-lines">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.9-7-11a7 7 0 0 1 14 0c0 6.1-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Cra 42b #84-36, Nte. Centro Histórico, Barranquilla</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>Lun-Sáb 7:00 AM-7:00 PM · Dom y festivos 8:00 AM-4:00 PM</div>
+          <a href="mailto:bateriasdelcaribe2024@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>bateriasdelcaribe2024@gmail.com</a>
+        </div>
+        <div class="contacto-actions">
+          <a href="#" class="btn btn-wa" data-wa="bdc">Escribir por WhatsApp</a>
+          <a href="tel:+573016163418" class="btn btn-line-dark">Llamar ahora</a>
+        </div>
+        <div class="willisch-note">
+          <div class="wn-head">
+            <img src="../assets/logos/logo-willisch.png" alt="Seguros Willisch">
+            <div>
+              <strong>Seguros Willisch</strong>
+              <span>Asesoría personalizada en seguros para tu vehículo y tu familia, en Barranquilla.</span>
+            </div>
+          </div>
+          <ul class="wn-tags">
+            <li>Todo Riesgo</li>
+            <li>Salud</li>
+            <li>Vida</li>
+            <li>Hogar</li>
+            <li>Empresariales</li>
+            <li>ARL</li>
+          </ul>
+          <div class="wn-actions">
+            <a href="#" class="btn btn-line-blue" data-wa="willisch">Cotizar seguro para mi carro</a>
+            <a href="https://seguroswillisch.com/" target="_blank" rel="noopener">seguroswillisch.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-card reveal">
+        <iframe src="https://www.google.com/maps?q=Cra%2042b%20%2384-36%2C%20Barranquilla&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Baterías del Caribe GW"></iframe>
+        <div class="mc-foot">
+          <span>Nte. Centro Histórico, Barranquilla</span>
+          <a href="https://www.google.com/maps?q=Cra+42b+%2384-36,+Barranquilla" target="_blank" rel="noopener">Cómo llegar →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../assets/logos/baterias_del_caribe_gw_sin_fondo.png" alt="Baterías del Caribe GW">
+        <p>Soluciones confiables de energía para tu vehículo: productos de calidad, precios competitivos y servicio rápido y seguro.</p>
+      </div>
+      <nav class="footer-links">
+        <a href="#alianza">Alianza Willisch</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© <span data-year></span> Baterías del Caribe GW. Todos los derechos reservados. · <a href="../index.html">Seguros Willisch</a></div>
+  </div>
+</footer>
+
+<!-- ============ BOTTOM ACTION BAR ============ -->
+<div class="action-bar">
+  <a href="tel:+573016163418" class="a-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>Llamar</a>
+  <div class="a-wa-wrap" data-wa-group>
+    <button class="a-wa" data-wa-toggle aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>WhatsApp</button>
+    <div class="a-wa-menu" data-wa-group-menu>
+      <a href="#" data-wa="bdc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>Baterías del Caribe</a>
+      <a href="#" data-wa="willisch"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>Seguros Willisch</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  function safe(fn, name) { try { fn(); } catch (e) { console.warn("[" + name + "]", e); } }
+  document.body.classList.remove("no-js");
+
+  var WA = {
+    bdc: { phone: "573016163418", msg: "Hola, soy cliente de Seguros Willisch y quiero cotizar una batería para mi carro con Baterías del Caribe GW." },
+    "bdc-promo": { phone: "573016163418", msg: "Hola, soy cliente de Seguros Willisch y quiero mi 20% de descuento en una batería." },
+    willisch: { phone: "573007525773", msg: "Hola, vengo de Baterías del Caribe GW y quiero información sobre seguros para mi vehículo." },
+    "willisch-riesgo": { phone: "573007525773", msg: "Hola, quiero cotizar un seguro Todo Riesgo para mi vehículo con Seguros Willisch." }
+  };
+
+  function initWhatsApp() {
+    document.querySelectorAll("[data-wa]").forEach(function (el) {
+      var key = el.getAttribute("data-wa");
+      var url;
+      if (WA[key]) {
+        url = "https://wa.me/" + WA[key].phone + "?text=" + encodeURIComponent(WA[key].msg);
+      } else { return; }
+      el.setAttribute("href", url);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener");
+    });
+  }
+
+  function initMobileMenu() {
+    var toggle = document.querySelector("[data-menu-toggle]");
+    var menu = document.querySelector("[data-mobile-menu]");
+    if (!toggle || !menu) return;
+    var root = document.documentElement;
+    var lockedAt = 0;
+
+    function close() {
+      if (!menu.classList.contains("is-open")) return;
+      menu.classList.remove("is-open");
+      toggle.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      root.classList.remove("menu-lock");
+      root.style.top = "";
+      window.scrollTo(0, lockedAt);
+    }
+
+    function open() {
+      lockedAt = window.scrollY;
+      menu.classList.add("is-open");
+      toggle.classList.add("is-open");
+      toggle.setAttribute("aria-expanded", "true");
+      root.classList.add("menu-lock");
+    }
+
+    toggle.addEventListener("click", function () {
+      menu.classList.contains("is-open") ? close() : open();
+    });
+
+    /* cualquier enlace del menú lo cierra (navegación y botones de WhatsApp) */
+    menu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", close); });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") close();
+    });
+
+    /* red de seguridad: si el navegador ignora el bloqueo y la página se desplaza, cerramos */
+    window.addEventListener("scroll", function () {
+      if (menu.classList.contains("is-open") && Math.abs(window.scrollY - lockedAt) > 40) close();
+    }, { passive: true });
+  }
+
+  function initAnchorScroll() {
+    var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      var offset = 96;
+      var top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
+      history.pushState(null, "", id);
+    });
+  }
+
+  function initReveals() {
+    var items = document.querySelectorAll(".reveal");
+    if (!items.length) return;
+    if (typeof IntersectionObserver === "undefined") { items.forEach(function (el) { el.classList.add("is-visible"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.01, rootMargin: "0px 0px -2% 0px" });
+    items.forEach(function (el) { io.observe(el); });
+    setTimeout(function () {
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach(function (el) {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("is-visible");
+      });
+    }, 6000);
+  }
+
+  function initChargeBar() {
+    var fill = document.querySelector("[data-charge-fill]");
+    var pct = document.querySelector("[data-charge-pct] span");
+    if (!fill) return;
+    function update() {
+      var h = document.documentElement;
+      var scrolled = h.scrollTop;
+      var max = h.scrollHeight - h.clientHeight;
+      var p = max > 0 ? Math.min(100, Math.round((scrolled / max) * 100)) : 0;
+      fill.style.width = p + "%";
+      if (pct) pct.textContent = p + "%";
+    }
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
+
+  function initOpenStatus() {
+    var pill = document.querySelector("[data-status]");
+    var text = document.querySelector("[data-status-text]");
+    if (!pill || !text) return;
+    var now = new Date();
+    var day = now.getDay(); // 0 Sun - 6 Sat
+    var hour = now.getHours() + now.getMinutes() / 60;
+    var isSunday = day === 0;
+    var open = isSunday ? (hour >= 8 && hour < 16) : (hour >= 7 && hour < 19);
+    pill.classList.add(open ? "open" : "closed");
+    if (open) {
+      text.textContent = isSunday ? "Abierto ahora · hasta 4:00 PM" : "Abierto ahora · hasta 7:00 PM";
+    } else {
+      text.textContent = isSunday ? "Cerrado · abre mañana 7:00 AM" : (day === 6 && hour >= 19 ? "Cerrado · abre domingo 8:00 AM" : "Cerrado · abre a las 7:00 AM");
+    }
+  }
+
+  function initYear() {
+    var el = document.querySelector("[data-year]");
+    if (el) el.textContent = new Date().getFullYear();
+  }
+
+  /* ---------- WhatsApp brand-choice menus (header + bottom bar) ---------- */
+  function initWaGroups() {
+    var groups = document.querySelectorAll("[data-wa-group]");
+    if (!groups.length) return;
+
+    function closeAll() {
+      groups.forEach(function (group) {
+        var menu = group.querySelector("[data-wa-group-menu]");
+        var toggle = group.querySelector("[data-wa-toggle]");
+        if (menu) menu.classList.remove("is-open");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    groups.forEach(function (group) {
+      var toggle = group.querySelector("[data-wa-toggle]");
+      var menu = group.querySelector("[data-wa-group-menu]");
+      if (!toggle || !menu) return;
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var willOpen = !menu.classList.contains("is-open");
+        closeAll();
+        if (willOpen) {
+          menu.classList.add("is-open");
+          toggle.setAttribute("aria-expanded", "true");
+        }
+      });
+      menu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", closeAll);
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      var inside = Array.prototype.some.call(groups, function (g) { return g.contains(e.target); });
+      if (!inside) closeAll();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeAll();
+    });
+  }
+
+  function boot() {
+    safe(initWhatsApp, "initWhatsApp");
+    safe(initMobileMenu, "initMobileMenu");
+    safe(initAnchorScroll, "initAnchorScroll");
+    safe(initReveals, "initReveals");
+    safe(initChargeBar, "initChargeBar");
+    safe(initOpenStatus, "initOpenStatus");
+    safe(initWaGroups, "initWaGroups");
+    safe(initYear, "initYear");
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
+})();
+</script>
+</body>
+</html>
