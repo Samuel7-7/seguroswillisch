@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seguros Willisch | Asesoría en seguros para tu vehículo</title>
+<meta name="description" content="Seguros Willisch: asesoría personalizada en seguros Todo Riesgo para carro, moto, camión y bicicleta eléctrica. También Salud, Vida, Hogar, Empresariales y ARL. Atención por WhatsApp en Barranquilla.">
+<meta name="theme-color" content="#0b0f26">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f26'/%3E%3Cpath d='M14 40l4-12a6 6 0 0 1 5.7-4h16.6a6 6 0 0 1 5.7 4l4 12' stroke='%23ffc531' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='42' r='4' fill='%23e2231c'/%3E%3Ccircle cx='42' cy='42' r='4' fill='%23e2231c'/%3E%3C/svg%3E">
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    color:#12142a;
+    background:#f6f7fb;
+    line-height:1.55;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .container{max-width:960px;margin-inline:auto;padding-inline:20px}
+
+  /* Header */
+  header{background:#0b0f26;padding:16px 0;position:sticky;top:0;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+  header .container{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand img{height:48px;width:auto}
+  .brand span{color:#fff;font-weight:700;font-size:1rem}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#25D366;color:#fff;font-weight:700;
+    padding:12px 20px;border-radius:100px;text-decoration:none;
+    font-size:0.95rem;white-space:nowrap;
+  }
+  .btn:hover{background:#1fb958}
+
+  /* Hero */
+  .hero{background:linear-gradient(160deg,#0b0f26 0%,#2432c7 140%);color:#fff;padding:60px 0 50px;text-align:center}
+  .hero .kicker{color:#ffc531;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-size:0.85rem}
+  .hero h1{font-size:clamp(1.8rem,5vw,2.6rem);margin-top:12px;max-width:22ch;margin-inline:auto}
+  .hero p{color:rgba(255,255,255,0.8);max-width:56ch;margin:16px auto 0}
+  .hero .btn{margin-top:26px}
+
+  /* Servicios */
+  section{padding-block:56px}
+  h2{font-size:clamp(1.5rem,3.5vw,2rem);text-align:center}
+  .section-sub{text-align:center;color:#6a6e8e;max-width:52ch;margin:10px auto 0}
+
+  .grid{display:grid;gap:18px;grid-template-columns:1fr;margin-top:36px}
+  @media (min-width:700px){ .grid{grid-template-columns:1fr 1fr} }
+  .card{background:#fff;border:1px solid rgba(18,20,42,0.1);border-radius:16px;padding:24px}
+  .card h3{font-size:1.1rem;margin-bottom:8px}
+  .card p{color:#6a6e8e;font-size:0.95rem}
+
+  .veh-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:36px}
+  .veh{background:#fff;border:1px solid rgba(18,20,42,0.1);border-radius:12px;padding:14px 20px;font-weight:700;font-size:0.9rem;color:#2432c7}
+
+  /* Contacto */
+  .contacto{background:#fff}
+  .contact-list{max-width:480px;margin:32px auto 0;display:flex;flex-direction:column;gap:12px}
+  .contact-row{
+    display:flex;align-items:center;gap:12px;background:#f6f7fb;
+    border-radius:12px;padding:14px 16px;font-size:0.95rem;
+  }
+  .contact-row a{font-weight:700;text-decoration:none}
+
+  /* Footer */
+  footer{background:#0b0f26;color:rgba(255,255,255,0.7);text-align:center;padding:28px 0;font-size:0.85rem}
+  footer a{text-decoration:none}
+  footer a:hover{color:#fff}
+
+  .center-btn{text-align:center;margin-top:36px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand">
+      <img src="assets/logos/logo-willisch.png" alt="Logo Seguros Willisch">
+      <span>Seguros Willisch</span>
+    </div>
+    <a class="btn" id="wa-header" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="kicker">Asesoría en seguros en Barranquilla</span>
+    <h1>Protege tu vehículo con Todo Riesgo</h1>
+    <p>Asesoría personalizada para proteger tu carro, moto, camión o bicicleta eléctrica. También te ayudamos en Salud, Vida, Hogar, Empresariales y ARL.</p>
+    <a class="btn" id="wa-hero" href="#" target="_blank" rel="noopener">Cotizar mi seguro</a>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="container">
+    <h2>Nuestros servicios</h2>
+    <p class="section-sub">Asesoría personalizada para elegir la cobertura que necesitas.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Todo Riesgo para vehículos</h3>
+        <p>Cobertura completa para carro, moto, camión y bicicleta eléctrica.</p>
+      </div>
+      <div class="card">
+        <h3>Asesoría personalizada</h3>
+        <p>Te acompañamos para elegir la póliza que mejor se ajuste a tu caso.</p>
+      </div>
+      <div class="card">
+        <h3>Salud, Vida y Hogar</h3>
+        <p>Protección para ti, tu familia y tu patrimonio.</p>
+      </div>
+      <div class="card">
+        <h3>Empresariales y ARL</h3>
+        <p>Soluciones de aseguramiento para tu empresa y tus colaboradores.</p>
+        <p style="margin-top:10px"><a href="arl/" style="font-weight:700">Ver ARL para empresas →</a></p>
+        <p style="margin-top:6px"><a href="cumplimiento/" style="font-weight:700">Ver Cumplimiento y RCE →</a></p>
+      </div>
+    </div>
+
+    <div class="veh-row">
+      <span class="veh">Autos</span>
+      <span class="veh">Motos</span>
+      <span class="veh">Camiones</span>
+      <span class="veh">E-bike</span>
+    </div>
+
+    <div class="center-btn">
+      <a class="btn" id="wa-servicios" href="#" target="_blank" rel="noopener">Cotizar Todo Riesgo</a>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="container">
+    <h2>Contáctanos</h2>
+    <p class="section-sub">Escríbenos y un asesor te ayuda a cotizar tu seguro.</p>
+
+    <div class="contact-list">
+      <div class="contact-row">WhatsApp: <a id="wa-contacto" href="#" target="_blank" rel="noopener">+57 300 7525773</a></div>
+      <div class="contact-row">Web: <a href="https://seguroswillisch.com/" target="_blank" rel="noopener">seguroswillisch.com</a></div>
+      <div class="contact-row">Ubicación: <a href="https://share.google/LXEykav0mIWhdiPig" target="_blank" rel="noopener">Ver en Google Maps</a></div>
+      <div class="contact-row">Instagram: <a href="https://www.instagram.com/seguroswillisch/" target="_blank" rel="noopener">@seguroswillisch</a></div>
+      <div class="contact-row">Email: <a href="mailto:gerencia@seguroswillisch.com">gerencia@seguroswillisch.com</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="year"></span> Seguros Willisch · Barranquilla, Colombia</p>
+    <p style="margin-top:6px"><a href="arl/">ARL para empresas</a> · <a href="cumplimiento/">Cumplimiento y RCE</a> · <a href="ciaformandoconductores/">CIA Formando Conductores</a> · <a href="baterias-del-caribe/">Baterías del Caribe GW</a></p>
+  </div>
+</footer>
+
+<script>
+  var waUrl = "https://wa.me/573007525773?text=" + encodeURIComponent("Hola, quiero información sobre seguros para mi vehículo con Seguros Willisch.");
+  ["wa-header","wa-hero","wa-servicios","wa-contacto"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.setAttribute("href", waUrl);
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
