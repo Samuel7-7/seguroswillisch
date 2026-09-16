@@ -217,12 +217,7 @@
                          },
     "serv-beneficios":  {
                             "src":  "assets/img/serv-beneficios.jpg",
-                            "title":  "Shopping in supermarket store, mall",
-                            "creator":  "www.readyelements.com",
-                            "source":  "flickr",
-                            "license":  "cc0",
-                            "license_url":  "https://creativecommons.org/publicdomain/zero/1.0/",
-                            "original":  "https://www.flickr.com/photos/155753322@N06/43712540391"
+                            "note":  "Custom Seguros Willisch brand asset, provided directly by the client."
                         },
     "serv-domiciliaria":  {
                               "src":  "assets/img/serv-domiciliaria.jpg",
