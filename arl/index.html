@@ -304,13 +304,11 @@
     content:'';position:absolute;inset:0;
     background:linear-gradient(180deg,rgba(7,14,31,.05) 0%,rgba(7,14,31,.42) 100%);
   }
-  .svc-media.showcase{background:linear-gradient(160deg,#EEF2FA 0%,#E3E9F6 100%);padding:16px;}
   .svc-media.showcase img{
-    object-fit:contain;transition:none;transform:none;
-    image-rendering:auto;backface-visibility:hidden;
+    object-fit:cover;object-position:50% 42%;
+    transition:none;transform:none;backface-visibility:hidden;
   }
   .svc-card:hover .svc-media.showcase img{transform:none;}
-  .svc-media.showcase::after{display:none;}
   .svc-icon{
     position:absolute;left:18px;top:-23px;z-index:2;
     width:46px;height:46px;border-radius:13px;
