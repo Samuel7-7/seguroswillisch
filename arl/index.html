@@ -126,7 +126,7 @@
   }
   .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 24px;max-width:1220px;margin:0 auto;}
   .brand{display:flex;align-items:center;gap:12px;min-width:0;flex-shrink:1;}
-  .brand img{height:40px;width:auto;flex-shrink:0;}
+  .brand img{height:50px;width:auto;flex-shrink:0;}
   .brand span{font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .nav-links{display:flex;gap:26px;font-size:14px;}
   .nav-links a{color:var(--muted-2);font-weight:500;position:relative;padding:4px 0;}
@@ -136,7 +136,44 @@
   }
   .nav-links a:hover{color:#fff;}
   .nav-links a:hover::after{width:100%;}
-  @media (max-width:1000px){ .nav-links{display:none;} }
+
+  /* Hamburger */
+  .nav-toggle{
+    display:none;background:none;border:0;cursor:pointer;flex-shrink:0;
+    width:44px;height:44px;border-radius:10px;padding:0;
+    align-items:center;justify-content:center;flex-direction:column;gap:5px;
+    transition:background .2s ease;
+  }
+  .nav-toggle:hover{background:rgba(255,255,255,.08);}
+  .nav-toggle span{
+    display:block;width:23px;height:2px;background:#fff;border-radius:2px;
+    transition:transform .3s ease, opacity .2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  @media (max-width:1000px){
+    .nav-toggle{display:flex;}
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;z-index:1;
+      flex-direction:column;gap:0;
+      background:#0B1330;
+      border-bottom:1px solid rgba(255,255,255,.1);
+      box-shadow:0 22px 40px -20px rgba(0,0,0,.6);
+      padding:6px 0 12px;
+      max-height:0;opacity:0;visibility:hidden;overflow:hidden;
+      transition:max-height .35s ease, opacity .25s ease, visibility .25s;
+    }
+    .nav-links.open{max-height:75vh;opacity:1;visibility:visible;overflow-y:auto;}
+    .nav-links a{
+      padding:14px 24px;font-size:15.5px;color:#DCE6F5;font-weight:600;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-links a:last-child{border-bottom:none;}
+    .nav-links a::after{display:none;}
+    .nav-links a:hover,.nav-links a:active{background:rgba(79,168,232,.14);color:#fff;}
+  }
   @media (max-width:480px){
     header .btn-whatsapp{padding:0;width:44px;height:44px;border-radius:50%;justify-content:center;flex-shrink:0;}
     header .btn-whatsapp .btn-label{display:none;}
@@ -415,6 +452,7 @@
     content:'';position:absolute;inset:0;z-index:-1;
     background:linear-gradient(140deg,rgba(7,14,31,.95) 0%,rgba(14,26,56,.9) 48%,rgba(22,31,140,.82) 100%);
   }
+  .cta-logo{height:64px;width:auto;margin:0 auto 26px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5));}
   .cta-final h2{color:#fff;font-size:clamp(27px,3.6vw,42px);line-height:1.15;}
   .cta-final p{color:rgba(255,255,255,.84);margin-top:16px;font-size:17px;max-width:600px;margin-inline:auto;}
   .cta-buttons{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
@@ -424,7 +462,7 @@
   footer{background:var(--navy);color:var(--muted-2);padding:44px 0 28px;font-size:13.5px;}
   .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.08);}
   .footer-brand{display:flex;align-items:center;gap:12px;}
-  .footer-brand img{height:38px;}
+  .footer-brand img{height:48px;}
   .footer-brand strong{color:#fff;font-family:'Montserrat',sans-serif;font-size:15px;}
   .footer-contact{display:flex;flex-direction:column;gap:9px;}
   .footer-contact a:hover{color:#fff;}
@@ -463,7 +501,7 @@
       <img src="../assets/logos/logo-willisch.png" alt="Seguros Willisch">
       <span>Seguros Willisch</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" id="nav-links">
       <a href="#arl">ARL</a>
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Cómo trabajamos</a>
@@ -474,6 +512,9 @@
     <a class="btn btn-whatsapp" id="wa-header" href="#" target="_blank" rel="noopener">
       <i class="fa-brands fa-whatsapp"></i> <span class="btn-label">Hablar con un asesor</span>
     </a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -702,7 +743,7 @@
           </div>
           <div class="proc-body">
             <h3>Gestionamos el proceso</h3>
-            <p>Nos ocupamos de la gestión ante la ARL.</p>
+            <p>Nos ocupamos de la gestión de ARL.</p>
           </div>
         </article>
         <article class="proc-card reveal">
@@ -807,7 +848,7 @@
     <div class="wrap">
       <div class="cump-grid">
         <div class="reveal">
-          <span class="badge">Cumplimiento</span>
+          <span class="badge">Pólizas de Cumplimiento</span>
           <h2>Protección para tus contratos y proyectos.</h2>
           <p class="copy">Además de ARL, en Seguros Willisch también te acompañamos con pólizas de Cumplimiento, especialmente para obras, contratos y proyectos.</p>
           <div class="cump-chips">
@@ -828,6 +869,7 @@
   <!-- ===== CTA FINAL ===== -->
   <section class="cta-final" id="contacto">
     <div class="wrap reveal">
+      <img src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" class="cta-logo">
       <h2>¿Hablamos de las necesidades de tu empresa?</h2>
       <p>Cuéntanos sobre tu empresa y permítenos acompañarte a encontrar las soluciones de protección que necesitas.</p>
       <div class="cta-buttons">
@@ -853,6 +895,7 @@
         <a href="tel:+573007525773"><i class="fa-solid fa-phone"></i>300 7525773</a>
         <a href="https://seguroswillisch.com/" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i>seguroswillisch.com</a>
         <a href="https://www.instagram.com/seguroswillisch/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>@seguroswillisch</a>
+        <a href="https://www.facebook.com/people/Seguros-Willisch/61575842832331/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i>Seguros Willisch</a>
         <a href="mailto:gerencia@seguroswillisch.com"><i class="fa-solid fa-envelope"></i>gerencia@seguroswillisch.com</a>
       </div>
       <nav class="footer-links">
@@ -879,6 +922,32 @@
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Mobile hamburger menu
+  var navToggle = document.getElementById("nav-toggle");
+  var navLinks = document.getElementById("nav-links");
+  function closeMenu() {
+    navToggle.setAttribute("aria-expanded", "false");
+    navLinks.classList.remove("open");
+  }
+  function toggleMenu() {
+    var isOpen = navLinks.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  }
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", toggleMenu);
+    navLinks.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("click", function (e) {
+      if (!navLinks.classList.contains("open")) return;
+      if (navLinks.contains(e.target) || navToggle.contains(e.target)) return;
+      closeMenu();
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1000) closeMenu();
+    });
+  }
 
   // Scroll progress bar
   var bar = document.getElementById("progress");
