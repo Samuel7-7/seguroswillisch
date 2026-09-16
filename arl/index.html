@@ -338,20 +338,15 @@
     color:#DCEBFA;padding:6px 12px;border-radius:20px;backdrop-filter:blur(6px);
   }
 
-  /* highlighted key card */
-  .svc-card.key{border:none;}
-  .svc-card.key .svc-body{
+  /* alternating accent cards */
+  .svc-card:not(.wide):nth-child(odd){border:none;}
+  .svc-card:not(.wide):nth-child(odd) .svc-body{
     background:linear-gradient(150deg,var(--royal-dark) 0%,var(--royal) 58%,var(--royal-light) 100%);
     color:#fff;
   }
-  .svc-card.key h3{color:#fff;}
-  .svc-card.key p{color:rgba(255,255,255,.9);}
-  .svc-card.key .svc-icon{background:#fff;color:var(--royal);}
-  .svc-tag-key{
-    position:absolute;top:14px;right:14px;z-index:3;
-    font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-    background:rgba(255,255,255,.9);color:var(--royal-dark);padding:5px 11px;border-radius:20px;
-  }
+  .svc-card:not(.wide):nth-child(odd) h3{color:#fff;}
+  .svc-card:not(.wide):nth-child(odd) p{color:rgba(255,255,255,.9);}
+  .svc-card:not(.wide):nth-child(odd) .svc-icon{background:#fff;color:var(--royal);}
 
   @media (max-width:980px){
     .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
@@ -610,8 +605,7 @@
           </div>
         </article>
 
-        <article class="svc-card key reveal">
-          <span class="svc-tag-key">Punto clave</span>
+        <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-asesor-prev.jpg" alt="Personal con equipo de protección personal en planta industrial" loading="lazy">
           </div>
