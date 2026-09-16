@@ -304,9 +304,12 @@
     content:'';position:absolute;inset:0;
     background:linear-gradient(180deg,rgba(7,14,31,.05) 0%,rgba(7,14,31,.42) 100%);
   }
-  .svc-media.showcase{background:linear-gradient(160deg,#EEF2FA 0%,#E3E9F6 100%);}
-  .svc-media.showcase img{object-fit:contain;padding:16px;}
-  .svc-card:hover .svc-media.showcase img{transform:scale(1.04);}
+  .svc-media.showcase{background:linear-gradient(160deg,#EEF2FA 0%,#E3E9F6 100%);padding:16px;}
+  .svc-media.showcase img{
+    object-fit:contain;transition:none;transform:none;
+    image-rendering:auto;backface-visibility:hidden;
+  }
+  .svc-card:hover .svc-media.showcase img{transform:none;}
   .svc-media.showcase::after{display:none;}
   .svc-icon{
     position:absolute;left:18px;top:-23px;z-index:2;
@@ -460,7 +463,6 @@
   .cta-final h2{color:#fff;font-size:clamp(27px,3.6vw,42px);line-height:1.15;}
   .cta-final p{color:rgba(255,255,255,.84);margin-top:16px;font-size:17px;max-width:600px;margin-inline:auto;}
   .cta-buttons{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-  .cta-final .wa-number{margin-top:22px;color:rgba(255,255,255,.6);font-size:13.5px;}
 
   /* ---------- Footer ---------- */
   footer{background:var(--navy);color:var(--muted-2);padding:44px 0 28px;font-size:13.5px;}
@@ -629,6 +631,7 @@
           <div class="svc-body">
             <span class="svc-icon"><i class="fa-solid fa-helmet-safety"></i></span>
             <h3>Curso de trabajo en alturas</h3>
+            <p>Capacitación para fortalecer la seguridad de los trabajadores que realizan labores en alturas, con formación en trabajo seguro, prevención de accidentes laborales y orientación en buenas prácticas de seguridad.</p>
           </div>
         </article>
 
@@ -639,6 +642,7 @@
           <div class="svc-body">
             <span class="svc-icon"><i class="fa-solid fa-gauge-high"></i></span>
             <h3>Mediciones ambientales</h3>
+            <p>Evaluamos las condiciones ambientales de tu empresa para identificar factores de riesgo y te damos recomendaciones orientadas a la prevención, promoviendo espacios de trabajo más seguros.</p>
           </div>
         </article>
 
@@ -649,6 +653,7 @@
           <div class="svc-body">
             <span class="svc-icon"><i class="fa-solid fa-house-medical"></i></span>
             <h3>Atención médica domiciliaria</h3>
+            <p>Acceso a servicios de atención médica en la comodidad de tu hogar, con orientación en servicios de salud según las condiciones y coberturas disponibles.</p>
           </div>
         </article>
 
@@ -670,6 +675,7 @@
           <div class="svc-body">
             <span class="svc-icon"><i class="fa-solid fa-right-left"></i></span>
             <h3>Asesoría y gestión en traslado de ARL</h3>
+            <p>Te acompañamos en el proceso de traslado de tu empresa a una nueva administradora de riesgos laborales, con orientación, gestión documental y acompañamiento personalizado.</p>
           </div>
         </article>
 
@@ -881,7 +887,6 @@
           <i class="fa-brands fa-whatsapp"></i> Hablar con un asesor
         </a>
       </div>
-      <p class="wa-number">WhatsApp: +57 300 7525773</p>
     </div>
   </section>
 
