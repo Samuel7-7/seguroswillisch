@@ -305,13 +305,13 @@
     background:linear-gradient(180deg,rgba(7,14,31,.05) 0%,rgba(7,14,31,.42) 100%);
   }
   .svc-icon{
-    position:absolute;left:18px;bottom:-22px;z-index:2;
+    position:absolute;left:18px;top:-23px;z-index:2;
     width:46px;height:46px;border-radius:13px;
     background:linear-gradient(135deg,var(--royal-light),var(--royal));
     color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;
     box-shadow:0 12px 24px -10px rgba(36,56,216,.7);
   }
-  .svc-body{padding:36px 22px 26px;flex:1;}
+  .svc-body{position:relative;padding:36px 22px 26px;flex:1;}
   .svc-body h3{font-size:17px;line-height:1.3;margin-bottom:9px;}
   .svc-body p{color:var(--muted);font-size:14.5px;}
 
@@ -598,9 +598,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-especialistas.jpg" alt="Equipo de especialistas con elementos de protección en inspección industrial" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-user-shield"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-user-shield"></i></span>
             <h3>Especialistas SST</h3>
             <p>Contamos con especialistas en Seguridad y Salud en el Trabajo.</p>
           </div>
@@ -610,9 +610,9 @@
           <span class="svc-tag-key">Punto clave</span>
           <div class="svc-media">
             <img src="assets/img/serv-asesor-prev.jpg" alt="Personal con equipo de protección personal en planta industrial" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-id-card-clip"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-id-card-clip"></i></span>
             <h3>Asesor de Prevención SST asignado</h3>
             <p>Tu empresa cuenta con un asesor de prevención SST asignado.</p>
           </div>
@@ -621,9 +621,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-alturas.jpg" alt="Trabajador en estructura elevada durante labores en altura" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-helmet-safety"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-helmet-safety"></i></span>
             <h3>Curso de trabajo en alturas</h3>
           </div>
         </article>
@@ -631,9 +631,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-mediciones.jpg" alt="Instrumentos técnicos de medición sobre plano" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-gauge-high"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-gauge-high"></i></span>
             <h3>Mediciones ambientales</h3>
           </div>
         </article>
@@ -641,9 +641,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-domiciliaria.jpg" alt="Profesionales de la salud revisando historia clínica" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-house-medical"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-house-medical"></i></span>
             <h3>Atención médica domiciliaria</h3>
           </div>
         </article>
@@ -651,9 +651,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-app.jpg" alt="Teléfono móvil y libreta sobre escritorio de trabajo" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
             <h3>Plataforma tecnológica (APP)</h3>
             <p>Una herramienta digital para gestionar y consultar fácilmente servicios de ARL, facilitando el acceso a información, certificados, reportes y recursos de seguridad y salud en el trabajo desde cualquier lugar.</p>
           </div>
@@ -662,9 +662,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-traslado.jpg" alt="Manos revisando documentos empresariales junto a un computador portátil" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-right-left"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-right-left"></i></span>
             <h3>Asesoría y gestión en traslado de ARL</h3>
           </div>
         </article>
@@ -672,9 +672,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-asesor-integral.jpg" alt="Asesor profesional en su oficina" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-user-tie"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-user-tie"></i></span>
             <h3>Asesor de seguros integral</h3>
             <p>Soluciones para proteger y fortalecer tu empresa, desde seguros empresariales y ARL hasta la protección de tus colaboradores y sus familias.</p>
           </div>
@@ -682,10 +682,10 @@
 
         <article class="svc-card reveal">
           <div class="svc-media">
-            <img src="assets/img/serv-beneficios.jpg" alt="Personas realizando compras en comercio aliado" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-gift"></i></span>
+            <img src="assets/img/serv-beneficios.jpg" alt="Tarjeta de beneficios Seguros Willisch con íconos de protección, calidad y compras" loading="lazy">
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-gift"></i></span>
             <h3>Club de Beneficios</h3>
             <p>Disfruta descuentos y beneficios exclusivos en marcas y comercios aliados, pensados para ofrecerte más ventajas por confiar en nosotros.</p>
           </div>
@@ -694,9 +694,9 @@
         <article class="svc-card reveal">
           <div class="svc-media">
             <img src="assets/img/serv-microempresa.jpg" alt="Pequeño negocio con su equipo de trabajo" loading="lazy">
-            <span class="svc-icon"><i class="fa-solid fa-building-circle-check"></i></span>
           </div>
           <div class="svc-body">
+            <span class="svc-icon"><i class="fa-solid fa-building-circle-check"></i></span>
             <h3>Afiliamos empresas desde 1 trabajador</h3>
             <p>Protege tu negocio y tu equipo desde el primer día, con soluciones de ARL pensadas para las necesidades de microempresas.</p>
           </div>
