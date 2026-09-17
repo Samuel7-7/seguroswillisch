@@ -239,12 +239,12 @@
                            },
     "serv-mediciones":  {
                             "src":  "assets/img/serv-mediciones.jpg",
-                            "title":  "Measuring Instruments",
-                            "creator":  "jacqui.brown33",
+                            "title":  "A Day in the Life of an Inspector",
+                            "creator":  "bseegov",
                             "source":  "flickr",
-                            "license":  "by-sa",
-                            "license_url":  "https://creativecommons.org/licenses/by-sa/2.0/",
-                            "original":  "https://www.flickr.com/photos/120600995@N07/14125629331"
+                            "license":  "pdm",
+                            "license_url":  "https://creativecommons.org/publicdomain/mark/1.0/",
+                            "original":  "https://www.flickr.com/photos/123443813@N05/32372094465"
                         },
     "serv-microempresa":  {
                               "src":  "assets/img/serv-microempresa.jpg",
