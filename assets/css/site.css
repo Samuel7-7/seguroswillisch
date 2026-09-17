@@ -213,11 +213,9 @@ section{position:relative}
 
 .logo{display:flex;align-items:center;gap:11px;flex:none}
 .logo img{height:42px;width:auto;object-fit:contain}
-/* El logo actual es blanco (pensado para fondo oscuro): en el header claro se pierde,
-   así que ahí mostramos solo el lockup tipográfico. Cuando llegue la versión en tinta
-   del logo, elimina estas dos reglas. */
-.site-header .logo img{display:none}
-[data-theme="dark"] .site-header .logo img{display:block}
+/* En el header va el isotipo en color, que se lee igual de bien sobre marfil y
+   sobre azul oscuro. El logo blanco completo se queda para el footer. */
+.site-header .logo img{height:34px}
 .logo-txt{display:flex;flex-direction:column;line-height:1.05}
 .logo-txt b{font-family:var(--font-display);font-weight:800;font-size:15.5px;letter-spacing:-.02em}
 .logo-txt span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);font-weight:600}
@@ -328,7 +326,6 @@ section{position:relative}
 .hero-title{margin-top:18px;max-width:14ch}
 .hero-title em{font-style:normal;color:var(--blue)}
 [data-theme="dark"] .hero-title em{color:var(--blue-light)}
-.hero-sub{margin-top:22px;max-width:52ch}
 
 .rotator{
   display:inline-flex;align-items:center;gap:10px;margin-top:26px;
@@ -348,39 +345,6 @@ section{position:relative}
 .hero-trust{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap;font-size:13.4px;color:var(--text-mute)}
 .hero-trust b{font-family:var(--font-display);color:var(--text);font-size:15.5px}
 
-/* Composición de escudo */
-.shield-stage{
-  position:relative;aspect-ratio:1/1.06;width:100%;max-width:560px;margin-inline:auto;
-  --px:0;--py:0;
-}
-.shield-outline{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
-.shield-outline path{
-  fill:none;stroke:var(--blue);stroke-width:1.4;stroke-linejoin:round;opacity:.42;
-  stroke-dasharray:1000;stroke-dashoffset:calc(1000 - (1000 * var(--draw,0)));
-}
-[data-theme="dark"] .shield-outline path{stroke:var(--blue-light)}
-
-.ph-card{
-  position:absolute;border-radius:var(--r);overflow:hidden;
-  box-shadow:var(--shadow-lg);
-  background:var(--surface-2);
-  transform:
-    translate3d(calc(var(--dx,0px) + var(--px) * var(--depth,1)),calc(var(--dy,0px) + var(--py) * var(--depth,1)),0)
-    rotate(var(--rot,0deg)) scale(var(--sc,1));
-  transition:transform .65s var(--ease-out),box-shadow .4s ease;
-  will-change:transform;
-}
-.ph-card img{width:100%;height:100%;object-fit:cover}
-.ph-card::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(200deg,transparent 40%,rgba(11,31,51,.34));
-}
-.ph-card .ph-tag{
-  position:absolute;left:12px;bottom:12px;z-index:2;
-  font-family:var(--font-display);font-size:11.5px;font-weight:700;color:#fff;
-  background:rgba(11,31,51,.55);backdrop-filter:blur(6px);
-  padding:6px 11px;border-radius:var(--r-full);
-}
 /* Relleno gráfico cuando aún no hay foto real */
 .ph-fill{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 .ph-fill svg{width:44%;height:44%;opacity:.5;color:#fff}
@@ -388,23 +352,64 @@ section{position:relative}
 .ph-fill.f2{background:linear-gradient(150deg,#1D3A5C,var(--blue-light) 220%)}
 .ph-fill.f3{background:linear-gradient(150deg,#2B2118,var(--warm) 240%)}
 
-.c1{width:47%;aspect-ratio:4/5;left:2%;top:4%;--depth:1.5;--rot:-4deg}
-.c2{width:38%;aspect-ratio:1/1;right:1%;top:0%;--depth:-1.1;--rot:5deg}
-.c3{width:42%;aspect-ratio:3/4;right:4%;top:33%;--depth:1.9;--rot:3deg}
-.c4{width:36%;aspect-ratio:1/1;left:6%;top:47%;--depth:-1.6;--rot:-6deg}
-.c5{width:44%;aspect-ratio:5/4;left:27%;bottom:1%;--depth:1.2;--rot:2deg}
+/* ---- Isotipo gigante flotante ---- */
+.hero-mark{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  min-height:clamp(260px,38vw,480px);
+  --px:0;--py:0;
+}
+.mark-parallax{
+  display:block;position:relative;z-index:2;
+  transform:translate3d(var(--px),var(--py),0);
+  transition:transform .5s var(--ease-out);
+}
+.mark-float{display:block;animation:flotar 7s ease-in-out infinite}
+.mark-img{
+  width:clamp(238px,33vw,452px);height:auto;
+  filter:drop-shadow(0 26px 44px rgba(11,31,51,.3));
+}
+[data-theme="dark"] .mark-img{filter:drop-shadow(0 26px 48px rgba(0,0,0,.65)) brightness(1.1)}
+
+.mark-glow{
+  position:absolute;z-index:1;pointer-events:none;
+  width:clamp(300px,44vw,600px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--blue-light) 42%,transparent) 0%,transparent 68%);
+  filter:blur(14px);
+  animation:brillo 7s ease-in-out infinite;
+}
+[data-theme="dark"] .mark-glow{background:radial-gradient(circle,color-mix(in srgb,var(--blue-light) 30%,transparent) 0%,transparent 66%)}
+
+.mark-shadow{
+  position:absolute;z-index:0;pointer-events:none;
+  bottom:clamp(6px,3vw,26px);
+  width:clamp(150px,21vw,290px);height:clamp(14px,2.2vw,26px);border-radius:50%;
+  background:radial-gradient(ellipse,rgba(11,31,51,.3) 0%,transparent 70%);
+  filter:blur(5px);
+  animation:sombra 7s ease-in-out infinite;
+}
+[data-theme="dark"] .mark-shadow{background:radial-gradient(ellipse,rgba(0,0,0,.6) 0%,transparent 70%)}
+
+@keyframes flotar{
+  0%,100%{transform:translateY(-14px) rotate(-1.4deg) scale(1)}
+  50%{transform:translateY(16px) rotate(1.4deg) scale(.985)}
+}
+@keyframes flotar-suave{
+  0%,100%{transform:translateY(-10px) rotate(-.6deg)}
+  50%{transform:translateY(11px) rotate(.6deg)}
+}
+@keyframes brillo{
+  0%,100%{opacity:.62;transform:scale(1)}
+  50%{opacity:.95;transform:scale(1.07)}
+}
+@keyframes sombra{
+  0%,100%{transform:scaleX(.88);opacity:.55}
+  50%{transform:scaleX(1);opacity:.9}
+}
 
 @media (max-width:1023px){
-  .shield-stage{max-width:460px}
-  .ph-card{--depth:0}
-}
-@media (max-width:560px){
-  .shield-stage{aspect-ratio:1/.92;max-width:none}
-  .c1{width:52%;left:0;top:2%}
-  .c2{width:42%;right:0;top:0}
-  .c3{width:44%;right:2%;top:36%}
-  .c4{width:38%;left:2%;top:44%}
-  .c5{width:46%;left:26%;bottom:0}
+  .hero-mark{min-height:clamp(230px,54vw,380px);margin-top:10px}
+  .mark-img{width:clamp(220px,52vw,360px)}
+  .mark-glow{width:clamp(280px,68vw,460px)}
 }
 
 .scroll-hint{
@@ -1048,7 +1053,10 @@ section{position:relative}
 /* ============ 26. MOVIMIENTO REDUCIDO ============ */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .ph-card{transform:translate3d(var(--dx,0px),var(--dy,0px),0) rotate(var(--rot,0deg))!important}
-  .marquee-track,.wa-btn::before,.robot-antena,.quote::before,.scroll-hint i::after{animation:none!important}
+  /* Windows trae "reducir movimiento" activo de fábrica, así que aquí no se apaga la
+     flotación del isotipo: se suaviza. Solo se retiran los pulsos decorativos. */
+  .mark-float{animation:flotar-suave 9s ease-in-out infinite}
+  .marquee-track,.wa-btn::before,.robot-antena,.quote::before,.scroll-hint i::after,
+  .mark-glow,.mark-shadow{animation:none!important}
   .esc-visual:hover img{transform:none}
 }

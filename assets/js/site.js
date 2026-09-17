@@ -215,50 +215,26 @@
     }, 2600);
   }
 
-  /* ---------- Hero: parallax y convergencia del escudo ---------- */
+  /* ---------- Hero: el isotipo sigue suavemente al cursor ---------- */
   function initHero() {
     var stage = $("[data-stage]");
-    if (!stage) return;
-    var cards = $$(".ph-card", stage);
-    var outline = $(".shield-outline", stage);
+    var hero = $(".hero");
+    if (!stage || !hero || !finePointer) return;
+    // Responde al cursor del propio visitante, así que se mantiene incluso con
+    // "reducir movimiento"; solo se acorta el recorrido.
+    var amplitud = reduce ? 14 : 38;
 
-    if (finePointer && !reduce) {
-      var hero = $(".hero");
-      hero.addEventListener("mousemove", function (e) {
-        var r = hero.getBoundingClientRect();
-        var px = ((e.clientX - r.left) / r.width - 0.5) * 26;
-        var py = ((e.clientY - r.top) / r.height - 0.5) * 26;
-        stage.style.setProperty("--px", px.toFixed(2) + "px");
-        stage.style.setProperty("--py", py.toFixed(2) + "px");
-      });
-      hero.addEventListener("mouseleave", function () {
-        stage.style.setProperty("--px", "0px");
-        stage.style.setProperty("--py", "0px");
-      });
-    }
-
-    if (reduce) return;
-    var ticking = false;
-    function converger() {
-      var r = stage.getBoundingClientRect();
-      var w = r.width;
-      // 0 → disperso, 1 → agrupado en forma de escudo
-      var p = Math.min(1, Math.max(0, (window.scrollY) / (window.innerHeight * 0.85)));
-      cards.forEach(function (c) {
-        var tx = parseFloat(c.dataset.tx || 0) / 100 * w;
-        var ty = parseFloat(c.dataset.ty || 0) / 100 * w;
-        c.style.setProperty("--dx", (tx * p).toFixed(1) + "px");
-        c.style.setProperty("--dy", (ty * p).toFixed(1) + "px");
-        c.style.setProperty("--sc", (1 - p * 0.07).toFixed(3));
-      });
-      if (outline) outline.style.setProperty("--draw", p.toFixed(3));
-      ticking = false;
-    }
-    converger();
-    window.addEventListener("scroll", function () {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(converger); }
-    }, { passive: true });
-    window.addEventListener("resize", converger);
+    hero.addEventListener("mousemove", function (e) {
+      var r = hero.getBoundingClientRect();
+      var px = ((e.clientX - r.left) / r.width - 0.5) * amplitud;
+      var py = ((e.clientY - r.top) / r.height - 0.5) * (amplitud * 0.79);
+      stage.style.setProperty("--px", px.toFixed(2) + "px");
+      stage.style.setProperty("--py", py.toFixed(2) + "px");
+    });
+    hero.addEventListener("mouseleave", function () {
+      stage.style.setProperty("--px", "0px");
+      stage.style.setProperty("--py", "0px");
+    });
   }
 
   /* ---------- Contadores ---------- */
