@@ -321,9 +321,31 @@ section{position:relative}
 }
 .hero .container{position:relative;z-index:2}
 .hero-grid{display:grid;gap:44px;grid-template-columns:1fr;align-items:center}
-@media (min-width:1024px){ .hero-grid{grid-template-columns:1.02fr .98fr;gap:40px} }
+@media (min-width:1024px){ .hero-grid{grid-template-columns:1.2fr .8fr;gap:40px} }
 
-.hero-title{margin-top:18px;max-width:14ch}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:9px 18px 9px 13px;border-radius:var(--r-full);
+  background:color-mix(in srgb,var(--blue) 9%,var(--surface));
+  border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);
+  box-shadow:0 8px 22px -12px rgba(36,56,216,.5);
+  font-family:var(--font-display);font-size:13.5px;font-weight:800;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--blue);
+}
+.hero-badge svg{width:17px;height:17px;flex:none}
+[data-theme="dark"] .hero-badge{
+  color:var(--blue-light);
+  background:rgba(79,168,232,.12);
+  border-color:rgba(79,168,232,.38);
+}
+@media (max-width:420px){
+  .hero-badge{font-size:11.6px;letter-spacing:.06em;padding:8px 14px 8px 11px;gap:7px}
+  .hero-badge svg{width:15px;height:15px}
+}
+
+/* Tamaño calculado para que "Tu futuro, protegido." quepa en una sola línea */
+.hero-title{margin-top:22px;font-size:clamp(1.55rem,calc(9.5vw - 5px),3rem);line-height:1.04}
+@media (min-width:1024px){ .hero-title{font-size:clamp(2.6rem,5vw,4.05rem)} }
 .hero-title em{font-style:normal;color:var(--blue)}
 [data-theme="dark"] .hero-title em{color:var(--blue-light)}
 
@@ -365,7 +387,7 @@ section{position:relative}
 }
 .mark-float{display:block;animation:flotar 7s ease-in-out infinite}
 .mark-img{
-  width:clamp(238px,33vw,452px);height:auto;
+  width:clamp(238px,33vw,436px);height:auto;
   filter:drop-shadow(0 26px 44px rgba(11,31,51,.3));
 }
 [data-theme="dark"] .mark-img{filter:drop-shadow(0 26px 48px rgba(0,0,0,.65)) brightness(1.1)}
