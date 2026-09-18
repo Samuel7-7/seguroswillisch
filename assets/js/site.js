@@ -84,39 +84,94 @@
     }, { passive: true });
   }
 
+  /* ---------- Foco: un panel cerrado no debe ser alcanzable con Tab ---------- */
+  var soportaInert = "inert" in HTMLElement.prototype;
+  function bloquearFoco(el, bloquear) {
+    if (!el) return;
+    if (soportaInert) {
+      el.inert = bloquear;
+    } else {
+      $$("a, button, input, select, textarea", el).forEach(function (f) {
+        if (bloquear) {
+          if (!f.hasAttribute("data-tab-previo")) f.setAttribute("data-tab-previo", f.getAttribute("tabindex") || "");
+          f.setAttribute("tabindex", "-1");
+        } else {
+          var previo = f.getAttribute("data-tab-previo");
+          if (previo) f.setAttribute("tabindex", previo); else f.removeAttribute("tabindex");
+          f.removeAttribute("data-tab-previo");
+        }
+      });
+    }
+    el.setAttribute("aria-hidden", bloquear ? "true" : "false");
+  }
+
   /* ---------- Mega menú ---------- */
   function initMega() {
     var items = $$("[data-mega]");
     if (!items.length) return;
-    function cerrarTodos(excepto) {
-      items.forEach(function (li) {
-        if (li !== excepto) {
-          li.classList.remove("open");
-          var b = $("button", li);
-          if (b) b.setAttribute("aria-expanded", "false");
-        }
-      });
-    }
-    items.forEach(function (li) {
+    var RETRASO_CIERRE = 200; // margen para cruzar el hueco entre el botón y el panel
+
+    var paneles = items.map(function (li) {
       var btn = $("button", li);
-      if (!btn) return;
-      function abrir() { cerrarTodos(li); li.classList.add("open"); btn.setAttribute("aria-expanded", "true"); }
-      function cerrar() { li.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        if (li.classList.contains("open")) cerrar(); else abrir();
-      });
+      var panel = $(".mega", li);
+      var temporizador = null;
+      var fijadoConClic = false;
+
+      bloquearFoco(panel, true);
+
+      function abrir() {
+        clearTimeout(temporizador);
+        cerrarOtros(li);
+        li.classList.add("open");
+        if (btn) btn.setAttribute("aria-expanded", "true");
+        bloquearFoco(panel, false);
+      }
+      function cerrar() {
+        clearTimeout(temporizador);
+        fijadoConClic = false;
+        li.classList.remove("open");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+        bloquearFoco(panel, true);
+      }
+      function cerrarConRetraso() {
+        clearTimeout(temporizador);
+        temporizador = setTimeout(cerrar, RETRASO_CIERRE);
+      }
+
+      if (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          // El hover ya pudo haberlo abierto: el primer clic lo fija abierto,
+          // solo el segundo lo cierra.
+          if (li.classList.contains("open") && fijadoConClic) { cerrar(); return; }
+          abrir();
+          fijadoConClic = true;
+        });
+      }
       if (finePointer) {
-        li.addEventListener("mouseenter", abrir);
-        li.addEventListener("mouseleave", cerrar);
+        li.addEventListener("mouseenter", function () { clearTimeout(temporizador); abrir(); });
+        li.addEventListener("mouseleave", function () { if (!fijadoConClic) cerrarConRetraso(); });
       }
       $$("a", li).forEach(function (a) { a.addEventListener("click", cerrar); });
+
+      return { li: li, btn: btn, cerrar: cerrar };
     });
+
+    function cerrarOtros(excepto) {
+      paneles.forEach(function (p) { if (p.li !== excepto) p.cerrar(); });
+    }
+    function cerrarTodos() { paneles.forEach(function (p) { p.cerrar(); }); }
+
     document.addEventListener("click", function (e) {
-      if (!e.target.closest("[data-mega]")) cerrarTodos(null);
+      if (!e.target.closest("[data-mega]")) cerrarTodos();
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") cerrarTodos(null);
+      if (e.key !== "Escape") return;
+      paneles.forEach(function (p) {
+        if (!p.li.classList.contains("open")) return;
+        p.cerrar();
+        if (p.btn) p.btn.focus(); // Escape devuelve el foco al botón que abrió
+      });
     });
   }
 
@@ -125,12 +180,15 @@
     var btn = $("[data-burger]");
     var menu = $("[data-mmenu]");
     if (!btn || !menu) return;
+    bloquearFoco(menu, true);
+
     function cerrar() {
       menu.classList.remove("open");
       btn.classList.remove("open");
       btn.setAttribute("aria-expanded", "false");
       document.body.classList.remove("menu-abierto");
       document.body.style.overflow = "";
+      bloquearFoco(menu, true);
     }
     btn.addEventListener("click", function () {
       var abierto = menu.classList.toggle("open");
@@ -138,9 +196,14 @@
       btn.setAttribute("aria-expanded", abierto ? "true" : "false");
       document.body.classList.toggle("menu-abierto", abierto);
       document.body.style.overflow = abierto ? "hidden" : "";
+      bloquearFoco(menu, !abierto);
     });
     $$("a", menu).forEach(function (a) { a.addEventListener("click", cerrar); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") cerrar(); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || !menu.classList.contains("open")) return;
+      cerrar();
+      btn.focus();
+    });
   }
 
   /* ---------- Revelado al hacer scroll ---------- */
@@ -200,19 +263,25 @@
     if (palabras.length < 2) return;
     var b = $("b", mask);
     if (!b) return;
-    var i = 0;
+
+    // La palabra inicial ya viene escrita en el HTML: se arranca desde ella para
+    // que el elemento nunca quede vacío ni a medio renderizar.
+    var i = palabras.indexOf((b.textContent || "").trim());
+    if (i < 0) i = 0;
+
+    b.addEventListener("animationend", function () { b.classList.remove("entra"); });
+
     setInterval(function () {
       i = (i + 1) % palabras.length;
+      var siguiente = palabras[i];
+      if (reduce) { b.textContent = siguiente; return; }
       b.classList.add("out");
       setTimeout(function () {
-        b.textContent = palabras[i];
+        b.textContent = siguiente;
         b.classList.remove("out");
-        b.classList.add("in");
-        // fuerza reflow para reiniciar la transición
-        void b.offsetWidth;
-        b.classList.remove("in");
-      }, 420);
-    }, 2600);
+        b.classList.add("entra");
+      }, 380);
+    }, 2800);
   }
 
   /* ---------- Hero: el isotipo sigue suavemente al cursor ---------- */
@@ -302,6 +371,7 @@
       drawer.classList.add("open");
       back.classList.add("open");
       document.body.style.overflow = "hidden";
+      bloquearFoco(drawer, false);
       var cerrarBtn = $(".drawer-close", drawer);
       if (cerrarBtn) cerrarBtn.focus();
     }
@@ -309,8 +379,10 @@
       drawer.classList.remove("open");
       back.classList.remove("open");
       document.body.style.overflow = "";
+      bloquearFoco(drawer, true);
       if (ultimoFoco) ultimoFoco.focus();
     }
+    bloquearFoco(drawer, true);
     $$("[data-productos]").forEach(function (card) {
       card.addEventListener("click", function () { abrir(card); });
     });
@@ -385,15 +457,19 @@
     if (!track || !paneles.length) return;
 
     var escritorio = window.matchMedia("(min-width: 900px)");
+    // Con "reducir movimiento" no se secuestra el scroll: la sección pasa a ser un
+    // carrusel horizontal normal, con los 7 paneles accesibles.
+    function fijado() { return escritorio.matches && !reduce; }
+    if (reduce) sec.classList.add("sin-fijado");
 
     function alturaSeccion() {
-      if (!escritorio.matches) { sec.style.height = ""; return; }
+      if (!fijado()) { sec.style.height = ""; return; }
       // Una pantalla por panel, más una de margen para entrar y salir.
       sec.style.height = (paneles.length * 100) + "vh";
     }
     var ticking = false;
     function mover() {
-      if (!escritorio.matches) { track.style.transform = ""; ticking = false; return; }
+      if (!fijado()) { track.style.transform = ""; ticking = false; return; }
       var r = sec.getBoundingClientRect();
       var total = sec.offsetHeight - window.innerHeight;
       var avance = Math.min(1, Math.max(0, -r.top / total));
@@ -535,16 +611,50 @@
 
   /* ---------- FAQ ---------- */
   function initFaq() {
-    $$("[data-faq]").forEach(function (item) {
+    var items = $$("[data-faq]");
+    if (!items.length) return;
+
+    function medir(item) {
+      var panel = $(".faq-a", item);
+      if (!panel) return;
+      // Se remide sobre el contenido interno: si cambia de alto (fuentes que
+      // cargan tarde, zoom, rotación del móvil) el panel abierto lo sigue.
+      var interno = $(".faq-a-inner", panel) || panel;
+      panel.style.maxHeight = item.classList.contains("open")
+        ? (interno.scrollHeight + "px")
+        : "0px";
+    }
+    function remedirAbiertos() {
+      items.forEach(function (item) { if (item.classList.contains("open")) medir(item); });
+    }
+
+    items.forEach(function (item) {
       var btn = $(".faq-q", item);
       var panel = $(".faq-a", item);
       if (!btn || !panel) return;
       btn.addEventListener("click", function () {
         var abierto = item.classList.toggle("open");
         btn.setAttribute("aria-expanded", abierto ? "true" : "false");
-        panel.style.maxHeight = abierto ? (panel.scrollHeight + "px") : "0px";
+        medir(item);
       });
     });
+
+    var t = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(t);
+      t = setTimeout(remedirAbiertos, 150);
+    });
+
+    if (typeof ResizeObserver !== "undefined") {
+      var ro = new ResizeObserver(remedirAbiertos);
+      items.forEach(function (item) {
+        var interno = $(".faq-a-inner", item);
+        if (interno) ro.observe(interno);
+      });
+    }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(remedirAbiertos).catch(function () {});
+    }
   }
 
   /* ---------- Cotizador por pasos ---------- */
@@ -720,6 +830,73 @@
     });
   }
 
+  /* ---------- Redes sociales (se dibujan desde config.js) ---------- */
+  var ICONOS_RED = {
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>',
+    linkedin: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.4 8.65 22 11 22 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21h-4z"/></svg>',
+    tiktok: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2 1.6 3.4 3.5 3.7v2.7c-1.3.1-2.5-.2-3.6-.9v5.9a5.4 5.4 0 1 1-4.7-5.4v2.9a2.5 2.5 0 1 0 1.8 2.4V3z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.6a2.5 2.5 0 0 0-1.8-1.8C18.2 5.4 12 5.4 12 5.4s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.6C2 9.2 2 12 2 12s0 2.8.4 4.4a2.5 2.5 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 14.8 22 12 22 12s0-2.8-.4-4.4zM10 15.2V8.8l5.2 3.2z"/></svg>'
+  };
+  var NOMBRE_RED = {
+    instagram: "Instagram", facebook: "Facebook", linkedin: "LinkedIn",
+    tiktok: "TikTok", youtube: "YouTube"
+  };
+
+  function initRedes() {
+    var redes = CFG.REDES || [];
+    $$("[data-redes]").forEach(function (cont) {
+      cont.innerHTML = "";
+      redes.forEach(function (r) {
+        if (!r || !r.url || !ICONOS_RED[r.red]) return;
+        var a = document.createElement("a");
+        a.href = r.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.setAttribute("aria-label", "Seguros Willisch en " + (NOMBRE_RED[r.red] || r.red));
+        a.innerHTML = ICONOS_RED[r.red];
+        cont.appendChild(a);
+      });
+    });
+  }
+
+  /* ---------- Aseguradoras aliadas (marquee desde config.js) ---------- */
+  function initAliadas() {
+    var track = $("[data-aliadas]");
+    var lista = CFG.ALIADAS || [];
+    if (!track || !lista.length) return;
+
+    function item(a, duplicado) {
+      var d = document.createElement("div");
+      d.className = "mq-item";
+      if (duplicado) d.setAttribute("aria-hidden", "true");
+      if (a.archivo) {
+        var img = document.createElement("img");
+        img.src = "assets/logos/" + a.archivo;
+        img.alt = duplicado ? "" : (a.alt || a.nombre);
+        img.loading = "lazy";
+        // Si el archivo falta, cae al nombre en texto en vez de dejar un hueco roto
+        img.onerror = function () {
+          var s = document.createElement("span");
+          s.className = "mq-name";
+          s.textContent = a.nombre;
+          d.replaceChild(s, img);
+        };
+        d.appendChild(img);
+      } else {
+        var s = document.createElement("span");
+        s.className = "mq-name";
+        s.textContent = a.nombre;
+        d.appendChild(s);
+      }
+      return d;
+    }
+
+    track.innerHTML = "";
+    lista.forEach(function (a) { track.appendChild(item(a, false)); });
+    lista.forEach(function (a) { track.appendChild(item(a, true)); });
+  }
+
   /* ---------- Datos de configuración en el HTML ---------- */
   function initDatos() {
     $$("[data-cfg]").forEach(function (el) {
@@ -745,6 +922,8 @@
     safe(initPreloader, "preloader");
     safe(initTema, "tema");
     safe(initDatos, "datos");
+    safe(initRedes, "redes");
+    safe(initAliadas, "aliadas");
     safe(initWhatsApp, "whatsapp");
     safe(initHeader, "header");
     safe(initMega, "mega");

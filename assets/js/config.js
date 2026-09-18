@@ -19,15 +19,40 @@ window.WILLISCH = {
   HORARIO_FIN: 18,     // 6 p. m.
   DIAS_HABILES: [1, 2, 3, 4, 5, 6], // lunes(1) a sábado(6)
 
-  /* --- Redes sociales: deja "" en las que no existan y desaparecen solas --- */
-  INSTAGRAM: "https://www.instagram.com/seguroswillisch/",
-  FACEBOOK: "",
-  LINKEDIN: "",
-  TIKTOK: "",
+  /* --- Redes sociales ---
+     Solo se muestran las que estén en esta lista. Para agregar una nueva:
+     añade { red: "linkedin", url: "https://..." }. Redes admitidas:
+     instagram, facebook, linkedin, tiktok, youtube. */
+  REDES: [
+    { red: "instagram", url: "https://www.instagram.com/seguroswillisch/" },
+    { red: "facebook",  url: "https://www.facebook.com/people/Seguros-Willisch/61575842832331/" }
+  ],
 
-  /* --- Perfil de Empresa de Google (para la sección de reseñas) --- */
-  GOOGLE_PERFIL_URL: "https://share.google/LXEykav0mIWhdiPig",
-  GOOGLE_ESCRIBIR_RESENA_URL: "",
+  /* --- Aseguradoras aliadas (marquee de la franja de confianza) ---
+     archivo: nombre del archivo dentro de assets/logos/. Si es null, se muestra
+     el nombre en texto con la tipografía del sitio hasta que llegue el logo oficial.
+     Para agregar o quitar una aliada, edita solo esta lista. */
+  ALIADAS: [
+    { nombre: "SURA",                       archivo: "sura.png",     alt: "Seguros SURA" },
+    { nombre: "Seguros Bolívar",            archivo: "bolivar.png",  alt: "Seguros Bolívar" },
+    { nombre: "Allianz",                    archivo: "allianz.png",  alt: "Allianz" },
+    { nombre: "AXA Colpatria",              archivo: null,           alt: "AXA Colpatria" },
+    { nombre: "Mapfre",                     archivo: "mapfre.png",   alt: "Mapfre" },
+    { nombre: "Zurich",                     archivo: "zurich.png",   alt: "Zurich" },
+    { nombre: "Seguros Mundial",            archivo: "mundial.png",  alt: "Seguros Mundial" },
+    { nombre: "Seguros del Estado",         archivo: "estado.png",   alt: "Seguros del Estado" },
+    { nombre: "La Equidad Seguros",         archivo: null,           alt: "La Equidad Seguros" },
+    { nombre: "Colmena Seguros",            archivo: "colmena.png",  alt: "Colmena Seguros" },
+    { nombre: "Quálitas",                   archivo: "qualitas.png", alt: "Quálitas" },
+    { nombre: "Coomeva Medicina Prepagada", archivo: "coomeva.png",  alt: "Coomeva Medicina Prepagada" },
+    { nombre: "Universal de Fianzas",       archivo: null,           alt: "Universal de Fianzas" }
+  ],
+
+  /* --- Aliadas financieras (banda de financiación) --- */
+  FINANCIERAS: [
+    { nombre: "Crediseguro", archivo: null, alt: "Crediseguro" },
+    { nombre: "Finesa",      archivo: null, alt: "Finesa" }
+  ],
 
   /* --- Mensaje por defecto de WhatsApp --- */
   MSG_DEFECTO: "Hola Seguros Willisch, quiero asesoría para cotizar un seguro."

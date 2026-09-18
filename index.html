@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=2026091801">
+<link rel="stylesheet" href="assets/css/site.css?v=2026091802">
 
 <script type="application/ld+json">
 {
@@ -79,7 +79,6 @@
       <img src="assets/logos/logo-willisch-monograma.png" alt="" onerror="this.style.display='none'">
       <span class="logo-txt">
         <b>Seguros Willisch</b>
-        <span>Comparamos por ti</span>
       </span>
     </a>
 
@@ -249,11 +248,6 @@
           </a>
         </div>
 
-        <div class="hero-trust">
-          <span><b>+10</b> años</span>
-          <span><b>+600</b> clientes protegidos</span>
-          <span><b>13</b> aseguradoras aliadas</span>
-        </div>
       </div>
 
       <!-- Isotipo gigante flotante -->
@@ -284,8 +278,10 @@
     </div>
 
     <div class="marquee reveal" aria-label="Aseguradoras aliadas">
-      <div class="marquee-track">
-        <div class="mq-item"><img src="assets/logos/marca-sura.png" alt="SURA" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="mq-name" style="display:none">SURA</span></div>
+      <!-- El JS redibuja esta lista desde ALIADAS en config.js. Si el JS no corre,
+           quedan los nombres en texto, que es la informacion que importa. -->
+      <div class="marquee-track" data-aliadas>
+        <div class="mq-item"><span class="mq-name">SURA</span></div>
         <div class="mq-item"><span class="mq-name">Seguros Bolívar</span></div>
         <div class="mq-item"><span class="mq-name">Allianz</span></div>
         <div class="mq-item"><span class="mq-name">AXA Colpatria</span></div>
@@ -294,24 +290,10 @@
         <div class="mq-item"><span class="mq-name">Seguros Mundial</span></div>
         <div class="mq-item"><span class="mq-name">Seguros del Estado</span></div>
         <div class="mq-item"><span class="mq-name">La Equidad Seguros</span></div>
-        <div class="mq-item"><img src="assets/logos/marca-colmena.png" alt="Colmena Seguros" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="mq-name" style="display:none">Colmena Seguros</span></div>
+        <div class="mq-item"><span class="mq-name">Colmena Seguros</span></div>
         <div class="mq-item"><span class="mq-name">Quálitas</span></div>
         <div class="mq-item"><span class="mq-name">Coomeva Medicina Prepagada</span></div>
         <div class="mq-item"><span class="mq-name">Universal de Fianzas</span></div>
-        <!-- duplicado para el bucle infinito -->
-        <div class="mq-item" aria-hidden="true"><img src="assets/logos/marca-sura.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="mq-name" style="display:none">SURA</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Seguros Bolívar</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Allianz</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">AXA Colpatria</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Mapfre</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Zurich</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Seguros Mundial</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Seguros del Estado</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">La Equidad Seguros</span></div>
-        <div class="mq-item" aria-hidden="true"><img src="assets/logos/marca-colmena.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="mq-name" style="display:none">Colmena Seguros</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Quálitas</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Coomeva Medicina Prepagada</span></div>
-        <div class="mq-item" aria-hidden="true"><span class="mq-name">Universal de Fianzas</span></div>
       </div>
     </div>
 
@@ -1255,33 +1237,69 @@
   </div>
 </section>
 
-<!-- ============ 4.16 RESEÑAS DE GOOGLE ============ -->
-<section class="pad" id="resenas">
+<!-- ============ 4.16 POR QUÉ NOS ELIGEN ============ -->
+<section class="pad" id="por-que">
   <div class="container">
     <div class="head center reveal">
-      <span class="kicker">Reseñas</span>
-      <h2 class="h-lg">Lo que dicen nuestros clientes</h2>
+      <span class="kicker">Por qué nos eligen</span>
+      <h2 class="h-lg">Cuatro compromisos, no cuatro promesas</h2>
+      <p class="lead">Lo que puedes esperar de nosotros desde la primera cotización hasta el día que toca reclamar.</p>
     </div>
 
-    <div class="rev-grid">
-      <!-- Respaldo estático: se reemplaza automáticamente cuando conectemos las reseñas reales de Google -->
-      <div class="rev-fallback reveal">
-        <svg viewBox="0 0 24 24" width="40" height="40" style="margin:0 auto 16px" aria-hidden="true">
-          <path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/>
-          <path fill="#34A853" d="M12 22c2.7 0 4.9-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3v2.6A10 10 0 0 0 12 22z"/>
-          <path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3a10 10 0 0 0 0 9.2z"/>
-          <path fill="#EA4335" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 3.1 14.7 2 12 2a10 10 0 0 0-9 5.4L6.4 10c.8-2.3 3-4 5.6-4z"/>
-        </svg>
-        <h3>Conoce lo que dicen nuestros clientes</h3>
-        <p>Nuestras reseñas viven en el Perfil de Empresa de Google. Ábrelas y mira la experiencia real de quienes ya están asegurados con nosotros.</p>
-        <a class="btn btn-outline" data-cfg-href="GOOGLE_PERFIL_URL" target="_blank" rel="noopener">Ver reseñas en Google</a>
-      </div>
+    <div class="razones">
+      <article class="razon reveal">
+        <span class="razon-ic">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 8v32M10 16l-6 12h12zM38 16l-6 12h12z"/><path d="M4 28a6 6 0 0 0 12 0M32 28a6 6 0 0 0 12 0"/><path d="M14 12h20"/>
+          </svg>
+        </span>
+        <h3>Comparamos entre 13 aseguradoras</h3>
+        <p>No te vendemos una sola opción: ponemos las alternativas sobre la mesa y te explicamos en qué se diferencian.</p>
+      </article>
+
+      <article class="razon reveal" data-delay="1">
+        <span class="razon-ic">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 6l14 6v12c0 9.2-6 15.6-14 18-8-2.4-14-8.8-14-18V12z"/><path d="M17 24l5 5 10-11"/>
+          </svg>
+        </span>
+        <h3>+600 clientes y +10 años</h3>
+        <p>Una década asegurando personas y empresas desde Barranquilla para toda Colombia.</p>
+      </article>
+
+      <article class="razon reveal" data-delay="2">
+        <span class="razon-ic">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 34c0-6 5-10 11-10s11 4 11 10"/><circle cx="19" cy="15" r="6"/><path d="M32 22l5 5 9-10"/>
+          </svg>
+        </span>
+        <h3>Te acompañamos en el siniestro</h3>
+        <p>La prueba real de un seguro es el día que lo necesitas. Radicamos contigo y le hacemos seguimiento.</p>
+      </article>
+
+      <article class="razon reveal" data-delay="3">
+        <span class="razon-ic">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="13" width="38" height="24" rx="4"/><path d="M5 21h38"/><path d="M12 30h7M25 30h11"/>
+          </svg>
+        </span>
+        <h3>Paga en cuotas</h3>
+        <p>Financiamos tu póliza con Crediseguro y Finesa. Tú eliges el plan de pagos, nosotros hacemos el trámite.</p>
+      </article>
     </div>
 
-    <p class="g-attrib">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 4.9-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3a10 10 0 0 0 0 9.2z"/><path fill="#EA4335" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 3.1 14.7 2 12 2a10 10 0 0 0-9 5.4L6.4 10c.8-2.3 3-4 5.6-4z"/></svg>
-      Reseñas de Google
-    </p>
+    <!-- Cuando haya testimonios reales AUTORIZADOS por el cliente, descomenta y duplica esta tarjeta.
+         No inventar citas, nombres ni calificaciones.
+    <div class="testimonios">
+      <figure class="testimonio">
+        <blockquote>Cita textual del cliente, tal como la autorizó.</blockquote>
+        <figcaption>
+          <b>Nombre del cliente</b>
+          <span>Seguro contratado · Ciudad</span>
+        </figcaption>
+      </figure>
+    </div>
+    -->
   </div>
 </section>
 
@@ -1457,17 +1475,8 @@
           <span class="logo-txt"><b>Seguros Willisch</b><span>Comparamos por ti</span></span>
         </span>
         <p>Comparamos por ti. Te acompañamos siempre. Agencia de seguros con más de 10 años asegurando personas y empresas desde Barranquilla para toda Colombia.</p>
-        <div class="f-social">
-          <a data-cfg-href="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
-          </a>
-          <a data-cfg-href="FACEBOOK" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>
-          </a>
-          <a data-cfg-href="LINKEDIN" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.4 8.65 22 11 22 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21h-4z"/></svg>
-          </a>
-        </div>
+        <!-- Los íconos salen de REDES en config.js: agregar o quitar una red es editar esa lista. -->
+        <div class="f-social" data-redes></div>
       </div>
 
       <div class="f-col">
@@ -1543,7 +1552,7 @@
   <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<script src="assets/js/config.js?v=2026091801" defer></script>
-<script src="assets/js/site.js?v=2026091801" defer></script>
+<script src="assets/js/config.js?v=2026091802" defer></script>
+<script src="assets/js/site.js?v=2026091802" defer></script>
 </body>
 </html>
