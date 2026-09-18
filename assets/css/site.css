@@ -605,6 +605,15 @@ section{position:relative}
 [data-theme="dark"] .prod-card .prod-wa{color:var(--blue-light)}
 .prod-card .prod-wa svg{width:16px;height:16px;transition:transform .3s var(--ease)}
 .prod-card:hover .prod-wa svg{transform:translateX(4px)}
+.ver-personas{margin:-18px 0 30px}
+.ver-personas a{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--font-display);font-weight:700;font-size:14.6px;color:var(--blue);
+}
+[data-theme="dark"] .ver-personas a{color:var(--blue-light)}
+.ver-personas svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.ver-personas a:hover svg{transform:translateX(5px)}
+
 .no-results{text-align:center;padding:50px 20px;color:var(--text-mute);font-size:14.5px;display:none}
 .no-results.show{display:block}
 
