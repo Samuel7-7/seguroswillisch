@@ -9,7 +9,7 @@ window.WILLISCH = {
   WHATSAPP_NUMBER: "573007525773",
 
   /* --- Datos de contacto --- */
-  EMAIL: "gerencia@seguroswillisch.com",
+  EMAIL: "Mercadeo@seguroswillisch.com",
   DIRECCION: "Calle 77 # 59-35, Edificio Américas III, Oficina 1403, Barranquilla",
   MAPS_URL: "https://share.google/LXEykav0mIWhdiPig",
   HORARIO: "Lunes a sábado, 8:00 a. m. – 6:00 p. m.",
