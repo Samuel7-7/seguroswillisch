@@ -22,6 +22,8 @@
   font-size:13px;font-weight:600;color:var(--text-soft);
 }
 .aliado-linea b{font-family:var(--font-display);color:var(--text)}
+/* Sin ?aliado= el elemento va oculto: display explícito le gana al atributo hidden */
+.aliado-linea[hidden]{display:none}
 
 .respaldo{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:30px;font-size:13.4px;color:var(--text-mute)}
 .respaldo b{font-family:var(--font-display);color:var(--text);font-size:15.5px}
@@ -182,6 +184,18 @@
 .no-js .gal-item{clip-path:none}
 .gal-item img{width:100%;height:100%;object-fit:cover}
 
+/* Galería de dos piezas (salud y vida) */
+.galeria.dos{grid-template-columns:repeat(2,1fr);margin-top:26px}
+@media (min-width:860px){
+  .galeria.dos{grid-template-columns:repeat(3,1fr)}
+  .galeria.dos .gal-item.ancha{grid-column:span 2}
+}
+.gal-item.ancha{aspect-ratio:16/9}
+
+/* Foto de la banda de financiación */
+.fin-foto{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;box-shadow:var(--shadow-sm)}
+.fin-foto img{width:100%;height:100%;object-fit:cover}
+
 .cta-bloque{margin-top:36px;text-align:center}
 
 .lista-benef{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
@@ -213,7 +227,10 @@
 }
 .pasos-vida h3{font-size:1.1rem}
 .pasos-vida p{font-size:14px;color:var(--text-soft);margin-top:7px;max-width:46ch}
-.vida-visual{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3.4;box-shadow:var(--shadow)}
+.vida-visual{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3.4;box-shadow:var(--shadow);margin:0}
+.vida-visual img{width:100%;height:100%;object-fit:cover}
+/* Titular largo: se deja respirar y se parte en un punto natural */
+.titulo-vida{max-width:20ch;margin-inline:auto}
 
 .dos-vidas{display:grid;gap:18px;grid-template-columns:1fr;margin-top:46px}
 @media (min-width:920px){ .dos-vidas{grid-template-columns:1fr 1fr;gap:22px} }

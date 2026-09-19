@@ -850,12 +850,24 @@ section{position:relative}
   display:flex;align-items:center;justify-content:center;
   font-family:var(--font-display);font-weight:800;font-size:12.5px;color:#fff;
 }
-.pay-bar.in .pay-seg{transform:none;opacity:1}
-.pay-bar.in .pay-seg:nth-child(2){transition-delay:.12s}
-.pay-bar.in .pay-seg:nth-child(3){transition-delay:.24s}
-.pay-bar.in .pay-seg:nth-child(4){transition-delay:.36s}
-.pay-bar.in .pay-seg:nth-child(5){transition-delay:.48s}
-.pay-bar.in .pay-seg:nth-child(6){transition-delay:.6s}
+.pay-bar.in .pay-seg{transform:none;opacity:1;transition-delay:calc(var(--i,0) * .06s)}
+
+/* Variante de 12 cuotas: en móvil se dejan las marcas finas y solo se numeran 1, 6 y 12 */
+.pay-bar.doce{gap:4px}
+.pay-bar.doce .pay-seg{font-size:11px;border-radius:9px}
+@media (max-width:620px){
+  .pay-bar.doce{gap:3px;height:54px}
+  .pay-bar.doce .pay-seg{font-size:0;border-radius:5px}
+  .pay-bar.doce .pay-seg.hito{font-size:10.5px}
+}
+
+.fin-cuotas{
+  display:inline-flex;align-items:center;padding:12px 18px;border-radius:var(--r);
+  background:color-mix(in srgb,var(--warm) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--warm) 42%,transparent);
+  font-family:var(--font-display);font-weight:800;font-size:14px;color:var(--warm);
+  white-space:nowrap;
+}
 .fin-partners{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
 .fin-partner{
   display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:var(--r);

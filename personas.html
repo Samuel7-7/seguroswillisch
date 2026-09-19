@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Seguros para personas: vehículo, salud y vida | Seguros Willisch Barranquilla</title>
-<meta name="description" content="Los tres seguros que más cotizamos: todo riesgo para tu vehículo, salud y vida. Comparamos entre 13 aseguradoras y te lo explicamos sin letra pequeña. Financiamos en cuotas con Crediseguro y Finesa.">
+<meta name="description" content="Los tres seguros que más cotizamos: todo riesgo para tu vehículo, salud y vida. Comparamos entre 13 aseguradoras y te lo explicamos sin letra pequeña. Financiamos hasta en 12 cuotas con Crediseguro y Finesa.">
 <meta name="theme-color" content="#0B1F33">
 <link rel="canonical" href="https://seguroswillisch.com/personas.html">
 
@@ -27,8 +27,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=2026091803">
-<link rel="stylesheet" href="assets/css/personas.css?v=2026091803">
+<link rel="stylesheet" href="assets/css/site.css?v=2026091901">
+<link rel="stylesheet" href="assets/css/personas.css?v=2026091901">
 
 <script type="application/ld+json">
 {
@@ -57,7 +57,7 @@
       "mainEntity":[
         {"@type":"Question","name":"¿Cuál es la diferencia entre el SOAT y el todo riesgo?","acceptedAnswer":{"@type":"Answer","text":"El SOAT es obligatorio y cubre a las personas lesionadas en un accidente, no tu vehículo. El todo riesgo es voluntario y cubre los daños a tu carro, los daños que causes a terceros y el hurto, según el plan que elijas."}},
         {"@type":"Question","name":"¿Puedo elegir la aseguradora del seguro de vida deudor?","acceptedAnswer":{"@type":"Answer","text":"Puedes revisar opciones con distintas aseguradoras siempre que cumplan los requisitos que exige la entidad financiera que otorgó el crédito. Te ayudamos a compararlas."}},
-        {"@type":"Question","name":"¿Puedo pagar la póliza en cuotas?","acceptedAnswer":{"@type":"Answer","text":"Sí. Financiamos con Crediseguro y Finesa y hacemos el trámite por ti. La aprobación y las condiciones dependen de la entidad financiera."}},
+        {"@type":"Question","name":"¿Puedo pagar la póliza en cuotas?","acceptedAnswer":{"@type":"Answer","text":"Sí, hasta en 12 cuotas. Financiamos con Crediseguro y Finesa y hacemos el trámite por ti. La aprobación y las condiciones dependen de la entidad financiera."}},
         {"@type":"Question","name":"¿Qué hago si tengo un siniestro?","acceptedAnswer":{"@type":"Answer","text":"Escríbenos de inmediato por WhatsApp, incluso antes de llamar a la aseguradora. Te decimos qué documentar en el sitio, radicamos contigo y le hacemos seguimiento a la reclamación."}}
       ]
     }
@@ -140,7 +140,7 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
             Cotizar por WhatsApp
           </a>
-          <a class="btn btn-outline" href="#los-tres">Ver los tres seguros</a>
+          <a class="btn btn-outline" href="#los-tres">Ver seguros</a>
         </div>
 
         <p class="respaldo">
@@ -153,17 +153,27 @@
       <!-- Tríptico: se separa al cargar; en escritorio sigue al cursor -->
       <div class="triptico" data-triptico>
         <figure class="trip trip-1">
-          <img src="assets/img/hero.jpg" alt="Vehículo en carretera abierta" width="800" height="533" fetchpriority="high">
+          <img src="assets/img/hero-vehiculo.webp"
+               srcset="assets/img/hero-vehiculo-800.webp 800w, assets/img/hero-vehiculo.webp 1200w"
+               sizes="(min-width:1024px) 20vw, 30vw"
+               alt="Carretera de montaña con vehículos en marcha a plena luz del día"
+               width="1200" height="1600" fetchpriority="high">
           <figcaption>Vehículo</figcaption>
         </figure>
         <figure class="trip trip-2">
-          <img src="assets/img/salud-poliza.webp" alt="Profesional de la salud durante una consulta" width="800" height="533" loading="lazy">
+          <img src="assets/img/hero-salud.webp"
+               srcset="assets/img/hero-salud-800.webp 800w, assets/img/hero-salud.webp 1200w"
+               sizes="(min-width:1024px) 20vw, 30vw"
+               alt="Profesional de la salud revisando información junto a una ventana luminosa"
+               width="1200" height="1600" loading="lazy">
           <figcaption>Salud</figcaption>
         </figure>
         <figure class="trip trip-3">
-          <div class="patron-marca" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 20.5s-7.5-4.6-7.5-9.8A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.7c0 5.2-7.5 9.8-7.5 9.8z" stroke-linejoin="round"/></svg>
-          </div>
+          <img src="assets/img/hero-vida.webp"
+               srcset="assets/img/hero-vida-800.webp 800w, assets/img/hero-vida.webp 1200w"
+               sizes="(min-width:1024px) 20vw, 30vw"
+               alt="Familia en casa con luz cálida de tarde"
+               width="1200" height="1600" loading="lazy">
           <figcaption>Vida</figcaption>
         </figure>
       </div>
@@ -181,8 +191,7 @@
     </div>
 
     <div class="selector-tres">
-      <a class="sel-card reveal" href="#vehiculo">
-        <img class="sel-img" src="assets/img/hero.jpg" alt="" width="800" height="533" loading="lazy">
+      <a class="sel-card sin-foto reveal" href="#vehiculo">
         <span class="sel-ic">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13l1.7-5A2 2 0 0 1 6.6 6.6h10.8A2 2 0 0 1 19.3 8L21 13" stroke-linecap="round"/><rect x="2.4" y="13" width="19.2" height="5.2" rx="1.6"/><circle cx="7" cy="18.2" r="1.4" fill="currentColor" stroke="none"/><circle cx="17" cy="18.2" r="1.4" fill="currentColor" stroke="none"/></svg>
         </span>
@@ -191,8 +200,7 @@
         <span class="sel-mas">Ver qué cubre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
-      <a class="sel-card reveal" data-delay="1" href="#salud">
-        <img class="sel-img" src="assets/img/salud-poliza.webp" alt="" width="800" height="533" loading="lazy">
+      <a class="sel-card sin-foto reveal" data-delay="1" href="#salud">
         <span class="sel-ic">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.6-7-10a7 7 0 0 1 14 0c0 5.4-7 10-7 10z" stroke-linejoin="round"/><path d="M12 7.5v6M9 10.5h6" stroke-linecap="round"/></svg>
         </span>
@@ -274,10 +282,30 @@
     </p>
 
     <div class="galeria reveal">
-      <figure class="gal-item"><img src="assets/img/hero.jpg" alt="Vehículo recorriendo una carretera" width="800" height="533" loading="lazy"></figure>
-      <figure class="gal-item"><img src="assets/img/hero-tecnico.jpg" alt="Técnico revisando el motor de un vehículo" width="800" height="533" loading="lazy"></figure>
-      <figure class="gal-item sin-foto"><div class="patron-marca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="5.6" cy="16.6" r="3"/><circle cx="18.4" cy="16.6" r="3"/><path d="M5.6 16.6l4-6.6h4.2l4.6 6.6M9.6 10L8 6.6h3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></figure>
-      <figure class="gal-item sin-foto"><div class="patron-marca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 15h4l2.6-5h6l3.6 3.6H22v1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="17.6" r="1.8"/><circle cx="17.4" cy="17.6" r="1.8"/></svg></div></figure>
+      <figure class="gal-item">
+        <img src="assets/img/vehiculo-carretera.webp"
+             srcset="assets/img/vehiculo-carretera-800.webp 800w, assets/img/vehiculo-carretera.webp 1600w"
+             sizes="(min-width:860px) 24vw, 46vw"
+             alt="Carro recorriendo una vía abierta" width="1600" height="900" loading="lazy">
+      </figure>
+      <figure class="gal-item">
+        <img src="assets/img/vehiculo-taller.webp"
+             srcset="assets/img/vehiculo-taller-800.webp 800w, assets/img/vehiculo-taller.webp 1600w"
+             sizes="(min-width:860px) 24vw, 46vw"
+             alt="Técnico revisando el motor de un vehículo en el taller" width="1600" height="1200" loading="lazy">
+      </figure>
+      <figure class="gal-item">
+        <img src="assets/img/vehiculo-moto.webp"
+             srcset="assets/img/vehiculo-moto-800.webp 800w, assets/img/vehiculo-moto.webp 1600w"
+             sizes="(min-width:860px) 24vw, 46vw"
+             alt="Motociclista con casco en recorrido urbano" width="1600" height="1200" loading="lazy">
+      </figure>
+      <figure class="gal-item">
+        <img src="assets/img/vehiculo-grua.webp"
+             srcset="assets/img/vehiculo-grua-800.webp 800w, assets/img/vehiculo-grua.webp 1600w"
+             sizes="(min-width:860px) 24vw, 46vw"
+             alt="Asistencia en vía atendiendo un vehículo" width="1600" height="1200" loading="lazy">
+      </figure>
     </div>
 
     <div class="cta-bloque reveal">
@@ -295,7 +323,10 @@
   <div class="container">
     <div class="salud-grid">
       <div class="pulse-visual reveal" data-inview>
-        <img src="assets/img/salud-poliza.webp" alt="Profesional de la salud durante una consulta" width="800" height="533" loading="lazy">
+        <img src="assets/img/salud-consulta.webp"
+             srcset="assets/img/salud-consulta-800.webp 800w, assets/img/salud-consulta.webp 1600w"
+             sizes="(min-width:980px) 40vw, 92vw"
+             alt="Equipo médico conversando en una sala luminosa" width="1600" height="900" loading="lazy">
         <svg class="pulse-line" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true">
           <path d="M0 35h70l14-22 16 44 14-30 12 16h62l14-24 16 48 14-32 12 18h136"/>
         </svg>
@@ -355,6 +386,21 @@
           <li>Cobertura para hijos</li>
         </ul>
 
+        <div class="galeria dos reveal">
+          <figure class="gal-item">
+            <img src="assets/img/salud-familia.webp"
+                 srcset="assets/img/salud-familia-800.webp 800w, assets/img/salud-familia.webp 1600w"
+                 sizes="(min-width:980px) 26vw, 46vw"
+                 alt="Consulta pediátrica con la madre acompañando al niño" width="1600" height="1200" loading="lazy">
+          </figure>
+          <figure class="gal-item">
+            <img src="assets/img/salud-clinica.webp"
+                 srcset="assets/img/salud-clinica-800.webp 800w, assets/img/salud-clinica.webp 1600w"
+                 sizes="(min-width:980px) 26vw, 46vw"
+                 alt="Pasillo de una clínica moderna y luminosa" width="1600" height="1200" loading="lazy">
+          </figure>
+        </div>
+
         <div class="cta-bloque reveal" style="text-align:left">
           <a class="btn btn-wa" data-wa-base="Hola Seguros Willisch, quiero opciones de salud. ¿Me explican la diferencia entre póliza, prepagada y plan complementario?" data-iman>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
@@ -372,8 +418,8 @@
   <div class="container">
     <div class="head center reveal">
       <span class="kicker">Vida</span>
-      <h2 class="h-lg">El seguro que nunca vas a usar tú.</h2>
-      <p class="lead">Y esa es exactamente la idea. El seguro de vida no es para ti: es para que quienes dependen de ti puedan seguir adelante sin que además se les caiga el sustento.</p>
+      <h2 class="h-lg titulo-vida">Proteger a tu familia también es pensar en el mañana.</h2>
+      <p class="lead">Porque cuidar de los tuyos no solo es estar presente, sino también dejarles un respaldo cuando más lo necesiten.</p>
     </div>
 
     <div class="vida-p-grid">
@@ -392,11 +438,12 @@
         </li>
       </ol>
 
-      <div class="vida-visual reveal" data-delay="1">
-        <div class="patron-marca grande">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M4 10.6L12 4l8 6.6V19a1.6 1.6 0 0 1-1.6 1.6H5.6A1.6 1.6 0 0 1 4 19z" stroke-linejoin="round"/><path d="M9.6 20.6v-6h4.8v6" stroke-linejoin="round"/></svg>
-        </div>
-      </div>
+      <figure class="vida-visual reveal" data-delay="1">
+        <img src="assets/img/vida-hogar.webp"
+             srcset="assets/img/vida-hogar-800.webp 800w, assets/img/vida-hogar.webp 1600w"
+             sizes="(min-width:920px) 38vw, 92vw"
+             alt="Pareja joven con las llaves de su nueva vivienda" width="1600" height="1200" loading="lazy">
+      </figure>
     </div>
 
     <div class="dos-vidas">
@@ -421,6 +468,21 @@
       </article>
     </div>
 
+    <div class="galeria dos reveal">
+      <figure class="gal-item ancha">
+        <img src="assets/img/vida-familia.webp"
+             srcset="assets/img/vida-familia-800.webp 800w, assets/img/vida-familia.webp 1600w"
+             sizes="(min-width:860px) 58vw, 92vw"
+             alt="Familia de varias generaciones reunida en casa con luz de ventana" width="1600" height="900" loading="lazy">
+      </figure>
+      <figure class="gal-item">
+        <img src="assets/img/vida-estudio.webp"
+             srcset="assets/img/vida-estudio-800.webp 800w, assets/img/vida-estudio.webp 1600w"
+             sizes="(min-width:860px) 34vw, 92vw"
+             alt="Adolescente estudiando en su escritorio con luz natural" width="1600" height="1200" loading="lazy">
+      </figure>
+    </div>
+
     <div class="cta-bloque reveal">
       <a class="btn btn-wa" data-wa-base="Hola Seguros Willisch, quiero proteger a mi familia con un seguro de vida." data-iman>
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
@@ -437,19 +499,33 @@
     <div class="fin-grid">
       <div>
         <span class="kicker reveal">Financiación</span>
-        <h2 class="h-lg reveal" style="margin-top:14px">Págalo en cuotas.</h2>
-        <p class="lead reveal" style="margin-top:18px">Financiamos tu póliza con Crediseguro y Finesa. Tú eliges el plan de pagos y nosotros hacemos el trámite. Sujeto a aprobación de la entidad financiera.</p>
-        <div class="fin-partners reveal" data-financieras></div>
-        <a class="btn btn-wa reveal" style="margin-top:26px" data-wa-base="Hola Seguros Willisch, quiero financiar mi póliza en cuotas." data-iman>Quiero financiar mi póliza</a>
+        <h2 class="h-lg reveal" style="margin-top:14px">Págalo hasta en 12 cuotas.</h2>
+        <p class="lead reveal" style="margin-top:18px">Financiamos tu póliza con Crediseguro y Finesa: hasta 12 cuotas para que proteger lo tuyo no desordene tu mes. Tú eliges el plan de pagos y nosotros hacemos el trámite.</p>
+        <div class="fin-partners reveal">
+          <span class="fin-cuotas">Hasta 12 cuotas</span>
+          <span data-financieras style="display:contents"></span>
+        </div>
+        <a class="btn btn-wa reveal" style="margin-top:26px" data-wa-base="Hola Seguros Willisch, quiero financiar mi póliza hasta en 12 cuotas." data-iman>Quiero financiar mi póliza</a>
       </div>
 
       <div class="reveal" data-delay="1">
-        <p style="font-size:13px;color:var(--text-mute);font-weight:600;letter-spacing:.06em;text-transform:uppercase">Tu póliza, dividida</p>
-        <div class="pay-bar" data-inview>
-          <span class="pay-seg">1</span><span class="pay-seg">2</span><span class="pay-seg">3</span>
-          <span class="pay-seg">4</span><span class="pay-seg">5</span><span class="pay-seg">6</span>
+        <figure class="fin-foto">
+          <img src="assets/img/financiacion-calendario.webp"
+               srcset="assets/img/financiacion-calendario-800.webp 800w, assets/img/financiacion-calendario.webp 1600w"
+               sizes="(min-width:900px) 40vw, 92vw"
+               alt="Manos revisando un calendario en el teléfono, con un café, en una mañana tranquila"
+               width="1600" height="1200" loading="lazy">
+        </figure>
+        <p style="font-size:13px;color:var(--text-mute);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:22px">Tu póliza, dividida</p>
+        <div class="pay-bar doce" data-inview>
+          <span class="pay-seg hito" style="--i:0">1</span><span class="pay-seg" style="--i:1">2</span>
+          <span class="pay-seg" style="--i:2">3</span><span class="pay-seg" style="--i:3">4</span>
+          <span class="pay-seg" style="--i:4">5</span><span class="pay-seg hito" style="--i:5">6</span>
+          <span class="pay-seg" style="--i:6">7</span><span class="pay-seg" style="--i:7">8</span>
+          <span class="pay-seg" style="--i:8">9</span><span class="pay-seg" style="--i:9">10</span>
+          <span class="pay-seg" style="--i:10">11</span><span class="pay-seg hito" style="--i:11">12</span>
         </div>
-        <p style="font-size:12.4px;color:var(--text-mute);margin-top:14px">Ilustrativo. El número de cuotas y la aprobación dependen de la entidad financiera.</p>
+        <p style="font-size:12.4px;color:var(--text-mute);margin-top:14px">Ilustrativo. El número de cuotas, las condiciones y la aprobación dependen de la entidad financiera.</p>
       </div>
     </div>
   </div>
@@ -536,7 +612,7 @@
         <button class="faq-q" type="button" aria-expanded="false">¿Puedo pagar la póliza en cuotas?
           <span class="faq-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Sí. Financiamos con <b>Crediseguro</b> y <b>Finesa</b> y hacemos el trámite por ti. La aprobación y las condiciones dependen de la entidad financiera.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Sí, <b>hasta en 12 cuotas</b>. Financiamos con <b>Crediseguro</b> y <b>Finesa</b> y hacemos el trámite por ti. La aprobación y las condiciones dependen de la entidad financiera.</div></div>
       </div>
 
       <div class="faq-item reveal" data-faq>
@@ -695,9 +771,9 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
           <span>WhatsApp: +57 300 7525773</span>
         </a>
-        <a data-mail href="#">
+        <a data-mail href="mailto:Mercadeo@seguroswillisch.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          <span data-cfg="EMAIL"></span>
+          <span data-cfg="EMAIL">Mercadeo@seguroswillisch.com</span>
         </a>
         <a data-cfg-href="MAPS_URL" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.9-7-11a7 7 0 0 1 14 0c0 6.1-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -728,7 +804,7 @@
 <!-- ============ FLOTANTES ============ -->
 <div class="wa-float" data-wa-float>
   <span class="wa-msg"></span>
-  <a class="wa-btn" href="#" data-wa-base="Hola Seguros Willisch, quiero cotizar un seguro." aria-label="Escribir por WhatsApp" style="position:relative">
+  <a class="wa-btn" href="https://wa.me/573007525773" data-wa-base="Hola Seguros Willisch, quiero cotizar un seguro." aria-label="Escribir por WhatsApp" style="position:relative">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
   </a>
 </div>
@@ -738,8 +814,8 @@
   <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<script src="assets/js/config.js?v=2026091803" defer></script>
-<script src="assets/js/site.js?v=2026091803" defer></script>
-<script src="assets/js/personas.js?v=2026091803" defer></script>
+<script src="assets/js/config.js?v=2026091901" defer></script>
+<script src="assets/js/site.js?v=2026091901" defer></script>
+<script src="assets/js/personas.js?v=2026091901" defer></script>
 </body>
 </html>
