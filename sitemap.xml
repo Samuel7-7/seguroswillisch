@@ -31,6 +31,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://seguroswillisch.com/time2cars/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://seguroswillisch.com/politica-datos.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>

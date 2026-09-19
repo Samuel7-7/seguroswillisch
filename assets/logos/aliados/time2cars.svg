@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  MARCA DE RELLENO — NO ES EL LOGO OFICIAL DE TIME2CARS.
+
+  Mientras llega el logo oficial (escudo con la pantera, filo rojo y negro,
+  texto TIME 2 CARS · CARS · DETAILING) esta pieza tipográfica ocupa su
+  lugar en el lockup de la página /time2cars/.
+
+  Para poner el logo real: pide el archivo en SVG o en PNG con fondo
+  transparente y reemplaza ESTE archivo, sin cambiar el nombre ni la ruta.
+  Si llega en PNG, guárdalo como assets/logos/aliados/time2cars.png y
+  cambia la extensión en las cuatro etiquetas <img> de time2cars/index.html.
+  El logo no se deforma, no se recolorea y conserva su área de protección.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" width="320" height="96" role="img" aria-label="Time2Cars">
+  <title>Time2Cars</title>
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+    <text x="0" y="46" font-size="38" font-weight="800" letter-spacing="-1" fill="#FFFFFF">TIME<tspan fill="#FF3B30">2</tspan>CARS</text>
+    <rect x="0" y="58" width="232" height="1.5" fill="#FF3B30" opacity=".75"/>
+    <text x="0" y="80" font-size="12" font-weight="600" letter-spacing="6.5" fill="#9AA3B2">CARS · DETAILING</text>
+  </g>
+</svg>
