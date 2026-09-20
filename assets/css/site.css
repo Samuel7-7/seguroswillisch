@@ -853,12 +853,12 @@ section{position:relative}
 .pay-bar.in .pay-seg{transform:none;opacity:1;transition-delay:calc(var(--i,0) * .06s)}
 
 /* Variante de 12 cuotas: en móvil se dejan las marcas finas y solo se numeran 1, 6 y 12 */
-.pay-bar.doce{gap:4px}
-.pay-bar.doce .pay-seg{font-size:11px;border-radius:9px}
+.pay-bar.cuotas{gap:4px}
+.pay-bar.cuotas .pay-seg{font-size:11px;border-radius:9px}
 @media (max-width:620px){
-  .pay-bar.doce{gap:3px;height:54px}
-  .pay-bar.doce .pay-seg{font-size:0;border-radius:5px}
-  .pay-bar.doce .pay-seg.hito{font-size:10.5px}
+  .pay-bar.cuotas{gap:3px;height:54px}
+  .pay-bar.cuotas .pay-seg{font-size:0;border-radius:5px}
+  .pay-bar.cuotas .pay-seg.hito{font-size:10.5px}
 }
 
 .fin-cuotas{
