@@ -27,7 +27,7 @@ marcados sobre la pintura. Nada de marcas de terceros visibles ni placas legible
 
 ---
 
-## Pendientes (17)
+## Pendientes (12)
 
 | Ruta | Dónde se ve | Proporción / tamaño | Qué debe mostrar |
 |---|---|---|---|
@@ -39,21 +39,11 @@ marcados sobre la pintura. Nada de marcas de terceros visibles ni placas legible
 | `t2c-wrap.webp` | Galería de servicios | 4:3 · 1600 px | Envolvimiento / cambio de color |
 | `t2c-pdr.webp` | Galería de servicios | 4:3 · 1600 px | Extracción de golpe sin pintura |
 | `t2c-polarizado.webp` | Galería de servicios | 4:3 · 1600 px | Instalación de polarizado |
-| `t2c-antes-1.webp` | Antes y después, caso 1 | 4:3 · 1600 px | Pintura con rayones y opacidad |
-| `t2c-despues-1.webp` | Antes y después, caso 1 | 4:3 · 1600 px | La misma pintura corregida y pulida |
-| `t2c-antes-2.webp` | Antes y después, caso 2 | 4:3 · 1600 px | Abolladura en la lámina |
-| `t2c-despues-2.webp` | Antes y después, caso 2 | 4:3 · 1600 px | La misma lámina lisa, con pintura de fábrica |
-| `t2c-antes-3.webp` | Antes y después, caso 3 | 4:3 · 1600 px | Carro con su color y vidrios originales |
-| `t2c-despues-3.webp` | Antes y después, caso 3 | 4:3 · 1600 px | El mismo carro con wrap y polarizado |
 | `t2c-taller.webp` | Quiénes son, pieza ancha | 16:9 · 1600 px | El taller y el equipo |
 | `t2c-obra-1.webp` | Quiénes son, mosaico | 1:1 · 1200 px | Trabajo terminado |
 | `t2c-obra-2.webp` | Quiénes son, mosaico | 1:1 · 1200 px | Detalle de acabado de pintura |
 | `t2c-obra-3.webp` | Quiénes son, mosaico | 1:1 · 1200 px | Vehículo entregado |
 | `t2c-obra-4.webp` | Quiénes son, mosaico | 1:1 · 1200 px | Proceso de trabajo en el taller |
-
-> En los tres **antes y después**, las dos fotos deben tener **el mismo ángulo, la
-> misma distancia y la misma luz**. Si no, el comparador pierde credibilidad y es
-> mejor no publicar ese caso.
 
 ---
 

@@ -110,7 +110,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   --r-sm:12px;
   --r:18px;
   --r-lg:26px;
-  --nav-h:76px;
+  --nav-h:92px;
   --rail-h:3px;
   --bar-h:66px;
   --ease:cubic-bezier(.22,.8,.26,1);
@@ -231,10 +231,19 @@ section{position:relative}
 /* ============ LOCKUP DE LAS DOS MARCAS ============
    Los dos logos a la misma altura óptica, con aire y un separador
    fino. No se deforman ni se recolorean. */
-.lockup{display:inline-flex;align-items:center;gap:clamp(13px,3vw,24px)}
-.lockup img{height:38px;width:auto;object-fit:contain;flex:none;display:block}
-@media (min-width:640px){ .lockup img{height:46px} }
-.lockup .x{position:relative;flex:none;width:1px;height:36px;background:linear-gradient(180deg,transparent,var(--line-2) 20%,var(--line-2) 80%,transparent)}
+.lockup{display:inline-flex;align-items:center;gap:clamp(14px,3.2vw,28px);max-width:100%}
+.lockup img{width:auto;object-fit:contain;flex:none;display:block}
+/* Alturas por marca: el escudo de Time2Cars es vertical y el de Willisch
+   horizontal, así que para que pesen igual a la vista el escudo va un poco
+   más alto. Ninguno se deforma: el ancho siempre es automático. */
+.lockup .l-will{height:88px}
+.lockup .l-t2c{height:96px}
+@media (min-width:640px){
+  .lockup .l-will{height:120px}
+  .lockup .l-t2c{height:132px}
+}
+.lockup .x{position:relative;flex:none;width:1px;height:72px;background:linear-gradient(180deg,transparent,var(--line-2) 20%,var(--line-2) 80%,transparent)}
+@media (min-width:640px){ .lockup .x{height:96px} }
 .lockup .x::after{
   content:"×";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   padding:2px 7px;font-family:var(--font-display);font-weight:700;font-size:13px;
@@ -244,9 +253,9 @@ section{position:relative}
 /* Marca de relleno mientras llega el logo oficial de Time2Cars.
    Se muestra sola si el archivo SVG todavía no existe. */
 .wordmark{display:flex;flex-direction:column;line-height:1;flex:none}
-.wordmark b{font-family:var(--font-display);font-weight:800;font-size:clamp(1.02rem,3.6vw,1.3rem);letter-spacing:-.01em;text-transform:uppercase;color:#fff}
+.wordmark b{font-family:var(--font-display);font-weight:800;font-size:clamp(1.55rem,5.2vw,2.3rem);letter-spacing:-.01em;text-transform:uppercase;color:#fff}
 .wordmark b em{font-style:normal;color:var(--t2c-red-2)}
-.wordmark span{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--on-dark-mute);margin-top:6px}
+.wordmark span{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--on-dark-mute);margin-top:10px}
 /* Si el logo de Time2Cars ya existe, la marca de relleno se oculta sola. */
 .lockup img + .wordmark{display:none}
 
@@ -298,11 +307,12 @@ section{position:relative}
   background:rgba(8,9,12,.92);backdrop-filter:blur(14px) saturate(160%);border-bottom:1px solid var(--line);
 }
 .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.site-header .lockup img{height:28px}
-@media (min-width:640px){ .site-header .lockup img{height:34px} }
-.site-header .lockup .x{height:26px}
+.site-header .lockup .l-will{height:50px}
+.site-header .lockup .l-t2c{height:56px}
+@media (min-width:640px){ .site-header .lockup .l-will{height:60px} .site-header .lockup .l-t2c{height:66px} }
+.site-header .lockup .x{height:44px}
 .site-header .lockup .x::after{background:#0A0B0E}
-.site-header .wordmark b{font-size:clamp(.92rem,3.2vw,1.1rem)}
+.site-header .wordmark b{font-size:clamp(1.05rem,3.6vw,1.35rem)}
 
 .nav-desktop{display:none}
 @media (min-width:1040px){
@@ -440,49 +450,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 @media (min-width:760px){ .gal{grid-template-columns:repeat(3,1fr);gap:14px} }
 .gal .media{aspect-ratio:4/3}
 
-/* ============ ANTES Y DESPUÉS ============ */
-.ba-grid{display:grid;grid-template-columns:1fr;gap:26px}
-@media (min-width:900px){ .ba-grid{grid-template-columns:repeat(3,1fr);gap:20px} }
-.ba-card h3{font-size:1rem;text-transform:uppercase;margin-bottom:6px}
-.ba-card > p{color:var(--on-dark-mute);font-size:.84rem;margin-bottom:14px}
-.ba{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;touch-action:pan-y;background:#090C11}
-.ba-layer{position:absolute;inset:0}
-.ba-layer .media{position:absolute;inset:0;border-radius:0;border:none;aspect-ratio:auto}
-.ba-layer.before{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
-/* Al soltar el tirador, el corte se asienta con una inercia ligera.
-   Mientras se arrastra (.drag) no hay transición, para que siga al dedo. */
-.ba-layer.before,.ba-handle{transition:clip-path .45s var(--ease-out), left .45s var(--ease-out)}
-.ba.drag .ba-layer.before,.ba.drag .ba-handle{transition:none}
-@media (prefers-reduced-motion: reduce){ .ba-layer.before,.ba-handle{transition:none} }
-.ba-lab{
-  position:absolute;top:12px;z-index:3;font-size:10px;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;padding:5px 10px;border-radius:999px;backdrop-filter:blur(6px);
-}
-.ba-lab.a{left:12px;background:rgba(6,7,9,.7);color:var(--on-dark-soft);border:1px solid var(--line)}
-.ba-lab.d{right:12px;background:rgba(225,27,34,.85);color:#fff}
-.ba-handle{
-  position:absolute;top:0;bottom:0;left:var(--p,50%);z-index:4;width:44px;margin-left:-22px;
-  display:flex;align-items:center;justify-content:center;cursor:ew-resize;background:none;
-}
-.ba-handle::before{content:"";position:absolute;top:0;bottom:0;width:2px;background:rgba(255,255,255,.92);box-shadow:0 0 14px rgba(0,0,0,.6)}
-.ba-grip{
-  position:relative;width:40px;height:40px;border-radius:50%;background:#fff;color:#0B1F33;
-  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px -8px rgba(0,0,0,.8);
-}
-.ba-grip svg{width:20px;height:20px}
-.ba-toggle{display:none;gap:8px;margin-top:12px}
-.ba-toggle button{
-  flex:1;padding:9px 12px;border-radius:999px;border:1px solid var(--line-2);
-  font-size:12px;font-weight:700;color:var(--on-dark-soft);
-}
-.ba-toggle button[aria-pressed="true"]{background:var(--t2c-red);border-color:var(--t2c-red);color:#fff}
-@media (prefers-reduced-motion: reduce){
-  .ba-handle{display:none}
-  .ba-toggle{display:flex}
-}
-.no-js .ba-handle{display:none}
-.no-js .ba-layer.before{clip-path:inset(0 50% 0 0)}
-
 /* ============ CONFIGURADOR DE COLOR ============ */
 .cfg{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
 @media (min-width:900px){ .cfg{grid-template-columns:1.15fr .85fr;gap:48px} }
@@ -577,11 +544,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
   border:1px solid var(--line);border-radius:999px;padding:8px 14px;
 }
 .seg-mas svg{width:16px;height:16px;color:var(--blue-2)}
-.seg-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
-.seg-stat{text-align:center;padding:18px 8px;border-radius:var(--r-sm);background:rgba(242,245,251,.04);border:1px solid var(--line)}
-.seg-stat b{display:block;font-family:var(--font-display);font-size:clamp(1.2rem,4vw,1.7rem);font-weight:800;color:#fff}
-.seg-stat span{display:block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-dark-mute);margin-top:5px;line-height:1.35}
-.seg-fin{margin-top:18px;font-size:12px;color:var(--on-dark-mute)}
 .seg-link{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;font-weight:700;color:var(--blue-2)}
 .seg-link svg{width:14px;height:14px}
 
@@ -596,7 +558,8 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 .proc-num{
   width:58px;height:58px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-family:var(--font-display);font-weight:800;font-size:1.15rem;color:#fff;
-  background:var(--carbon);border:1.5px solid var(--t2c-red);box-shadow:0 0 0 7px rgba(8,9,12,1), 0 0 26px rgba(225,27,34,.35);
+  /* El anillo tapa la línea que pasa por detrás: va del color del fondo de la sección. */
+  background:var(--night);border:1.5px solid var(--t2c-red);box-shadow:0 0 0 7px var(--night), 0 0 26px rgba(225,27,34,.35);
 }
 .proc-step h3{font-size:1.02rem;text-transform:uppercase}
 .proc-step p{color:var(--on-dark-soft);font-size:.9rem;margin-top:9px;max-width:32ch;margin-inline:auto}
@@ -657,6 +620,10 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 .site-footer{background:var(--night);border-top:3px solid var(--t2c-red);padding-block:40px 24px}
 .foot-top{display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center}
 @media (min-width:860px){ .foot-top{flex-direction:row;justify-content:space-between;text-align:left} }
+.site-footer .lockup .l-will{height:70px}
+.site-footer .lockup .l-t2c{height:78px}
+.site-footer .lockup .x{height:58px}
+@media (min-width:860px){ .site-footer .lockup .l-will{height:84px} .site-footer .lockup .l-t2c{height:92px} .site-footer .lockup .x{height:70px} }
 .foot-brand p{font-size:12.5px;color:var(--on-dark-mute);max-width:44ch;margin-top:16px;line-height:1.65}
 .foot-links{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center}
 .foot-links a{font-size:13px;color:var(--on-dark-soft)}
@@ -703,18 +670,17 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 <header class="site-header">
   <div class="container">
     <a class="lockup" href="#inicio" aria-label="Seguros Willisch y Time2Cars, inicio">
-      <img src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="160" height="48">
+      <img class="l-will" src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="160" height="48">
       <span class="x" aria-hidden="true"></span>
-      <img src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="150" height="48" onerror="this.remove()">
+      <img class="l-t2c" src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="150" height="48" onerror="this.remove()">
       <span class="wordmark" aria-hidden="true"><b>Time<em>2</em>Cars</b><span>Cars · Detailing</span></span>
     </a>
 
     <nav class="nav-desktop" aria-label="Secciones de la página">
       <a href="#servicios">Servicios</a>
-      <a href="#antes-despues">Antes y después</a>
+      <a href="#seguros">Seguro de auto</a>
       <a href="#color">Cambia el color</a>
       <a href="#beneficio">Beneficio Willisch</a>
-      <a href="#seguros">Seguro de auto</a>
       <a href="#contacto">Contacto</a>
     </nav>
 
@@ -744,10 +710,9 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 
 <div class="mmenu" data-mmenu>
   <a href="#servicios" data-menu-link>Servicios</a>
-  <a href="#antes-despues" data-menu-link>Antes y después</a>
+  <a href="#seguros" data-menu-link>Seguro de auto</a>
   <a href="#color" data-menu-link>Cambia el color</a>
   <a href="#beneficio" data-menu-link>Beneficio Willisch</a>
-  <a href="#seguros" data-menu-link>Seguro de auto</a>
   <a href="#taller" data-menu-link>Quiénes son</a>
   <a href="#contacto" data-menu-link>Contacto</a>
 
@@ -770,9 +735,9 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     <div class="container inner hero-grid">
       <div>
         <div class="lockup reveal">
-          <img src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="180" height="56">
+          <img class="l-will" src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="180" height="56">
           <span class="x" aria-hidden="true"></span>
-          <img src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="170" height="56" onerror="this.remove()">
+          <img class="l-t2c" src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="170" height="56" onerror="this.remove()">
           <span class="wordmark" aria-hidden="true"><b>Time<em>2</em>Cars</b><span>Cars · Detailing</span></span>
         </div>
 
@@ -900,76 +865,61 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     </div>
   </section>
 
-  <!-- ============ ANTES Y DESPUÉS ============ -->
-  <section class="pad carbon" id="antes-despues">
+  <!-- ============ SEGUROS PARA AUTOS (LADO WILLISCH) ============ -->
+  <section class="pad carbon" id="seguros">
+    <div class="streaks" aria-hidden="true"><i></i></div>
     <div class="container inner">
-      <div class="shead center reveal">
-        <span class="eyebrow"><span class="dot"></span>Trabajos reales</span>
-        <h2 class="stitle">Arrastra y mira la diferencia</h2>
-        <p class="ssub">Mismo ángulo, misma luz, mismo carro. Mueve el tirador para ver el antes y el después.</p>
+      <div class="shead reveal">
+        <span class="eyebrow blue"><span class="dot"></span>Seguros Willisch · Vehículos</span>
+        <h2 class="stitle">¿Y si el próximo golpe no lo pagas tú?</h2>
+        <p class="ssub">Time2Cars deja tu carro impecable. Nosotros nos encargamos de que el próximo susto no salga de tu bolsillo. Comparamos 13 aseguradoras y te explicamos la póliza sin letra pequeña.</p>
       </div>
 
-      <div class="ba-grid">
-        <div class="ba-card reveal">
-          <h3>Corrección de pintura</h3>
-          <p>Rayones finos y pintura opaca</p>
-          <div class="ba" data-ba style="--p:50%">
-            <div class="ba-layer after"><figure class="media"><img src="../assets/img/aliados/t2c-despues-1.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Después: pintura corregida y pulida" onerror="this.remove()"></figure></div>
-            <div class="ba-layer before" data-ba-before><figure class="media"><img src="../assets/img/aliados/t2c-antes-1.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Antes: pintura con rayones y opacidad" onerror="this.remove()"></figure></div>
-            <span class="ba-lab a">Antes</span>
-            <span class="ba-lab d">Después</span>
-            <div class="ba-handle" data-ba-handle role="slider" tabindex="0"
-                 aria-label="Comparar antes y después de la corrección de pintura"
-                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 % del antes visible">
-              <span class="ba-grip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
-            </div>
-          </div>
-          <div class="ba-toggle" data-ba-toggle>
-            <button type="button" data-ba-set="100" aria-pressed="false">Ver antes</button>
-            <button type="button" data-ba-set="0" aria-pressed="false">Ver después</button>
-          </div>
-        </div>
-
-        <div class="ba-card reveal">
-          <h3>PDR</h3>
-          <p>Golpe extraído sin pintar</p>
-          <div class="ba" data-ba style="--p:50%">
-            <div class="ba-layer after"><figure class="media"><img src="../assets/img/aliados/t2c-despues-2.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Después: lámina lisa, sin masilla y con la pintura original" onerror="this.remove()"></figure></div>
-            <div class="ba-layer before" data-ba-before><figure class="media"><img src="../assets/img/aliados/t2c-antes-2.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Antes: abolladura en la lámina" onerror="this.remove()"></figure></div>
-            <span class="ba-lab a">Antes</span>
-            <span class="ba-lab d">Después</span>
-            <div class="ba-handle" data-ba-handle role="slider" tabindex="0"
-                 aria-label="Comparar antes y después de la extracción de golpes sin pintura"
-                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 % del antes visible">
-              <span class="ba-grip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
-            </div>
-          </div>
-          <div class="ba-toggle" data-ba-toggle>
-            <button type="button" data-ba-set="100" aria-pressed="false">Ver antes</button>
-            <button type="button" data-ba-set="0" aria-pressed="false">Ver después</button>
+      <div class="seg-grid">
+        <div class="seg-card reveal gloss">
+          <h3>Todo Riesgo</h3>
+          <p>La póliza completa para tu vehículo, armada según lo que realmente necesitas.</p>
+          <ul class="seg-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Daños a tu vehículo</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Daños a terceros</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Hurto total</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Asistencia en vía y grúa</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Red de talleres de la aseguradora</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Acompañamiento en el siniestro, de principio a fin</li>
+          </ul>
+          <div class="cta-row">
+            <span class="cta">
+              <a class="btn btn-blue" href="https://wa.me/573007525773" data-wa="will-todoriesgo" data-iman>Cotizar Todo Riesgo</a>
+              <span class="cta-tag will"><i></i>WhatsApp Seguros Willisch</span>
+            </span>
           </div>
         </div>
 
-        <div class="ba-card reveal">
-          <h3>Wrap y polarizado</h3>
-          <p>Cambio de color y vidrios</p>
-          <div class="ba" data-ba style="--p:50%">
-            <div class="ba-layer after"><figure class="media"><img src="../assets/img/aliados/t2c-despues-3.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Después: carro con wrap y polarizado instalados" onerror="this.remove()"></figure></div>
-            <div class="ba-layer before" data-ba-before><figure class="media"><img src="../assets/img/aliados/t2c-antes-3.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Antes: carro con su color y vidrios originales" onerror="this.remove()"></figure></div>
-            <span class="ba-lab a">Antes</span>
-            <span class="ba-lab d">Después</span>
-            <div class="ba-handle" data-ba-handle role="slider" tabindex="0"
-                 aria-label="Comparar antes y después del wrap y el polarizado"
-                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50 % del antes visible">
-              <span class="ba-grip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+        <div>
+          <div class="seg-card reveal gloss" style="margin-bottom:16px">
+            <h3>SOAT</h3>
+            <p>Obligatorio para circular. Te lo expedimos y te lo mandamos por WhatsApp.</p>
+            <div class="seg-nota"><b>El SOAT no cubre tu carro. Cubre a las personas.</b> Ampara la atención médica de quienes resulten lesionados en un accidente de tránsito, no los daños de tu vehículo.</div>
+            <div class="cta-row">
+              <span class="cta">
+                <a class="btn btn-line" href="https://wa.me/573007525773" data-wa="will-soat">Expedir mi SOAT</a>
+                <span class="cta-tag will"><i></i>WhatsApp Seguros Willisch</span>
+              </span>
             </div>
           </div>
-          <div class="ba-toggle" data-ba-toggle>
-            <button type="button" data-ba-set="100" aria-pressed="false">Ver antes</button>
-            <button type="button" data-ba-set="0" aria-pressed="false">Ver después</button>
+
+          <div class="seg-card reveal" style="background:linear-gradient(165deg, rgba(242,245,251,.05), rgba(242,245,251,.015))">
+            <h3 style="font-size:1rem">También aseguramos</h3>
+            <ul class="seg-mas">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l4-7h4l4 7M10 10L8 6h3"/></svg>Motos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8h11v8H2z"/><path d="M13 11h4l3 3v2h-7z"/><circle cx="6" cy="18" r="1.7" fill="currentColor"/><circle cx="17" cy="18" r="1.7" fill="currentColor"/></svg>Camiones</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13l1.6-4.8A2 2 0 0 1 6.5 7h11a2 2 0 0 1 1.9 1.2L21 13"/><rect x="2.5" y="13" width="19" height="5" rx="1.5"/><path d="M9 7V4h6v3"/></svg>Taxis</li>
+            </ul>
+            <a class="seg-link" href="../personas.html#vehiculo">Ver todo el portafolio para personas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1065,9 +1015,9 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     <div class="container inner">
       <div class="ben reveal gloss">
         <div class="lockup on-night">
-          <img src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="170" height="52">
+          <img class="l-will" src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="170" height="52">
           <span class="x" aria-hidden="true"></span>
-          <img src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="160" height="52" onerror="this.remove()">
+          <img class="l-t2c" src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="160" height="52" onerror="this.remove()">
           <span class="wordmark" aria-hidden="true"><b>Time<em>2</em>Cars</b><span>Cars · Detailing</span></span>
         </div>
 
@@ -1125,72 +1075,8 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     </div>
   </section>
 
-  <!-- ============ SEGUROS PARA AUTOS (LADO WILLISCH) ============ -->
-  <section class="pad night" id="seguros">
-    <div class="streaks" aria-hidden="true"><i></i></div>
-    <div class="container inner">
-      <div class="shead reveal">
-        <span class="eyebrow blue"><span class="dot"></span>Seguros Willisch · Vehículos</span>
-        <h2 class="stitle">¿Y si el próximo golpe no lo pagas tú?</h2>
-        <p class="ssub">Time2Cars deja tu carro impecable. Nosotros nos encargamos de que el próximo susto no salga de tu bolsillo. Comparamos 13 aseguradoras y te explicamos la póliza sin letra pequeña.</p>
-      </div>
-
-      <div class="seg-grid">
-        <div class="seg-card reveal gloss">
-          <h3>Todo Riesgo</h3>
-          <p>La póliza completa para tu vehículo, armada según lo que realmente necesitas.</p>
-          <ul class="seg-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Daños a tu vehículo</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Daños a terceros</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Hurto total</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Asistencia en vía y grúa</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Red de talleres de la aseguradora</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Acompañamiento en el siniestro, de principio a fin</li>
-          </ul>
-          <div class="cta-row">
-            <span class="cta">
-              <a class="btn btn-blue" href="https://wa.me/573007525773" data-wa="will-todoriesgo" data-iman>Cotizar Todo Riesgo</a>
-              <span class="cta-tag will"><i></i>WhatsApp Seguros Willisch</span>
-            </span>
-          </div>
-        </div>
-
-        <div>
-          <div class="seg-card reveal gloss" style="margin-bottom:16px">
-            <h3>SOAT</h3>
-            <p>Obligatorio para circular. Te lo expedimos y te lo mandamos por WhatsApp.</p>
-            <div class="seg-nota"><b>El SOAT no cubre tu carro. Cubre a las personas.</b> Ampara la atención médica de quienes resulten lesionados en un accidente de tránsito, no los daños de tu vehículo.</div>
-            <div class="cta-row">
-              <span class="cta">
-                <a class="btn btn-line" href="https://wa.me/573007525773" data-wa="will-soat">Expedir mi SOAT</a>
-                <span class="cta-tag will"><i></i>WhatsApp Seguros Willisch</span>
-              </span>
-            </div>
-          </div>
-
-          <div class="seg-card reveal" style="background:linear-gradient(165deg, rgba(242,245,251,.05), rgba(242,245,251,.015))">
-            <h3 style="font-size:1rem">También aseguramos</h3>
-            <ul class="seg-mas">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l4-7h4l4 7M10 10L8 6h3"/></svg>Motos</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8h11v8H2z"/><path d="M13 11h4l3 3v2h-7z"/><circle cx="6" cy="18" r="1.7" fill="currentColor"/><circle cx="17" cy="18" r="1.7" fill="currentColor"/></svg>Camiones</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13l1.6-4.8A2 2 0 0 1 6.5 7h11a2 2 0 0 1 1.9 1.2L21 13"/><rect x="2.5" y="13" width="19" height="5" rx="1.5"/><path d="M9 7V4h6v3"/></svg>Taxis</li>
-            </ul>
-            <a class="seg-link" href="../personas.html#vehiculo">Ver todo el portafolio para personas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="seg-stats reveal">
-        <div class="seg-stat"><b>+10</b><span>Años asesorando</span></div>
-        <div class="seg-stat"><b>+600</b><span>Clientes</span></div>
-        <div class="seg-stat"><b>13</b><span>Aseguradoras aliadas</span></div>
-      </div>
-      <p class="seg-fin reveal">Hasta <b>12 cuotas</b> con Crediseguro y Finesa. La financiación está sujeta a aprobación de la entidad financiera.</p>
-    </div>
-  </section>
-
   <!-- ============ CÓMO FUNCIONA LA ALIANZA ============ -->
-  <section class="pad carbon proc" id="alianza" data-proc>
+  <section class="pad night proc" id="alianza" data-proc>
     <div class="container inner">
       <div class="shead center reveal">
         <span class="eyebrow"><span class="dot"></span>La alianza, en tres pasos</span>
@@ -1222,7 +1108,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
   </section>
 
   <!-- ============ QUIÉNES SON TIME2CARS ============ -->
-  <section class="pad night" id="taller">
+  <section class="pad carbon" id="taller">
     <div class="streaks" aria-hidden="true"><i></i></div>
     <div class="container inner tal-grid">
       <div class="reveal">
@@ -1246,7 +1132,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
   </section>
 
   <!-- ============ CONTACTO Y UBICACIÓN ============ -->
-  <section class="pad carbon" id="contacto">
+  <section class="pad night" id="contacto">
     <div class="container inner">
       <div class="shead center reveal">
         <span class="eyebrow"><span class="dot"></span>Contacto</span>
@@ -1381,17 +1267,17 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     <div class="foot-top">
       <div class="foot-brand">
         <div class="lockup on-night">
-          <img src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="150" height="44">
+          <img class="l-will" src="../assets/logos/logo-willisch.png" alt="Seguros Willisch" width="150" height="44">
           <span class="x" aria-hidden="true"></span>
-          <img src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="140" height="44" onerror="this.remove()">
+          <img class="l-t2c" src="../assets/logos/aliados/time2cars.svg" alt="Time2Cars" width="140" height="44" onerror="this.remove()">
           <span class="wordmark" aria-hidden="true"><b>Time<em>2</em>Cars</b><span>Cars · Detailing</span></span>
         </div>
         <p>Alianza entre Seguros Willisch, agencia de seguros en Barranquilla, y Time2Cars, taller de pintura y detallado automotriz.</p>
       </div>
       <nav class="foot-links" aria-label="Enlaces del pie">
         <a href="#servicios">Servicios</a>
-        <a href="#beneficio">Beneficio Willisch</a>
         <a href="#seguros">Seguro de auto</a>
+        <a href="#beneficio">Beneficio Willisch</a>
         <a href="#contacto">Contacto</a>
         <a href="../index.html">Seguros Willisch</a>
         <a href="../personas.html">Seguros para personas</a>
@@ -1598,7 +1484,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
       var el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      var top = el.getBoundingClientRect().top + window.scrollY - 92;
+      var top = el.getBoundingClientRect().top + window.scrollY - 108;
       window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
       history.pushState(null, "", id);
     });
@@ -1648,77 +1534,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     upd();
     window.addEventListener("scroll", upd, { passive: true });
     window.addEventListener("resize", upd);
-  }
-
-  /* ---------- Antes y después: mouse, dedo y teclado ---------- */
-  function initAntesDespues() {
-    $$("[data-ba]").forEach(function (ba) {
-      var handle = $("[data-ba-handle]", ba);
-      var tarjeta = ba.parentElement;
-      var botones = tarjeta ? $$("[data-ba-toggle] button", tarjeta) : [];
-      var p = 50;
-
-      function poner(valor, conTransicion) {
-        p = Math.max(0, Math.min(100, valor));
-        ba.style.setProperty("--p", p + "%");
-        if (handle) {
-          handle.setAttribute("aria-valuenow", Math.round(p));
-          handle.setAttribute("aria-valuetext", Math.round(p) + " % del antes visible");
-        }
-        botones.forEach(function (b) {
-          b.setAttribute("aria-pressed", String(Math.round(p) === Number(b.getAttribute("data-ba-set"))));
-        });
-        if (conTransicion === false) ba.classList.add("drag"); else ba.classList.remove("drag");
-      }
-
-      function desdeEvento(e) {
-        var r = ba.getBoundingClientRect();
-        if (!r.width) return;
-        poner(((e.clientX - r.left) / r.width) * 100, false);
-      }
-
-      var arrastrando = false;
-      function down(e) {
-        if (e.button != null && e.button !== 0) return;
-        arrastrando = true;
-        ba.classList.add("drag");
-        desdeEvento(e);
-        if (handle && handle.focus) handle.focus({ preventScroll: true });
-        e.preventDefault();
-      }
-      function move(e) { if (arrastrando) desdeEvento(e); }
-      function up() {
-        if (!arrastrando) return;
-        arrastrando = false;
-        ba.classList.remove("drag");   /* al soltar, se asienta con una inercia ligera */
-      }
-
-      ba.addEventListener("pointerdown", down);
-      window.addEventListener("pointermove", move, { passive: true });
-      window.addEventListener("pointerup", up);
-      window.addEventListener("pointercancel", up);
-
-      if (handle) {
-        handle.addEventListener("keydown", function (e) {
-          var paso = 0;
-          if (e.key === "ArrowLeft" || e.key === "ArrowDown") paso = -3;
-          else if (e.key === "ArrowRight" || e.key === "ArrowUp") paso = 3;
-          else if (e.key === "PageDown") paso = -12;
-          else if (e.key === "PageUp") paso = 12;
-          else if (e.key === "Home") { poner(0); e.preventDefault(); return; }
-          else if (e.key === "End") { poner(100); e.preventDefault(); return; }
-          if (!paso) return;
-          poner(p + paso);
-          e.preventDefault();
-        });
-      }
-
-      botones.forEach(function (b) {
-        b.addEventListener("click", function () { poner(Number(b.getAttribute("data-ba-set"))); });
-      });
-
-      poner(50);
-    });
   }
 
   /* ---------- Configurador de color ---------- */
@@ -1867,7 +1682,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     safe(initReveals, "reveals");
     safe(initHero, "hero");
     safe(initRail, "rail");
-    safe(initAntesDespues, "antes-despues");
     safe(initConfigurador, "configurador");
     safe(initProceso, "proceso");
     safe(initMapa, "mapa");
