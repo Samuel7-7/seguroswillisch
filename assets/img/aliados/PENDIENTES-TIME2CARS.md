@@ -51,8 +51,8 @@ marcados sobre la pintura. Nada de marcas de terceros visibles ni placas legible
 
 | Ruta | Estado | Qué es |
 |---|---|---|
-| `assets/logos/aliados/time2cars.svg` | **Marca de relleno** | Pieza tipográfica provisional. Reemplázala por el logo oficial (escudo con la pantera, filo rojo y negro) en SVG o PNG con fondo transparente, sin cambiar el nombre. Si llega en PNG, guárdalo como `time2cars.png` y cambia la extensión en las cuatro etiquetas `<img>` de `time2cars/index.html` |
-| `assets/share/og-time2cars.jpg` | **Provisional** | 1200 × 630. Hoy es una composición tipográfica de la alianza. Cuando llegue el logo oficial y una foto de Time2Cars, se rehace con el lockup de las dos marcas sobre el auto |
+| `assets/logos/aliados/time2cars.png` | **Listo** | El logo oficial, 233 × 273, con fondo transparente y sin márgenes sobrantes. Si algún día llega en SVG, reemplázalo y cambia la extensión en las cuatro etiquetas `<img>` de `time2cars/index.html` |
+| `assets/share/og-time2cars.jpg` | **Se puede mejorar** | 1200 × 630, con el lockup de las dos marcas sobre el fondo de la página. Cuando haya una foto de Time2Cars se puede rehacer con el auto de fondo |
 | `assets/share/qr-time2cars.png` | Pendiente | QR hacia `https://seguroswillisch.com/time2cars/`, para que Time2Cars lo imprima y lo ponga en el taller |
 
 ---
