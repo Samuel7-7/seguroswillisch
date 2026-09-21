@@ -565,7 +565,13 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 /* ============ CONTACTO ============ */
 .con-grid{display:grid;grid-template-columns:1fr;gap:20px}
 @media (min-width:880px){ .con-grid{grid-template-columns:repeat(2,1fr);gap:22px} }
-.con-card{padding:30px 26px;border-radius:var(--r);border:1px solid var(--line);background:rgba(242,245,251,.03)}
+.con-card{position:relative;z-index:0;overflow:clip;padding:30px 26px;border-radius:var(--r);border:1px solid var(--line);background:rgba(242,245,251,.03)}
+/* Logo de cada empresa de fondo, como en las otras páginas de aliado:
+   tenue, detrás del texto y sin interceptar clics. Va a la derecha, a la
+   altura de los datos de contacto, para que el mapa no lo tape. */
+.con-logo{position:absolute;z-index:-1;right:-14px;height:auto;opacity:.12;pointer-events:none}
+.con-card.t2c .con-logo{top:56px;width:min(42%,220px)}
+.con-card.will .con-logo{top:84px;width:min(58%,300px)}
 .con-card.t2c{border-top:3px solid var(--t2c-red)}
 .con-card.will{border-top:3px solid var(--blue-2)}
 .con-card h3{font-size:1.15rem;text-transform:uppercase}
@@ -1006,6 +1012,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
       <div class="con-grid">
         <!-- Time2Cars -->
         <div class="con-card t2c reveal">
+          <img class="con-logo" src="../assets/logos/aliados/time2cars.png" alt="" aria-hidden="true" width="233" height="273" loading="lazy" decoding="async">
           <span class="kind">Taller · Pintura y detallado</span>
           <h3>Time2Cars</h3>
           <div class="con-lines">
@@ -1052,6 +1059,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 
         <!-- Seguros Willisch -->
         <div class="con-card will reveal">
+          <img class="con-logo" src="../assets/logos/logo-willisch.png" alt="" aria-hidden="true" width="677" height="369" loading="lazy" decoding="async">
           <span class="kind">Agencia de seguros</span>
           <h3>Seguros Willisch</h3>
           <div class="con-lines">
