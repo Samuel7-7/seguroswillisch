@@ -55,13 +55,6 @@
       "provider":{"@type":"InsuranceAgency","name":"Seguros Willisch","url":"https://seguroswillisch.com/"},
       "areaServed":{"@type":"Country","name":"Colombia"},
       "description":"Asesoría y comparación de pólizas todo riesgo para autos, motos, camiones y taxis entre las principales aseguradoras de Colombia."
-    },
-    {
-      "@type":"Service",
-      "serviceType":"SOAT",
-      "provider":{"@type":"InsuranceAgency","name":"Seguros Willisch","url":"https://seguroswillisch.com/"},
-      "areaServed":{"@type":"Country","name":"Colombia"},
-      "description":"Expedición del SOAT, el seguro obligatorio que ampara a las personas lesionadas en un accidente de tránsito."
     }
   ]
 }
@@ -476,12 +469,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 .seg-list{margin-top:20px;display:flex;flex-direction:column;gap:11px}
 .seg-list li{display:flex;gap:11px;align-items:flex-start;font-size:.9rem;color:var(--on-dark-soft)}
 .seg-list svg{width:16px;height:16px;flex:none;margin-top:4px;color:var(--blue-2)}
-.seg-nota{
-  margin-top:22px;padding:18px 20px;border-radius:var(--r-sm);
-  background:rgba(255,59,48,.1);border-left:3px solid var(--t2c-red);
-  font-size:.92rem;color:var(--on-dark);
-}
-.seg-nota b{color:#fff}
 .seg-mas{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .seg-mas li{
   display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--on-dark-soft);
@@ -630,7 +617,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
           </a>
           <a href="https://wa.me/573007525773" data-wa="will-auto">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-            <span><b>Seguros Willisch</b><span>Todo riesgo, SOAT y asesoría</span></span>
+            <span><b>Seguros Willisch</b><span>Todo riesgo y asesoría</span></span>
           </a>
         </div>
       </div>
@@ -817,18 +804,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
         </div>
 
         <div>
-          <div class="seg-card reveal gloss" style="margin-bottom:16px">
-            <h3>SOAT</h3>
-            <p>Obligatorio para circular. Te lo expedimos y te lo mandamos por WhatsApp.</p>
-            <div class="seg-nota"><b>El SOAT no cubre tu carro. Cubre a las personas.</b> Ampara la atención médica de quienes resulten lesionados en un accidente de tránsito, no los daños de tu vehículo.</div>
-            <div class="cta-row">
-              <span class="cta">
-                <a class="btn btn-line" href="https://wa.me/573007525773" data-wa="will-soat">Expedir mi SOAT</a>
-                <span class="cta-tag will"><i></i>WhatsApp Seguros Willisch</span>
-              </span>
-            </div>
-          </div>
-
           <div class="seg-card reveal" style="background:linear-gradient(165deg, rgba(242,245,251,.05), rgba(242,245,251,.015))">
             <h3 style="font-size:1rem">También aseguramos</h3>
             <ul class="seg-mas">
@@ -1188,8 +1163,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
         return ["will", "Hola Seguros Willisch, vengo de Time2Cars y quiero cotizar el seguro de mi carro."];
       case "will-todoriesgo":
         return ["will", "Hola Seguros Willisch, vengo de Time2Cars y quiero cotizar un seguro todo riesgo para mi vehículo."];
-      case "will-soat":
-        return ["will", "Hola Seguros Willisch, vengo de Time2Cars y necesito expedir el SOAT de mi vehículo."];
     }
     return null;
   }
