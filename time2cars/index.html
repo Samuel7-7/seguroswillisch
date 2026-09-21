@@ -36,7 +36,7 @@
       "@type":"AutoBodyShop",
       "name":"Time2Cars",
       "description":"Taller de pintura automotriz y detallado profesional en Barranquilla: pintura en cabina, retoques puntuales, detallado de pintura, latonería, PPF, wrap, PDR, luces y polarizado.",
-      "image":"https://seguroswillisch.com/assets/img/aliados/t2c-taller.webp",
+      "image":"https://seguroswillisch.com/assets/logos/aliados/time2cars.png",
       "telephone":"+573002825331",
       "email":"time2carsbaq@gmail.com",
       "address":{
@@ -280,13 +280,6 @@ section{position:relative}
   background:radial-gradient(42% 42% at 50% 50%, rgba(242,245,251,.05), transparent 70%);
 }
 .media > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
-.media > figcaption{
-  position:absolute;left:0;right:0;bottom:0;z-index:2;
-  padding:34px 16px 14px;font-size:12.5px;font-weight:600;color:var(--on-dark-soft);
-  background:linear-gradient(180deg,transparent,rgba(6,7,9,.86));
-}
-.r-16-9{aspect-ratio:16/9}
-.r-4-3{aspect-ratio:4/3}
 
 /* ============ RAIL DE PROGRESO ============ */
 .rail{position:fixed;top:0;left:0;right:0;height:var(--rail-h);z-index:200;background:rgba(242,245,251,.08)}
@@ -445,57 +438,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 .srv-go svg{width:13px;height:13px;transition:transform .3s var(--ease)}
 .srv:hover .srv-go svg{transform:translateX(4px)}
 
-/* Galería del taller (fotos reales de Time2Cars) */
-.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:44px}
-@media (min-width:760px){ .gal{grid-template-columns:repeat(3,1fr);gap:14px} }
-.gal .media{aspect-ratio:4/3}
-
-/* ============ CONFIGURADOR DE COLOR ============ */
-.cfg{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
-@media (min-width:900px){ .cfg{grid-template-columns:1.15fr .85fr;gap:48px} }
-.cfg-stage{
-  position:relative;border-radius:var(--r-lg);padding:26px 18px;overflow:hidden;
-  background:radial-gradient(90% 70% at 50% 15%, #1A222E 0%, #080A0E 72%);
-  border:1px solid var(--line);
-}
-.cfg-stage::after{
-  content:"";position:absolute;left:8%;right:8%;bottom:14%;height:26px;border-radius:50%;
-  background:radial-gradient(60% 100% at 50% 50%, rgba(225,27,34,.4), transparent 72%);
-  filter:blur(12px);
-}
-.cfg-car{width:100%;height:auto;display:block;position:relative;z-index:1}
-.cfg-body{transition:fill .65s var(--ease)}
-.cfg-gloss{transition:opacity .55s var(--ease)}
-.cfg-sheen{transform-box:fill-box;transform-origin:center}
-@media (prefers-reduced-motion: no-preference){
-  .cfg-sheen{animation:sheen 5.5s linear infinite}
-}
-@keyframes sheen{
-  0%{transform:translateX(-180px)}
-  100%{transform:translateX(420px)}
-}
-.cfg-group{margin-bottom:22px}
-.cfg-group > span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-mute);margin-bottom:12px}
-.cfg-colors{display:flex;flex-wrap:wrap;gap:10px}
-.cfg-color{
-  width:44px;height:44px;border-radius:50%;border:2px solid var(--line-2);position:relative;
-  transition:transform .25s var(--ease), border-color .25s var(--ease);
-}
-.cfg-color:hover{transform:scale(1.08)}
-.cfg-color[aria-pressed="true"]{border-color:#fff;box-shadow:0 0 0 4px rgba(242,245,251,.12)}
-.cfg-finishes{display:flex;flex-wrap:wrap;gap:9px}
-.cfg-fin{
-  padding:10px 17px;border-radius:999px;border:1px solid var(--line-2);font-size:12.5px;font-weight:700;
-  color:var(--on-dark-soft);transition:background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
-}
-.cfg-fin[aria-pressed="true"]{background:#fff;color:#0B1F33;border-color:#fff}
-.cfg-read{font-family:var(--font-display);font-size:1.15rem;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:18px}
-.cfg-read span{color:var(--t2c-red-2)}
-.cfg-note{color:var(--on-dark-mute);font-size:12px;margin-top:16px;max-width:44ch}
-.no-js .cfg-ui,.no-js .cfg-read{display:none}
-.cfg-nojs{display:none;color:var(--on-dark-soft);font-size:.92rem;margin-bottom:18px}
-.no-js .cfg-nojs{display:block}
-
 /* ============ BENEFICIO ============ */
 .ben{position:relative;overflow:clip;border-radius:var(--r-lg);padding:40px 24px;border:1px solid rgba(225,27,34,.34);
   background:linear-gradient(150deg, rgba(225,27,34,.16), rgba(12,17,25,.4) 55%, rgba(36,56,216,.14));}
@@ -559,20 +501,10 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
   width:58px;height:58px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   font-family:var(--font-display);font-weight:800;font-size:1.15rem;color:#fff;
   /* El anillo tapa la línea que pasa por detrás: va del color del fondo de la sección. */
-  background:var(--night);border:1.5px solid var(--t2c-red);box-shadow:0 0 0 7px var(--night), 0 0 26px rgba(225,27,34,.35);
+  background:var(--carbon);border:1.5px solid var(--t2c-red);box-shadow:0 0 0 7px var(--carbon), 0 0 26px rgba(225,27,34,.35);
 }
 .proc-step h3{font-size:1.02rem;text-transform:uppercase}
 .proc-step p{color:var(--on-dark-soft);font-size:.9rem;margin-top:9px;max-width:32ch;margin-inline:auto}
-
-/* ============ QUIÉNES SON ============ */
-.tal-grid{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
-@media (min-width:920px){ .tal-grid{grid-template-columns:.95fr 1.05fr;gap:48px} }
-.tal-mosaic{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.tal-mosaic .media{aspect-ratio:1/1}
-.tal-mosaic .media.wide{grid-column:span 2;aspect-ratio:16/9}
-.ig-link{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-weight:700;font-size:.94rem;color:#fff}
-.ig-link svg{width:20px;height:20px;color:var(--t2c-red-2)}
-.ig-link:hover{color:var(--t2c-red-2)}
 
 /* ============ CONTACTO ============ */
 .con-grid{display:grid;grid-template-columns:1fr;gap:20px}
@@ -679,7 +611,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     <nav class="nav-desktop" aria-label="Secciones de la página">
       <a href="#servicios">Servicios</a>
       <a href="#seguros">Seguro de auto</a>
-      <a href="#color">Cambia el color</a>
       <a href="#beneficio">Beneficio Willisch</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -711,9 +642,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 <div class="mmenu" data-mmenu>
   <a href="#servicios" data-menu-link>Servicios</a>
   <a href="#seguros" data-menu-link>Seguro de auto</a>
-  <a href="#color" data-menu-link>Cambia el color</a>
   <a href="#beneficio" data-menu-link>Beneficio Willisch</a>
-  <a href="#taller" data-menu-link>Quiénes son</a>
   <a href="#contacto" data-menu-link>Contacto</a>
 
   <p class="mmenu-label">Escribe por WhatsApp</p>
@@ -852,16 +781,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
           <span class="srv-go">Cotizar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
-
-      <!-- Galería de trabajos: fotos reales de Time2Cars -->
-      <div class="gal">
-        <figure class="media reveal gloss"><img src="../assets/img/aliados/t2c-cabina.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Cabina de pintura de Time2Cars en operación" onerror="this.remove()"><figcaption>Cabina de pintura</figcaption></figure>
-        <figure class="media reveal gloss"><img src="../assets/img/aliados/t2c-detallado.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Pulido de pintura con brillo profundo" onerror="this.remove()"><figcaption>Detallado de pintura</figcaption></figure>
-        <figure class="media reveal gloss"><img src="../assets/img/aliados/t2c-ppf.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Aplicación de película de protección de pintura" onerror="this.remove()"><figcaption>PPF</figcaption></figure>
-        <figure class="media reveal gloss"><img src="../assets/img/aliados/t2c-wrap.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Envolvimiento de vinilo para cambio de color" onerror="this.remove()"><figcaption>WRAP</figcaption></figure>
-        <figure class="media reveal gloss"><img src="../assets/img/aliados/t2c-pdr.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Extracción de un golpe sin pintura" onerror="this.remove()"><figcaption>PDR</figcaption></figure>
-        <figure class="media reveal gloss"><img src="../assets/img/aliados/t2c-polarizado.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Instalación de polarizado en un vidrio lateral" onerror="this.remove()"><figcaption>Polarizado</figcaption></figure>
-      </div>
     </div>
   </section>
 
@@ -923,95 +842,8 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     </div>
   </section>
 
-  <!-- ============ CONFIGURADOR DE COLOR ============ -->
-  <section class="pad night" id="color">
-    <div class="streaks" aria-hidden="true"><i></i></div>
-    <div class="container inner">
-      <div class="shead reveal">
-        <span class="eyebrow"><span class="dot"></span>Wrap y pintura</span>
-        <h2 class="stitle">¿Y si tu carro fuera de otro color?</h2>
-        <p class="ssub">Elige un color y un acabado. Cuando te guste el resultado, escríbele a Time2Cars con tu elección ya puesta en el mensaje.</p>
-      </div>
-
-      <div class="cfg reveal" data-cfg>
-        <div class="cfg-stage">
-          <svg class="cfg-car" viewBox="0 0 640 260" role="img" aria-label="Silueta de un auto que cambia de color y acabado">
-            <defs>
-              <linearGradient id="cfgTop" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
-                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-              </linearGradient>
-              <linearGradient id="cfgSheen" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
-                <stop offset=".5" stop-color="#ffffff" stop-opacity=".5"/>
-                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-              </linearGradient>
-              <clipPath id="cfgClip">
-                <path d="M52 176c-8-2-14-9-14-18v-18c0-10 7-18 17-20l52-9 44-38c9-8 21-12 33-12h120c14 0 27 5 37 14l40 36 78 12c15 2 26 15 26 30v5c0 10-8 18-18 18z"/>
-              </clipPath>
-            </defs>
-
-            <!-- carrocería -->
-            <path class="cfg-body" fill="#0E0E11"
-                  d="M52 176c-8-2-14-9-14-18v-18c0-10 7-18 17-20l52-9 44-38c9-8 21-12 33-12h120c14 0 27 5 37 14l40 36 78 12c15 2 26 15 26 30v5c0 10-8 18-18 18z"/>
-            <!-- brillo superior, cambia con el acabado -->
-            <path class="cfg-gloss" fill="url(#cfgTop)" opacity=".85"
-                  d="M52 176c-8-2-14-9-14-18v-10c40-14 96-22 158-22 104 0 190 20 230 44z"/>
-            <!-- reflejo en movimiento -->
-            <g clip-path="url(#cfgClip)">
-              <rect class="cfg-sheen" x="-120" y="60" width="70" height="140" transform="skewX(-22)" fill="url(#cfgSheen)"/>
-            </g>
-            <!-- vidrios -->
-            <path fill="#0A1017" opacity=".92" d="M170 96l28-25c6-5 13-8 21-8h34v33zM266 96V63h48c9 0 18 3 25 9l24 24z"/>
-            <!-- ruedas -->
-            <circle cx="163" cy="176" r="38" fill="#0A0C0F"/>
-            <circle cx="163" cy="176" r="20" fill="none" stroke="#5A6472" stroke-width="5"/>
-            <circle cx="452" cy="176" r="38" fill="#0A0C0F"/>
-            <circle cx="452" cy="176" r="20" fill="none" stroke="#5A6472" stroke-width="5"/>
-            <!-- piso -->
-            <rect x="20" y="212" width="600" height="2" rx="1" fill="#E11B22" opacity=".35"/>
-          </svg>
-        </div>
-
-        <div>
-          <p class="cfg-nojs">Activa JavaScript para probar los colores y acabados. También puedes escribirle a Time2Cars y contarles qué tienes en mente.</p>
-          <p class="cfg-read">Tu elección: <span data-cfg-read>Negro medianoche · Brillante</span></p>
-
-          <div class="cfg-ui">
-            <div class="cfg-group">
-              <span>Color</span>
-              <div class="cfg-colors" data-cfg-colors role="group" aria-label="Color de la pintura">
-                <button type="button" class="cfg-color" data-color="#0E0E11" data-nombre="Negro medianoche" style="background:#0E0E11" aria-pressed="true" aria-label="Negro medianoche"></button>
-                <button type="button" class="cfg-color" data-color="#E11B22" data-nombre="Rojo Time2Cars" style="background:#E11B22" aria-pressed="false" aria-label="Rojo Time2Cars"></button>
-                <button type="button" class="cfg-color" data-color="#4A4F57" data-nombre="Gris grafito" style="background:#4A4F57" aria-pressed="false" aria-label="Gris grafito"></button>
-                <button type="button" class="cfg-color" data-color="#14315C" data-nombre="Azul profundo" style="background:#14315C" aria-pressed="false" aria-label="Azul profundo"></button>
-                <button type="button" class="cfg-color" data-color="#E8E6E1" data-nombre="Blanco perla" style="background:#E8E6E1" aria-pressed="false" aria-label="Blanco perla"></button>
-              </div>
-            </div>
-
-            <div class="cfg-group">
-              <span>Acabado</span>
-              <div class="cfg-finishes" data-cfg-finishes role="group" aria-label="Acabado de la pintura">
-                <button type="button" class="cfg-fin" data-fin="Brillante" data-gloss=".85" aria-pressed="true">Brillante</button>
-                <button type="button" class="cfg-fin" data-fin="Satinado" data-gloss=".42" aria-pressed="false">Satinado</button>
-                <button type="button" class="cfg-fin" data-fin="Mate" data-gloss=".1" aria-pressed="false">Mate</button>
-              </div>
-            </div>
-          </div>
-
-          <span class="cta">
-            <a class="btn btn-red" href="https://wa.me/573002825331" data-wa="t2c-color" data-iman>Quiero este acabado</a>
-            <span class="cta-tag t2c"><i></i>WhatsApp del taller · 300 282 5331</span>
-          </span>
-
-          <p class="cfg-note">Los acabados reales dependen del material y del vehículo. Time2Cars te asesora.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ BENEFICIO PARA CLIENTES WILLISCH ============ -->
-  <section class="pad carbon" id="beneficio">
+  <section class="pad night" id="beneficio">
     <div class="container inner">
       <div class="ben reveal gloss">
         <div class="lockup on-night">
@@ -1076,7 +908,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
   </section>
 
   <!-- ============ CÓMO FUNCIONA LA ALIANZA ============ -->
-  <section class="pad night proc" id="alianza" data-proc>
+  <section class="pad carbon proc" id="alianza" data-proc>
     <div class="container inner">
       <div class="shead center reveal">
         <span class="eyebrow"><span class="dot"></span>La alianza, en tres pasos</span>
@@ -1103,30 +935,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
           <h3>Tu carro, como nuevo y con respaldo</h3>
           <p>Impecable por fuera y protegido por dentro, con quien te responde cuando pasa algo.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ QUIÉNES SON TIME2CARS ============ -->
-  <section class="pad carbon" id="taller">
-    <div class="streaks" aria-hidden="true"><i></i></div>
-    <div class="container inner tal-grid">
-      <div class="reveal">
-        <span class="eyebrow"><span class="dot"></span>El aliado</span>
-        <h2 class="stitle">Expertos, apasionados y adictos a los autos</h2>
-        <p class="ssub">Time2Cars es un taller de pintura automotriz y detallado profesional en Barranquilla. Trabajan en cabina, con producto y proceso controlados, y documentan lo que hacen en Instagram, donde se ve el estándar de acabado con el que entregan cada carro.</p>
-        <a class="ig-link" href="https://www.instagram.com/time2carsbaq/" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
-          @time2carsbaq
-        </a>
-      </div>
-
-      <div class="tal-mosaic reveal">
-        <figure class="media wide gloss"><img src="../assets/img/aliados/t2c-taller.webp" width="1600" height="900" loading="lazy" decoding="async" alt="El taller de Time2Cars y su equipo en Barranquilla" onerror="this.remove()"></figure>
-        <figure class="media gloss"><img src="../assets/img/aliados/t2c-obra-1.webp" width="1200" height="1200" loading="lazy" decoding="async" alt="Trabajo terminado de Time2Cars" onerror="this.remove()"></figure>
-        <figure class="media gloss"><img src="../assets/img/aliados/t2c-obra-2.webp" width="1200" height="1200" loading="lazy" decoding="async" alt="Detalle de acabado de pintura de Time2Cars" onerror="this.remove()"></figure>
-        <figure class="media gloss"><img src="../assets/img/aliados/t2c-obra-3.webp" width="1200" height="1200" loading="lazy" decoding="async" alt="Vehículo entregado por Time2Cars" onerror="this.remove()"></figure>
-        <figure class="media gloss"><img src="../assets/img/aliados/t2c-obra-4.webp" width="1200" height="1200" loading="lazy" decoding="async" alt="Proceso de trabajo en el taller Time2Cars" onerror="this.remove()"></figure>
       </div>
     </div>
   </section>
@@ -1256,7 +1064,7 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 <section class="legal">
   <div class="container">
     <p><b>Servicios prestados por un tercero.</b> Los servicios de pintura, latonería, detallado, PPF, wrap, PDR, luces y polarizado son prestados por <b>Time2Cars</b>, empresa independiente. <b>Seguros Willisch</b> actúa como agencia de seguros y no presta ni responde por dichos servicios. Time2Cars no es un taller avalado por ninguna aseguradora en virtud de esta alianza: la autorización de reparaciones con cargo a una póliza depende exclusivamente de la aseguradora y de las condiciones de cada contrato.</p>
-    <p>Las coberturas, exclusiones, deducibles y condiciones de las pólizas dependen de cada aseguradora y de las condiciones particulares de cada contrato. El beneficio para clientes está sujeto a las condiciones y a la vigencia acordadas con el aliado. La financiación de pólizas está sujeta a aprobación por parte de la entidad financiera (Crediseguro o Finesa). El configurador de color de esta página es ilustrativo: los acabados reales dependen del material y del vehículo.</p>
+    <p>Las coberturas, exclusiones, deducibles y condiciones de las pólizas dependen de cada aseguradora y de las condiciones particulares de cada contrato. El beneficio para clientes está sujeto a las condiciones y a la vigencia acordadas con el aliado. La financiación de pólizas está sujeta a aprobación por parte de la entidad financiera (Crediseguro o Finesa).</p>
     <p>Las marcas, logotipos y fotografías de Time2Cars son propiedad de su titular y se usan con su autorización. Seguros Willisch da cumplimiento a las disposiciones vigentes en materia de protección de datos personales (Ley 1581 de 2012). Esta página no recoge datos personales: todo el contacto ocurre por WhatsApp, correo o teléfono, por iniciativa de quien escribe.</p>
   </div>
 </section>
@@ -1361,8 +1169,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
   }
 
   /* ---------- WhatsApp ---------- */
-  var cfgEstado = { color: "Negro medianoche", fin: "Brillante" };
-
   function beneficioMensaje() {
     return "Hola Time2Cars, soy cliente de Seguros Willisch y quiero agendar [servicio].";
   }
@@ -1376,9 +1182,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
         return ["t2c", "Hola Time2Cars, quiero cotizar " + (el.getAttribute("data-servicio") || "un servicio") + " para mi carro."];
       case "t2c-beneficio":
         return ["t2c", beneficioMensaje()];
-      case "t2c-color":
-        return ["t2c", "Hola Time2Cars, vi el configurador de la página de Seguros Willisch y quiero mi carro en " +
-          cfgEstado.color + " con acabado " + cfgEstado.fin.toLowerCase() + ". ¿Me asesoran?"];
       case "will-auto":
         return ["will", "Hola Seguros Willisch, vengo de Time2Cars y quiero cotizar el seguro de mi carro."];
       case "will-todoriesgo":
@@ -1536,43 +1339,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     window.addEventListener("resize", upd);
   }
 
-  /* ---------- Configurador de color ---------- */
-  function initConfigurador() {
-    var root = $("[data-cfg]");
-    if (!root) return;
-    var body = $(".cfg-body", root);
-    var brillo = $(".cfg-gloss", root);
-    var lectura = $("[data-cfg-read]", root);
-    var boton = $('[data-wa="t2c-color"]');
-
-    function pintar() {
-      if (lectura) lectura.textContent = cfgEstado.color + " · " + cfgEstado.fin;
-      if (boton) pintarWA(boton);
-    }
-
-    $$("[data-cfg-colors] .cfg-color", root).forEach(function (b) {
-      b.addEventListener("click", function () {
-        $$("[data-cfg-colors] .cfg-color", root).forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
-        b.setAttribute("aria-pressed", "true");
-        if (body) body.setAttribute("fill", b.getAttribute("data-color"));
-        cfgEstado.color = b.getAttribute("data-nombre");
-        pintar();
-      });
-    });
-
-    $$("[data-cfg-finishes] .cfg-fin", root).forEach(function (b) {
-      b.addEventListener("click", function () {
-        $$("[data-cfg-finishes] .cfg-fin", root).forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
-        b.setAttribute("aria-pressed", "true");
-        if (brillo) brillo.setAttribute("opacity", b.getAttribute("data-gloss"));
-        cfgEstado.fin = b.getAttribute("data-fin");
-        pintar();
-      });
-    });
-
-    pintar();
-  }
-
   /* ---------- Línea del proceso que se dibuja con el scroll ---------- */
   function initProceso() {
     var sec = $("[data-proc]");
@@ -1682,7 +1448,6 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
     safe(initReveals, "reveals");
     safe(initHero, "hero");
     safe(initRail, "rail");
-    safe(initConfigurador, "configurador");
     safe(initProceso, "proceso");
     safe(initMapa, "mapa");
     safe(initImanes, "imanes");
