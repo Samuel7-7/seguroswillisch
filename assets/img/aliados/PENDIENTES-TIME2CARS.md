@@ -27,12 +27,24 @@ marcados sobre la pintura. Nada de marcas de terceros visibles ni placas legible
 
 ---
 
-## Pendientes (2)
+## Pendientes (0)
 
-| Ruta | Dónde se ve | Proporción / tamaño | Qué debe mostrar |
+La página ya no espera ninguna foto.
+
+## Ya están
+
+| Ruta | Dónde se ve | Tamaño | Qué muestra |
 |---|---|---|---|
-| `t2c-hero.webp` | Hero, visual principal | 16:9 · 2400 px de ancho | Auto oscuro, piso húmedo, reflejos de luz roja |
-| `t2c-hero-800.webp` | Hero en celular | 16:9 · 800 px de ancho | La misma foto del hero, más liviana |
+| `t2c-hero.jpg` | Hero, pantallas grandes | 1800 × 1201 · 258 KB | Frente de un carro rojo con la pintura pulida y el faro en primer plano |
+| `t2c-hero-1200.jpg` | Hero, celulares de alta densidad y tabletas | 1200 × 801 · 140 KB | La misma foto |
+| `t2c-hero-800.jpg` | Hero, celulares | 800 × 534 · 75 KB | La misma foto |
+
+Salen de `assets/img/carrorojotime2cars.jpg` (5500 × 3671, 11,7 MB). Ese original
+**no se publica**: pesa demasiado para la web. Si cambias la foto del hero, reemplaza
+los tres archivos de arriba con los mismos nombres y tamaños.
+
+> Van en JPG y no en WebP porque en este computador no hay con qué codificar WebP.
+> Un WebP pesaría algo menos, pero con 75 KB en el celular la diferencia no se nota.
 
 ---
 

@@ -381,6 +381,8 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
   clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 .hero-media .media{border-radius:var(--r-lg);aspect-ratio:16/10}
+/* El faro es el centro de la foto: se mantiene a la vista en cualquier recorte. */
+.hero-media .media > img{object-position:56% 58%}
 @media (min-width:980px){ .hero-media .media{aspect-ratio:4/3} }
 /* La cortina solo existe si el JS la monta (.armado): si el JS falla o hay
    "reducir movimiento", la foto se ve de una vez, sin nada encima. */
@@ -695,11 +697,11 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 
       <div class="hero-media reveal" data-hero-media>
         <figure class="media">
-          <img src="../assets/img/aliados/t2c-hero.webp"
-               srcset="../assets/img/aliados/t2c-hero-800.webp 800w, ../assets/img/aliados/t2c-hero.webp 2400w"
+          <img src="../assets/img/aliados/t2c-hero.jpg"
+               srcset="../assets/img/aliados/t2c-hero-800.jpg 800w, ../assets/img/aliados/t2c-hero-1200.jpg 1200w, ../assets/img/aliados/t2c-hero.jpg 1800w"
                sizes="(min-width:980px) 46vw, 92vw"
-               width="2400" height="1350"
-               alt="Auto oscuro con reflejos de luz roja sobre el piso húmedo del taller Time2Cars"
+               width="1800" height="1201"
+               alt="Frente de un carro rojo con la pintura pulida y el faro en primer plano"
                fetchpriority="high" onerror="this.remove()">
         </figure>
         <span class="flare" aria-hidden="true"></span>
