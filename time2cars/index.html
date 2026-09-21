@@ -478,13 +478,14 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 .seg-link{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;font-weight:700;color:var(--blue-2)}
 .seg-link svg{width:14px;height:14px}
 
-/* ---- Isotipo de Willisch flotando, como en la página principal ----
-   Es el mismo archivo del sitio (azul); el filtro lo vuelve blanco y
-   conserva sus bordes suaves. Brillo, sombra y flotación replican la portada. */
+/* ---- Logo de Willisch flotando, como el isotipo de la página principal ----
+   Es el logo completo en blanco (la W con SEGUROS WILLISCH debajo), así el
+   nombre sale en la tipografía de la marca. El filtro lo deja blanco puro.
+   Brillo, sombra y flotación replican la portada. */
 .seg-side{display:flex;flex-direction:column;gap:16px}
 .seg-mark{
   position:relative;display:flex;align-items:center;justify-content:center;
-  flex:1;min-height:clamp(220px,30vw,320px);
+  flex:1;min-height:clamp(250px,32vw,350px);
   --px:0px;--py:0px;
 }
 .seg-mark .mark-parallax{
@@ -494,12 +495,12 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
 }
 .seg-mark .mark-float{display:block;animation:flotar 7s ease-in-out infinite}
 .seg-mark .mark-img{
-  width:clamp(170px,24vw,290px);height:auto;
+  width:clamp(270px,32vw,420px);height:auto;
   filter:brightness(0) invert(1) drop-shadow(0 26px 44px rgba(0,0,0,.6));
 }
 .seg-mark .mark-glow{
   position:absolute;z-index:1;pointer-events:none;
-  width:clamp(250px,34vw,420px);aspect-ratio:1;border-radius:50%;
+  width:clamp(280px,36vw,460px);aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle, rgba(79,168,232,.28) 0%, transparent 66%);
   filter:blur(14px);
   animation:brillo 7s ease-in-out infinite;
@@ -532,9 +533,9 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
    Todo Riesgo, igual que en la portada aparece debajo del texto. */
 @media (max-width:859px){
   .seg-side{display:contents}
-  .seg-mark{order:-1;min-height:clamp(200px,58vw,270px)}
-  .seg-mark .mark-img{width:clamp(160px,46vw,230px)}
-  .seg-mark .mark-glow{width:clamp(230px,70vw,340px)}
+  .seg-mark{order:-1;min-height:clamp(230px,66vw,300px)}
+  .seg-mark .mark-img{width:clamp(240px,74vw,320px)}
+  .seg-mark .mark-glow{width:clamp(260px,82vw,380px)}
   .seg-mark .mark-shadow{width:clamp(110px,32vw,170px)}
 }
 /* Windows trae "reducir movimiento" activo de fábrica: igual que en la
@@ -870,12 +871,12 @@ html.lock .site-header{position:fixed;top:var(--rail-h);left:0;right:0}
         </div>
 
         <div class="seg-side">
-          <!-- Isotipo de Willisch en blanco, flotando como en la página principal -->
+          <!-- Logo de Seguros Willisch en blanco (isotipo + nombre), flotando como en la página principal -->
           <div class="seg-mark reveal" data-seg-mark aria-hidden="true">
             <span class="mark-glow"></span>
             <span class="mark-parallax">
               <span class="mark-float">
-                <img class="mark-img" src="../assets/logos/logo-willisch-monograma.png" alt="" width="528" height="348" loading="lazy" decoding="async">
+                <img class="mark-img" src="../assets/logos/logo-willisch.png" alt="" width="677" height="369" loading="lazy" decoding="async">
               </span>
             </span>
             <span class="mark-shadow"></span>
