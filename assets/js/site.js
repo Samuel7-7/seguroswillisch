@@ -400,8 +400,16 @@
     var cards = $$("[data-cat]");
     var input = $("[data-buscar]");
     var vacio = $("[data-sin-resultados]");
+    var cierres = $$("[data-cierre]");
     if (!tabs.length || !cards.length) return;
     var catActiva = "individuales";
+
+    // El enlace de cierre cambia con la pestaña; al buscar no aplica ninguno
+    function pintarCierre(buscando) {
+      cierres.forEach(function (c) {
+        c.hidden = buscando || c.getAttribute("data-cierre") !== catActiva;
+      });
+    }
 
     function moverPill() {
       if (!pill) return;
@@ -428,6 +436,7 @@
         if (mostrar) visibles++;
       });
       if (vacio) vacio.classList.toggle("show", visibles === 0);
+      pintarCierre(!!q);
     }
     tabs.forEach(function (t) {
       t.addEventListener("click", function () {
@@ -860,6 +869,20 @@
     });
   }
 
+  /* ---------- Cotizadores externos (mascotas y arrendamiento) ----------
+     Las URL viven en config.js y no se tocan a mano: llevan el código de
+     asesor y, si se alteran, se pierde la trazabilidad de la venta. */
+  function initCotizadoresExternos() {
+    var mapa = CFG.COTIZADORES_EXTERNOS || {};
+    $$("[data-cotizador-externo]").forEach(function (el) {
+      var clave = el.getAttribute("data-cotizador-externo");
+      if (!mapa[clave]) { el.removeAttribute("href"); return; }
+      el.setAttribute("href", mapa[clave]);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener noreferrer");
+    });
+  }
+
   /* ---------- Aseguradoras aliadas (marquee desde config.js) ---------- */
   function initAliadas() {
     var track = $("[data-aliadas]");
@@ -924,6 +947,7 @@
     safe(initDatos, "datos");
     safe(initRedes, "redes");
     safe(initAliadas, "aliadas");
+    safe(initCotizadoresExternos, "cotizadores-externos");
     safe(initWhatsApp, "whatsapp");
     safe(initHeader, "header");
     safe(initMega, "mega");

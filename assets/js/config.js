@@ -54,6 +54,15 @@ window.WILLISCH = {
     { nombre: "Finesa",      archivo: null, alt: "Finesa" }
   ],
 
+  /* --- Cotizadores externos ---
+     Estos dos productos se compran solos en el portal de la aseguradora.
+     Las URL llevan nuestro código de asesor: NO cambies los parámetros,
+     porque se pierde la trazabilidad de la venta. */
+  COTIZADORES_EXTERNOS: {
+    mascotas: "https://surapet.com.co/asesorcliente/97726",
+    arrendamiento: "https://arrienda.facilito.ai/cotizadorarrendamiento?codasesor=97726&nombreasesor=Seguros+Willisch"
+  },
+
   /* --- Mensaje por defecto de WhatsApp --- */
   MSG_DEFECTO: "Hola Seguros Willisch, quiero asesoría para cotizar un seguro."
 };

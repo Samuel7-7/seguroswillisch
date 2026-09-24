@@ -129,8 +129,11 @@
   /* ---------- Compartir la página ---------- */
   function initCompartir() {
     var url = window.location.origin + window.location.pathname + (aliado ? "?aliado=" + encodeURIComponent(aliado) : "");
-    var titulo = "Seguros para personas — Seguros Willisch";
-    var texto = "Vehículo, salud y vida: los tres seguros que más cotizamos, comparados entre 13 aseguradoras.";
+    // Cada página comparte su propio título y descripción
+    var og = document.querySelector('meta[property="og:title"]');
+    var desc = document.querySelector('meta[property="og:description"]') || document.querySelector('meta[name="description"]');
+    var titulo = og ? og.getAttribute("content") : document.title;
+    var texto = desc ? desc.getAttribute("content") : "";
 
     var wa = $("[data-compartir-wa]");
     if (wa) wa.setAttribute("href", "https://wa.me/?text=" + encodeURIComponent(texto + " " + url));

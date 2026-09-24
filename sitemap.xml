@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Las páginas de aliados (baterias-del-caribe, time2cars) quedan fuera a propósito:
+     son exclusivas, se comparten por enlace directo y llevan noindex. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://seguroswillisch.com/</loc>
@@ -7,6 +9,16 @@
   </url>
   <url>
     <loc>https://seguroswillisch.com/personas.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/empresas.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/colectivos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -22,16 +34,6 @@
   </url>
   <url>
     <loc>https://seguroswillisch.com/ciaformandoconductores/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://seguroswillisch.com/baterias-del-caribe/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://seguroswillisch.com/time2cars/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
