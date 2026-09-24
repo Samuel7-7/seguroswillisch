@@ -673,11 +673,11 @@
     var pasos = $$("[data-paso]", form);
     var barra = $("[data-q-prog]", form);
     var actual = 0;
-    var respuestas = { para: "", seguro: "", financiar: "" };
+    var respuestas = { para: "", seguro: "" };
 
     var SEGUROS = {
-      "Para mí": ["Carro", "Moto", "SOAT", "Salud", "Medicina prepagada", "Vida", "Accidentes personales", "Hogar", "Mascotas", "Viajes"],
-      "Mi familia o grupo": ["Salud familiar", "Vida grupo", "Exequias", "Accidentes personales colectivos", "Escuela deportiva", "Hogar"],
+      "Para mí": ["Carro", "Moto", "SOAT", "Vida", "Accidentes personales", "Hogar", "Mascotas", "Viajes"],
+      "Mi familia o grupo": ["Vida grupo", "Exequias", "Accidentes personales colectivos", "Escuela deportiva", "Hogar"],
       "Mi empresa": ["Todo Riesgo Empresarial", "Pólizas de Cumplimiento", "Responsabilidad Civil", "ARL", "Transporte de mercancías", "Flotas", "Energía / paneles solares", "Cultivos"]
     };
 
@@ -716,15 +716,6 @@
         setTimeout(avanzar, 260);
       });
     });
-    // Paso 3
-    $$("[data-financiar] .chip", form).forEach(function (b) {
-      b.addEventListener("click", function () {
-        $$("[data-financiar] .chip", form).forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
-        b.setAttribute("aria-pressed", "true");
-        respuestas.financiar = b.textContent.trim();
-        setTimeout(avanzar, 260);
-      });
-    });
     // Atrás
     $$("[data-atras]", form).forEach(function (b) {
       b.addEventListener("click", function () { if (actual > 0) { actual--; pintarPaso(); } });
@@ -741,8 +732,7 @@
 
       var msg = "Hola Seguros Willisch, soy " + nombre.value.trim() + " de " + ciudad.value.trim() +
         ". Quiero cotizar " + (respuestas.seguro || "un seguro") +
-        " para " + (respuestas.para || "mí").toLowerCase() +
-        ". ¿Financiación?: " + (respuestas.financiar || "Quiero saber más") + ".";
+        " para " + (respuestas.para || "mí").toLowerCase() + ".";
       var url = window.waLink(msg);
 
       var done = $("[data-q-done]", form);

@@ -38,7 +38,6 @@ Prompt base si las generas con IA:
 | `assets/img/vida-familia.webp` | Bloque Vida, pieza ancha | 16:9 · 1600×900 | Familia de varias generaciones reunida en casa, luz de ventana |
 | `assets/img/vida-hogar.webp` | Bloque Vida, visual lateral | 4:3 · 1600×1200 | Pareja joven con las llaves de su vivienda |
 | `assets/img/vida-estudio.webp` | Bloque Vida, galería | 4:3 · 1600×1200 | Adolescente estudiando en su escritorio, luz natural |
-| `assets/img/financiacion-calendario.webp` | Banda de financiación | 4:3 · 1600×1200 | Manos con el teléfono y un calendario, café, mañana tranquila |
 
 ---
 
