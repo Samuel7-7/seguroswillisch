@@ -63,29 +63,6 @@
     });
   }
 
-  /* ---------- Financieras desde config.js ---------- */
-  function initFinancieras() {
-    var cont = $("[data-financieras]");
-    if (!cont) return;
-    var lista = CFG.FINANCIERAS || [];
-    cont.innerHTML = "";
-    lista.forEach(function (f) {
-      var s = document.createElement("span");
-      s.className = "fin-partner";
-      if (f.archivo) {
-        var img = document.createElement("img");
-        img.src = "assets/logos/" + f.archivo;
-        img.alt = f.alt || f.nombre;
-        img.loading = "lazy";
-        img.onerror = function () { s.textContent = f.nombre; };
-        s.appendChild(img);
-      } else {
-        s.textContent = f.nombre;
-      }
-      cont.appendChild(s);
-    });
-  }
-
   /* ---------- Tríptico del hero ---------- */
   function initTriptico() {
     var stage = $("[data-triptico]");
@@ -236,7 +213,6 @@
     safe(leerAliado, "aliado");
     safe(mostrarAliado, "aliado-linea");
     safe(initWhatsAppPersonas, "whatsapp");
-    safe(initFinancieras, "financieras");
     safe(initTriptico, "triptico");
     safe(initImanes, "imanes");
     safe(initCompartir, "compartir");

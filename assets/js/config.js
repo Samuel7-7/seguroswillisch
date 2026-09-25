@@ -10,7 +10,7 @@ window.WILLISCH = {
 
   /* --- Datos de contacto --- */
   EMAIL: "Mercadeo@seguroswillisch.com",
-  DIRECCION: "Calle 77 # 59-35, Edificio Américas III, Oficina 1403, Barranquilla",
+  DIRECCION: "Calle 77 # 59-35, Edificio Américas III, Oficina 1403",
   MAPS_URL: "https://share.google/LXEykav0mIWhdiPig",
   HORARIO: "Lunes a sábado, 8:00 a. m. – 6:00 p. m.",
 
@@ -46,12 +46,6 @@ window.WILLISCH = {
     { nombre: "Quálitas",                   archivo: "qualitas.png", alt: "Quálitas" },
     { nombre: "Coomeva Medicina Prepagada", archivo: "coomeva.png",  alt: "Coomeva Medicina Prepagada" },
     { nombre: "Universal de Fianzas",       archivo: null,           alt: "Universal de Fianzas" }
-  ],
-
-  /* --- Aliadas financieras (banda de financiación) --- */
-  FINANCIERAS: [
-    { nombre: "Crediseguro", archivo: null, alt: "Crediseguro" },
-    { nombre: "Finesa",      archivo: null, alt: "Finesa" }
   ],
 
   /* --- Cotizadores externos ---

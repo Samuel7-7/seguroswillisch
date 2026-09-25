@@ -18,7 +18,6 @@ Todo lo que cambia con el tiempo vive en **un solo archivo**: `assets/js/config.
 | Horario | `HORARIO` |
 | Redes sociales | lista `REDES` |
 | Aseguradoras aliadas | lista `ALIADAS` |
-| Crediseguro y Finesa | lista `FINANCIERAS` |
 
 ### Agregar o quitar una red social
 
@@ -43,7 +42,7 @@ El archivo va en `assets/logos/`. Si todavía no tienes el logo oficial, pon
 `archivo: null` y el sitio mostrará el nombre en texto con la tipografía de la marca.
 
 **Faltan estos logos oficiales** (hoy salen en texto): AXA Colpatria, La Equidad
-Seguros, Universal de Fianzas, Crediseguro y Finesa.
+Seguros y Universal de Fianzas.
 
 ### Muy importante al publicar cambios
 
@@ -187,9 +186,8 @@ página de aliado nunca puede romper el resto del sitio, y al revés.
    en el HTML. Mientras no lleguen, cada hueco muestra el patrón de marca de la
    página, con el encuadre correcto. Deja la lista en un archivo
    `PENDIENTES-<ALIADO>.md` dentro de esa carpeta.
-7. **Enlázala**: en `sitemap.xml`, en el menú «Beneficios aliados» de `index.html`
-   y en la columna de contacto del pie de `index.html`. Sin esos tres enlaces la
-   página queda huérfana.
+7. **No la enlaces** desde el resto del sitio ni la agregues a `sitemap.xml`: las
+   páginas de aliados son exclusivas y solo se comparten por enlace directo.
 
 ### Lo que no se toca
 
