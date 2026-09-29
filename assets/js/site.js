@@ -413,73 +413,6 @@
     });
   }
 
-  /* ---------- Portafolio: pestañas + buscador ---------- */
-  function initPortafolio() {
-    var tabs = $$("[data-tab]");
-    var pill = $("[data-pill]");
-    var cards = $$("[data-cat]");
-    var input = $("[data-buscar]");
-    var vacio = $("[data-sin-resultados]");
-    var cierres = $$("[data-cierre]");
-    if (!tabs.length || !cards.length) return;
-    // La categoría inicial es la de la pestaña marcada en el HTML, para que
-    // el catálogo pueda cambiar sin tocar este archivo.
-    var catActiva = (tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0]).getAttribute("data-tab");
-
-    // El enlace de cierre cambia con la pestaña; al buscar no aplica ninguno
-    function pintarCierre(buscando) {
-      cierres.forEach(function (c) {
-        c.hidden = buscando || c.getAttribute("data-cierre") !== catActiva;
-      });
-    }
-
-    function moverPill() {
-      if (!pill) return;
-      var activa = tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0];
-      if (!activa) return;
-      pill.style.width = activa.offsetWidth + "px";
-      pill.style.transform = "translateX(" + activa.offsetLeft + "px)";
-    }
-    // Coincide por inicio de palabra, no por subcadena suelta: así "moto" encuentra
-    // "motos" pero no "terremoto" ni "automotor".
-    function coincide(claves, q) {
-      return claves.toLowerCase().split(/\s+/).some(function (palabra) {
-        return palabra.indexOf(q) === 0;
-      });
-    }
-    function filtrar() {
-      var q = (input && input.value || "").trim().toLowerCase();
-      var visibles = 0;
-      cards.forEach(function (c) {
-        // data-cat puede traer varias categorías separadas por espacio: un mismo
-        // seguro puede salir en dos pestañas (arrendamiento está en Hogar y en digitales).
-        var cats = " " + (c.getAttribute("data-cat") || "") + " ";
-        var okCat = q ? true : cats.indexOf(" " + catActiva + " ") >= 0;
-        var okQ = !q || coincide(c.getAttribute("data-keys") || "", q);
-        var mostrar = okCat && okQ;
-        c.classList.toggle("hide", !mostrar);
-        if (mostrar) visibles++;
-      });
-      if (vacio) vacio.classList.toggle("show", visibles === 0);
-      pintarCierre(!!q);
-    }
-    tabs.forEach(function (t) {
-      t.addEventListener("click", function () {
-        tabs.forEach(function (o) { o.setAttribute("aria-selected", "false"); });
-        t.setAttribute("aria-selected", "true");
-        catActiva = t.getAttribute("data-tab");
-        if (input) input.value = "";
-        moverPill();
-        filtrar();
-      });
-    });
-    if (input) input.addEventListener("input", filtrar);
-    moverPill();
-    filtrar();
-    window.addEventListener("resize", moverPill);
-    window.addEventListener("load", moverPill);
-  }
-
   /* ---------- Movilidad: scroll horizontal fijado ---------- */
   function initMovilidad() {
     var sec = $("[data-mov]");
@@ -891,7 +824,12 @@
     var mapa = CFG.COTIZADORES_EXTERNOS || {};
     $$("[data-cotizador-externo]").forEach(function (el) {
       var clave = el.getAttribute("data-cotizador-externo");
-      if (!mapa[clave]) { el.removeAttribute("href"); return; }
+      // Sin portal propio todavía: si el botón trae data-wa, lo deja para
+      // initWhatsApp, que corre después y le pone el enlace de WhatsApp.
+      if (!mapa[clave]) {
+        if (!el.hasAttribute("data-wa")) el.removeAttribute("href");
+        return;
+      }
       el.setAttribute("href", mapa[clave]);
       el.setAttribute("target", "_blank");
       el.setAttribute("rel", "noopener noreferrer");
@@ -974,7 +912,6 @@
     safe(initHero, "hero");
     safe(initContadores, "contadores");
     safe(initDrawer, "drawer");
-    safe(initPortafolio, "portafolio");
     safe(initMovilidad, "movilidad");
     safe(initSalud, "salud");
     safe(initCalculadora, "calculadora");

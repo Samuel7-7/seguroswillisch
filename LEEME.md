@@ -120,9 +120,13 @@ que no sale del catálogo (ARL, cumplimiento) usa `ext:arl` o `ext:cumplimiento`
 
 `viaje`, `arrendamiento` y `mascotas` llevan `digital => "..."` en el catálogo. Eso
 les pone la etiqueta **100% digital** y un botón «Cotizar en línea» que lleva al
-portal de la aseguradora con nuestro código de asesor. Las URL de esos portales
-están en `COTIZADORES_EXTERNOS`, dentro de `assets/js/config.js`. **No cambies los
-parámetros de esas URL**: se pierde la trazabilidad de la venta.
+portal de la aseguradora con nuestro código de asesor. Las URL de esos portales están en `COTIZADORES_EXTERNOS`, dentro de
+`assets/js/config.js`. **No cambies los parámetros de esas URL**: se pierde la
+trazabilidad de la venta.
+
+El de **viaje todavía no tiene portal**: su entrada está vacía y, mientras lo esté,
+el botón «Cotizar ahora» lleva a WhatsApp en vez de quedarse muerto. Cuando tengas
+el enlace con tu código de asesor, pégalo ahí y el botón cambia solo.
 
 ---
 
@@ -131,11 +135,16 @@ parámetros de esas URL**: se pierde la trazabilidad de la venta.
 El inicio es corto a propósito. Tiene exactamente tres secciones:
 
 1. **Portada** — el titular, el isotipo flotante, las cifras y las aseguradoras aliadas.
-2. **Portafolio** — el buscador, las siete categorías y las tarjetas de cada seguro.
+2. **Seguros 100% digitales** — los tres que el cliente compra solo: mascotas,
+   arrendamiento y viaje. El resto del catálogo está en el menú de arriba.
 3. **Nosotros** — por qué con Willisch, el equipo y el contacto.
 
 El detalle de cada seguro vive en su propia página. Si quieres añadir contenido,
 va en la página del producto, no en el inicio.
+
+Todo el sitio comparte el mismo fondo: un degradado suave y fijo detrás de las
+páginas, con las franjas y las tarjetas translúcidas para que se vea a través.
+Está en el bloque 0 de `assets/css/producto.css`.
 
 ---
 

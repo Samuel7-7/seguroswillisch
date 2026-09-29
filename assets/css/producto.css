@@ -3,6 +3,222 @@
    Se carga después de site.css y solo en /seguros/<producto>/.
    ========================================================= */
 
+/* ============ 0. FONDO AMBIENTE ============
+   El mismo degradado suave de la portada, ahora detrás de todo el sitio.
+   Va en una capa fija, así que no se mueve al bajar y no cuesta repintarlo.
+   Para que se vea, las franjas y las tarjetas son translúcidas. */
+html{background:var(--bg)}
+body{background:transparent}
+body::before{
+  content:"";
+  position:fixed;inset:-18vmax;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(34% 30% at 16% 10%, color-mix(in srgb,var(--blue) 20%,transparent), transparent 66%),
+    radial-gradient(30% 28% at 86% 24%, color-mix(in srgb,var(--warm) 17%,transparent), transparent 66%),
+    radial-gradient(36% 30% at 72% 78%, color-mix(in srgb,var(--blue-light) 19%,transparent), transparent 68%),
+    radial-gradient(30% 26% at 24% 88%, color-mix(in srgb,var(--blue) 14%,transparent), transparent 68%);
+  animation:fondo-vivo 42s var(--ease) infinite alternate;
+}
+@keyframes fondo-vivo{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to  {transform:translate3d(-2.2%,1.8%,0) scale(1.07)}
+}
+[data-theme="dark"] body::before{opacity:.72}
+
+/* La portada ya trae su propio resplandor encima: aquí solo se quita el
+   color sólido para que el fondo ambiente se vea a través. */
+.hero{background:transparent}
+
+/* Franja de sección: antes era un color sólido que tapaba el fondo. */
+.franja{
+  background:color-mix(in srgb,var(--bg-alt) 62%,transparent);
+  border-block:1px solid var(--border);
+}
+
+/* ============ 0b. SEGUROS 100% DIGITALES ============
+   La sección más llamativa del inicio: tres tarjetas con anillo de luz
+   giratorio, iconos que se dibujan al aparecer y auroras de fondo. */
+.digi{
+  position:relative;overflow:clip;
+  padding-block:clamp(72px,10vw,124px);
+  border-block:1px solid var(--border);
+}
+
+/* -- Auroras -- */
+.digi-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:clip}
+.digi-aurora .au{
+  position:absolute;border-radius:50%;
+  filter:blur(70px);opacity:.6;
+}
+.au-1{
+  width:46vw;height:46vw;min-width:320px;min-height:320px;top:-14%;left:-8%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--blue) 52%,transparent),transparent 70%);
+  animation:aurora-a 26s var(--ease) infinite alternate;
+}
+.au-2{
+  width:38vw;height:38vw;min-width:260px;min-height:260px;top:12%;right:-10%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--warm) 46%,transparent),transparent 70%);
+  animation:aurora-b 31s var(--ease) infinite alternate;
+}
+.au-3{
+  width:42vw;height:42vw;min-width:280px;min-height:280px;bottom:-20%;left:32%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--blue-light) 50%,transparent),transparent 70%);
+  animation:aurora-c 37s var(--ease) infinite alternate;
+}
+@keyframes aurora-a{to{transform:translate3d(14%,10%,0) scale(1.18)}}
+@keyframes aurora-b{to{transform:translate3d(-12%,16%,0) scale(1.12)}}
+@keyframes aurora-c{to{transform:translate3d(10%,-14%,0) scale(1.2)}}
+[data-theme="dark"] .digi-aurora .au{opacity:.4}
+
+.digi .container{position:relative;z-index:2}
+
+/* -- Etiqueta con punto que late -- */
+.kicker-vivo{display:inline-flex;align-items:center;gap:9px}
+.kicker-vivo i{
+  width:8px;height:8px;border-radius:50%;flex:none;
+  background:#25D366;
+  animation:latir 2.4s ease-out infinite;
+}
+@keyframes latir{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.65)}
+  70%{box-shadow:0 0 0 11px rgba(37,211,102,0)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+
+/* -- Los tres pasos -- */
+.digi-pasos{
+  display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;
+  margin:38px auto 0;max-width:720px;
+}
+.digi-pasos li{
+  display:flex;align-items:center;gap:11px;
+  padding:0 clamp(12px,2.4vw,26px);
+  font-size:14px;font-weight:600;color:var(--text-soft);
+}
+.digi-pasos li + li{border-left:1px solid var(--border)}
+.digi-pasos b{
+  display:grid;place-items:center;width:30px;height:30px;flex:none;
+  border-radius:50%;background:var(--blue);color:#fff;
+  font-family:var(--font-display);font-size:13.4px;font-weight:800;
+}
+[data-theme="dark"] .digi-pasos b{background:var(--blue-light);color:var(--ink)}
+@media (max-width:560px){
+  .digi-pasos{flex-direction:column;align-items:flex-start;gap:14px;max-width:300px}
+  .digi-pasos li{padding:0}
+  .digi-pasos li + li{border-left:0}
+}
+
+/* -- Las tres tarjetas -- */
+.digi-grid{display:grid;gap:20px;grid-template-columns:1fr;margin-top:52px}
+@media (min-width:860px){ .digi-grid{grid-template-columns:repeat(3,1fr);gap:22px} }
+
+.digi-card{position:relative;border-radius:var(--r-lg)}
+
+/* Anillo de luz que gira al pasar el cursor */
+@property --giro{syntax:"<angle>";initial-value:0deg;inherits:false}
+.digi-anillo{
+  position:absolute;inset:-1.5px;border-radius:inherit;z-index:0;
+  background:conic-gradient(from var(--giro),
+    transparent 0deg,
+    color-mix(in srgb,var(--blue) 90%,transparent) 55deg,
+    color-mix(in srgb,var(--blue-light) 90%,transparent) 105deg,
+    color-mix(in srgb,var(--warm) 85%,transparent) 150deg,
+    transparent 210deg);
+  opacity:0;transition:opacity .45s ease;
+  animation:girar-anillo 5s linear infinite;
+}
+@keyframes girar-anillo{to{--giro:360deg}}
+.digi-card:hover .digi-anillo,
+.digi-card:focus-within .digi-anillo{opacity:1}
+
+.digi-inner{
+  position:relative;z-index:1;height:100%;
+  display:flex;flex-direction:column;
+  padding:34px 28px 30px;border-radius:inherit;
+  background:color-mix(in srgb,var(--surface) 84%,transparent);
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out);
+}
+.digi-card:hover .digi-inner,
+.digi-card:focus-within .digi-inner{
+  transform:translateY(-8px);
+  box-shadow:0 30px 60px -28px color-mix(in srgb,var(--blue) 55%,transparent);
+}
+@supports not (backdrop-filter:blur(2px)){ .digi-inner{background:var(--surface)} }
+
+.digi-num{
+  position:absolute;top:22px;right:26px;
+  font-family:var(--font-display);font-weight:800;font-size:13px;
+  letter-spacing:.1em;color:var(--text-mute);opacity:.7;
+}
+
+/* Icono: se dibuja solo cuando la tarjeta entra en pantalla */
+.digi-ic{
+  width:76px;height:76px;margin-bottom:24px;
+  display:grid;place-items:center;border-radius:22px;
+  background:color-mix(in srgb,var(--blue) 10%,transparent);
+  color:var(--blue);
+}
+[data-theme="dark"] .digi-ic{
+  background:color-mix(in srgb,var(--blue-light) 15%,transparent);color:var(--blue-light);
+}
+.digi-ic svg{width:44px;height:44px;overflow:visible}
+.digi-ic .tr,.digi-ic .av{stroke-dasharray:280;stroke-dashoffset:280}
+.digi-card.in .digi-ic .tr{animation:trazar 1.5s var(--ease-out) forwards}
+.digi-card.in .digi-ic .tr:nth-of-type(2){animation-delay:.12s}
+.digi-card.in .digi-ic .tr:nth-of-type(3){animation-delay:.24s}
+.digi-card.in .digi-ic .tr:nth-of-type(4){animation-delay:.36s}
+@keyframes trazar{to{stroke-dashoffset:0}}
+/* El avión, además, se desliza al entrar */
+.digi-card.in .digi-ic .av{animation:trazar 1.2s var(--ease-out) .5s forwards, volar 1.2s var(--ease-out) .5s forwards}
+@keyframes volar{from{transform:translate(-8px,8px)}to{transform:none}}
+.no-js .digi-ic .tr,.no-js .digi-ic .av{stroke-dashoffset:0}
+
+.digi-inner h3{font-size:1.24rem;letter-spacing:-.025em}
+.digi-inner > p{margin-top:12px;font-size:14.4px;line-height:1.66;color:var(--text-soft)}
+
+.digi-puntos{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.digi-puntos li{
+  font-size:11.8px;font-weight:700;padding:6px 12px;border-radius:var(--r-full);
+  background:color-mix(in srgb,var(--blue) 8%,transparent);
+  border:1px solid color-mix(in srgb,var(--blue) 20%,transparent);
+  color:var(--text-soft);
+}
+[data-theme="dark"] .digi-puntos li{
+  background:color-mix(in srgb,var(--blue-light) 12%,transparent);
+  border-color:color-mix(in srgb,var(--blue-light) 26%,transparent);
+}
+
+.digi-cta{margin-top:auto;padding-top:28px;display:grid;gap:12px;justify-items:center}
+.digi-mas{
+  font-size:13.4px;font-weight:700;color:var(--blue);
+  border-bottom:1px solid transparent;transition:border-color .25s ease;
+}
+[data-theme="dark"] .digi-mas{color:var(--blue-light)}
+.digi-mas:hover{border-bottom-color:currentColor}
+
+.digi-pie{
+  margin-top:46px;text-align:center;
+  font-size:14.4px;color:var(--text-soft);
+}
+.digi-pie a{color:var(--blue);font-weight:700;cursor:pointer}
+[data-theme="dark"] .digi-pie a{color:var(--blue-light)}
+.digi-pie a:hover{text-decoration:underline}
+
+/* Windows trae el ahorro de movimiento activado de fábrica: no se apaga
+   todo, se baja el ritmo para que la página siga viva pero tranquila. */
+@media (prefers-reduced-motion:reduce){
+  body::before{animation-duration:120s}
+  .digi-aurora .au{animation-duration:90s}
+  .digi-anillo{animation-duration:14s}
+  .digi-card.in .digi-ic .tr{animation-duration:.8s}
+  .digi-card.in .digi-ic .av{animation:trazar .8s var(--ease-out) .3s forwards}
+  .kicker-vivo i{animation-duration:4.5s}
+  .digi-card:hover .digi-inner,.digi-card:focus-within .digi-inner{transform:none}
+}
+
 /* ============ 1. HUECO DE FOTO ============
    Reserva el espacio de una imagen que todavía no llega, con la
    proporción final. Cuando tengas la foto, cambia el bloque .ph por:
@@ -130,7 +346,8 @@
 
 /* ============ 6. CIERRE ============ */
 .cierre{
-  background:var(--bg-alt);border-top:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg-alt) 62%,transparent);
+  border-top:1px solid var(--border);
 }
 .cierre .lead{margin-top:16px;margin-inline:auto;max-width:52ch}
 
@@ -227,87 +444,6 @@
 .hero-cifras{margin-top:56px;padding-top:40px;border-top:1px solid var(--border)}
 @media (max-width:760px){ .hero-cifras{margin-top:40px;padding-top:30px} }
 
-/* ============ 10. PORTAFOLIO ============ */
-.port-buscador{
-  position:relative;max-width:520px;margin:38px auto 0;
-}
-.port-buscador svg{
-  position:absolute;left:18px;top:50%;transform:translateY(-50%);
-  width:19px;height:19px;color:var(--text-mute);pointer-events:none;
-}
-.port-buscador input{
-  width:100%;padding:15px 18px 15px 48px;border-radius:var(--r-full);
-  border:1px solid var(--border);background:var(--surface);color:var(--text);
-  font-family:var(--font-body);font-size:15px;
-  transition:border-color .25s ease,box-shadow .25s ease;
-}
-.port-buscador input::placeholder{color:var(--text-mute)}
-.port-buscador input:focus{
-  outline:none;border-color:var(--blue);
-  box-shadow:0 0 0 4px color-mix(in srgb,var(--blue) 13%,transparent);
-}
-
-.port-tabs{
-  position:relative;display:flex;gap:4px;margin:30px auto 0;padding:5px;
-  border-radius:var(--r-full);background:var(--surface);border:1px solid var(--border);
-  width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none;
-}
-.port-tabs::-webkit-scrollbar{display:none}
-.port-tab{
-  position:relative;z-index:1;flex:none;
-  padding:10px 18px;border:0;background:none;border-radius:var(--r-full);
-  font-family:var(--font-display);font-weight:700;font-size:13.6px;
-  color:var(--text-soft);cursor:pointer;white-space:nowrap;
-  transition:color .25s ease;
-}
-.port-tab[aria-selected="true"]{color:#fff}
-[data-theme="dark"] .port-tab[aria-selected="true"]{color:var(--ink)}
-.port-pill{
-  position:absolute;z-index:0;top:5px;bottom:5px;left:0;
-  border-radius:var(--r-full);background:var(--blue);
-  transition:transform .4s var(--ease-out),width .4s var(--ease-out);
-}
-[data-theme="dark"] .port-pill{background:var(--blue-light)}
-
-.port-grid{display:grid;gap:14px;grid-template-columns:1fr;margin-top:34px}
-@media (min-width:600px){ .port-grid{grid-template-columns:repeat(2,1fr)} }
-@media (min-width:980px){ .port-grid{grid-template-columns:repeat(3,1fr);gap:16px} }
-
-.port-card{
-  display:flex;flex-direction:column;gap:9px;
-  padding:26px 24px 24px;border-radius:var(--r);
-  background:var(--surface);border:1px solid var(--border);
-  text-decoration:none;color:inherit;
-  transition:transform .35s var(--ease-out),border-color .3s ease,box-shadow .35s var(--ease-out);
-}
-.port-card:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:var(--shadow-sm)}
-.port-card.hide{display:none}
-.port-cat{
-  font-size:10.6px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
-  color:var(--text-mute);
-}
-.port-card h3{font-size:1.07rem;letter-spacing:-.02em}
-.port-card p{
-  font-size:13.6px;line-height:1.6;color:var(--text-soft);
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
-.port-go{
-  margin-top:auto;padding-top:12px;
-  font-size:13.2px;font-weight:700;color:var(--blue);
-}
-[data-theme="dark"] .port-go{color:var(--blue-light)}
-.port-tag{
-  display:inline-block;margin-left:9px;padding:3px 9px;border-radius:var(--r-full);
-  font-size:9.6px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
-  color:var(--warm);background:color-mix(in srgb,var(--warm) 15%,transparent);
-  vertical-align:middle;
-}
-.port-vacio{
-  display:none;margin-top:34px;text-align:center;
-  font-size:14.6px;color:var(--text-soft);
-}
-.port-vacio.show{display:block}
-
 /* ============ 11. POR QUÉ CON NOSOTROS ============ */
 .por-que-grid{display:grid;gap:16px;grid-template-columns:1fr;margin-top:48px}
 @media (min-width:660px){ .por-que-grid{grid-template-columns:repeat(2,1fr)} }
@@ -372,4 +508,26 @@
   /* El retrato del equipo se vuelve apaisado para no ocupar media pantalla */
   .eq-card .ph{--ph-ratio:16/10 !important}
   .equipo-grid{gap:22px}
+}
+
+/* ============ 15. VIDRIO ESMERILADO ============
+   Va al final a propósito: tiene que ganarle al color sólido que cada
+   tarjeta declara más arriba, para que el fondo ambiente se vea a través. */
+/* Las tarjetas quedan de vidrio esmerilado sobre el fondo. */
+.cob-card,.pq-card,.rel-card,.contacto-bloque,.faq-item{
+  background:color-mix(in srgb,var(--surface) 78%,transparent);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+}
+.mega,.m-menu{
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  -webkit-backdrop-filter:blur(22px);
+  backdrop-filter:blur(22px);
+}
+.mega-subs{background:color-mix(in srgb,var(--bg-alt) 70%,transparent)}
+
+/* Si el navegador no sabe de backdrop-filter, vuelven a ser opacas. */
+@supports not (backdrop-filter:blur(2px)){
+  .cob-card,.pq-card,.rel-card,.contacto-bloque,.faq-item,.mega,.m-menu{background:var(--surface)}
+  .franja,.mega-subs{background:var(--bg-alt)}
 }

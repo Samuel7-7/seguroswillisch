@@ -20,7 +20,7 @@ my $RAIZ = ".";
 require "./_generador/productos.pl";
 our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026092902";
+my $VER = "2026092903";
 
 # Índice por slug, para los "relacionados".
 my %POR_SLUG = map { $_->{slug} => $_ } @PRODUCTOS;
@@ -123,48 +123,6 @@ sub menu_movil {
     $html .= qq{  </details>\n};
   }
   return $html;
-}
-
-# Pestañas y tarjetas del portafolio del inicio.
-# Las claves de búsqueda salen del nombre del producto más las que se
-# declaren en "claves" dentro del catálogo.
-sub portafolio {
-  my $tabs = qq{    <div class="port-tabs" role="tablist" aria-label="Categorías del portafolio">\n};
-  $tabs .= qq{      <span class="port-pill" data-pill aria-hidden="true"></span>\n};
-  my $primera = 1;
-  for my $c (@CATEGORIAS) {
-    my $sel = $primera ? "true" : "false";
-    $tabs .= qq{      <button class="port-tab" type="button" role="tab" data-tab="$c->{id}" aria-selected="$sel">}.esc($c->{nombre}).qq{</button>\n};
-    $primera = 0;
-  }
-  $tabs .= qq{    </div>\n};
-
-  my $cards = qq{    <div class="port-grid">\n};
-  for my $p (@PRODUCTOS) {
-    my $cats = $p->{cats} || $p->{cat};
-    my $claves = lc($p->{menu}." ".$p->{nombre}." ".($p->{claves}||""));
-    $claves =~ s/[^a-z0-9áéíóúñü ]/ /g;
-    $claves =~ s/\s+/ /g; $claves =~ s/^ | $//g;
-    my $tag = $p->{digital} ? qq{<span class="port-tag">100% digital</span>} : "";
-    $cards .= qq{      <a class="port-card reveal" data-cat="$cats" data-keys="}.esc($claves).qq{" href="/seguros/$p->{slug}/">\n};
-    $cards .= qq{        <span class="port-cat">}.esc($NOMBRE_CAT{$p->{cat}}).qq{</span>\n};
-    $cards .= qq{        <h3>}.esc($p->{menu}).qq{</h3>\n};
-    $cards .= qq{        <p>}.esc($p->{h1}).qq{</p>\n};
-    $cards .= qq{        <span class="port-go">Ver el seguro →</span>$tag\n};
-    $cards .= qq{      </a>\n};
-  }
-  for my $e (@EXTERNOS) {
-    my $claves = lc($e->{menu}); $claves =~ s/[^a-z0-9áéíóúñü ]/ /g; $claves =~ s/\s+/ /g;
-    $cards .= qq{      <a class="port-card reveal" data-cat="$e->{cat}" data-keys="}.esc($claves).qq{" href="/$e->{url}">\n};
-    $cards .= qq{        <span class="port-cat">}.esc($NOMBRE_CAT{$e->{cat}}).qq{</span>\n};
-    $cards .= qq{        <h3>}.esc($e->{menu}).qq{</h3>\n};
-    $cards .= qq{        <p>Tiene su propia página, con el detalle completo del producto.</p>\n};
-    $cards .= qq{        <span class="port-go">Ver el seguro →</span>\n};
-    $cards .= qq{      </a>\n};
-  }
-  $cards .= qq{    </div>\n};
-
-  return $tabs . "\n" . $cards;
 }
 
 sub columnas_pie {
@@ -324,8 +282,7 @@ sub pagina {
     qq(     "description":") . json_esc($p->{meta}) . qq("},\n) .
     qq(    {"\@type":"BreadcrumbList","itemListElement":[\n) .
     qq(      {"\@type":"ListItem","position":1,"name":"Inicio","item":"https://seguroswillisch.com/"},\n) .
-    qq(      {"\@type":"ListItem","position":2,"name":") . json_esc($cat) . qq(","item":"https://seguroswillisch.com/#portafolio"},\n) .
-    qq(      {"\@type":"ListItem","position":3,"name":") . json_esc($p->{menu}) . qq(","item":"$url"}\n) .
+    qq(      {"\@type":"ListItem","position":2,"name":") . json_esc($p->{menu}) . qq(","item":"$url"}\n) .
     qq(    ]},\n) .
     qq(    {"\@type":"FAQPage","mainEntity":[\n      ) . join(",\n      ", @faqjson) . qq(\n    ]}\n  ]\n});
 
@@ -426,7 +383,6 @@ $head
   <div class="container">
     <nav class="miga" aria-label="Ruta">
       <a href="/">Inicio</a> <span aria-hidden="true">›</span>
-      <a href="/#portafolio">@{[ esc($cat) ]}</a> <span aria-hidden="true">›</span>
       <b>@{[ esc($p->{menu}) ]}</b>
     </nav>
 
@@ -451,7 +407,7 @@ $head
 </section>
 
 <!-- ============ QUÉ CUBRE ============ -->
-<section class="pad" id="cubre" style="background:var(--bg-alt);border-block:1px solid var(--border)">
+<section class="pad franja" id="cubre">
   <div class="container">
     <div class="head reveal">
       <span class="kicker">Qué cubre</span>
@@ -484,7 +440,7 @@ $incluye        </ul>
 </section>
 
 <!-- ============ PREGUNTAS FRECUENTES ============ -->
-<section class="pad" id="faq" style="background:var(--bg-alt);border-block:1px solid var(--border)">
+<section class="pad franja" id="faq">
   <div class="container container-angosto">
     <div class="head center reveal">
       <span class="kicker">Preguntas frecuentes</span>
@@ -504,7 +460,7 @@ $faq    </div>
     </div>
     <div class="rel-grid">
 $rel    </div>
-    <p class="rel-todos reveal"><a href="/#portafolio">Ver todo el portafolio →</a></p>
+    <p class="rel-todos reveal"><a href="/#digitales">Ver los seguros que compras en línea →</a></p>
   </div>
 </section>
 
@@ -537,7 +493,6 @@ binmode(STDOUT, ":encoding(UTF-8)");
 my $mega  = menu_escritorio();
 my $mmenu = menu_movil();
 my $cols  = columnas_pie();
-my $porta = portafolio();
 
 my $n = 0;
 for my $p (@PRODUCTOS) {
@@ -559,13 +514,12 @@ if (-f "$RAIZ/index.html") {
   $html =~ s{(<!--MENU:ESCRITORIO-->).*?(<!--MENU:FIN-->)}{$1\n$mega      $2}s;
   $html =~ s{(<!--MENU:MOVIL-->).*?(<!--MENU:MOVIL-FIN-->)}{$1\n$mmenu  $2}s;
   $html =~ s{(<!--MENU:PIE-->).*?(<!--MENU:PIE-FIN-->)}{$1\n$cols      $2}s;
-  $html =~ s{(<!--MENU:PORTAFOLIO-->).*?(<!--MENU:PORTAFOLIO-FIN-->)}{$1\n$porta    $2}s;
   if ($html !~ /<!--MENU:ESCRITORIO-->/) {
     print "  ! index.html: faltan los marcadores <!--MENU:*-->, no toqué nada\n";
   } elsif ($html ne $antes) {
     open(my $out, ">:encoding(UTF-8)", "$RAIZ/index.html") or die $!;
     print $out $html; close $out;
-    print "  ~ index.html: menú, portafolio y pie sincronizados\n";
+    print "  ~ index.html: menú y pie sincronizados\n";
   } else {
     print "  = index.html: ya estaba al día\n";
   }

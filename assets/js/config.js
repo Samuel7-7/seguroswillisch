@@ -54,7 +54,11 @@ window.WILLISCH = {
      porque se pierde la trazabilidad de la venta. */
   COTIZADORES_EXTERNOS: {
     mascotas: "https://surapet.com.co/asesorcliente/97726",
-    arrendamiento: "https://arrienda.facilito.ai/cotizadorarrendamiento?codasesor=97726&nombreasesor=Seguros+Willisch"
+    arrendamiento: "https://arrienda.facilito.ai/cotizadorarrendamiento?codasesor=97726&nombreasesor=Seguros+Willisch",
+    // Cuando tengas el enlace del portal de viajes con tu código de asesor,
+    // pégalo aquí. Mientras esté vacío, el botón "Cotizar ahora" del seguro
+    // de viaje lleva a WhatsApp en vez de quedarse muerto.
+    viaje: ""
   },
 
   /* --- Mensaje por defecto de WhatsApp --- */

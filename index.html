@@ -21,8 +21,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css?v=2026092902">
-<link rel="stylesheet" href="/assets/css/producto.css?v=2026092902">
+<link rel="stylesheet" href="/assets/css/site.css?v=2026092903">
+<link rel="stylesheet" href="/assets/css/producto.css?v=2026092903">
 
 <script type="application/ld+json">
 {
@@ -287,7 +287,7 @@
         </p>
 
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#portafolio">Ver todos los seguros</a>
+          <a class="btn btn-primary" href="#digitales">Cotiza en línea en minutos</a>
           <a class="btn btn-wa" data-wa="Hola Seguros Willisch, quiero hablar con un asesor.">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
             Hablar con un asesor
@@ -340,220 +340,118 @@
   </div>
 </section>
 
-<!-- ============ 2. PORTAFOLIO ============
-     Las tarjetas y las pestañas las genera _generador/generar.pl a partir
-     del catálogo. No las edites a mano: se sobrescriben. -->
-<section class="pad" id="portafolio" style="background:var(--bg-alt);border-block:1px solid var(--border)">
+<!-- ============ 2. SEGUROS 100% DIGITALES ============ -->
+<section class="digi" id="digitales"
+         data-wa-context="¿Te ayudo con el de en línea?"
+         data-wa-msg="Hola Seguros Willisch, quiero ayuda con un seguro 100% digital.">
+
+  <!-- Auroras del fondo: tres manchas de color que se mueven muy despacio -->
+  <div class="digi-aurora" aria-hidden="true">
+    <span class="au au-1"></span>
+    <span class="au au-2"></span>
+    <span class="au au-3"></span>
+  </div>
+
   <div class="container">
     <div class="head center reveal">
-      <span class="kicker">Portafolio</span>
-      <h2 class="h-lg">Todo lo que podemos asegurar por ti</h2>
-      <p class="lead">Elige una categoría o busca directamente lo que necesitas. Cada seguro tiene su propia página con coberturas, preguntas frecuentes y un botón para cotizarlo.</p>
+      <span class="kicker kicker-vivo"><i aria-hidden="true"></i>100% digital</span>
+      <h2 class="h-lg">Tres seguros que compras tú mismo.<br><em>En minutos, desde el celular.</em></h2>
+      <p class="lead">Sin llamadas, sin papeleo y sin esperar cotización. Cotizas, pagas y la póliza te llega al correo. Y si prefieres que te acompañemos, aquí estamos.</p>
     </div>
 
-    <div class="port-buscador reveal">
-      <label class="sr-only" for="buscar">Buscar un seguro</label>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4" stroke-linecap="round"/></svg>
-      <input id="buscar" type="search" data-buscar placeholder="Busca: moto, salud, arrendamiento, ARL…" autocomplete="off">
+    <ol class="digi-pasos reveal" data-delay="1">
+      <li><b>1</b><span>Cotizas en línea</span></li>
+      <li><b>2</b><span>Pagas con tarjeta</span></li>
+      <li><b>3</b><span>Recibes la póliza</span></li>
+    </ol>
+
+    <div class="digi-grid">
+
+      <!-- Mascotas -->
+      <article class="digi-card reveal" data-delay="1">
+        <span class="digi-anillo" aria-hidden="true"></span>
+        <div class="digi-inner">
+          <span class="digi-num" aria-hidden="true">01</span>
+          <div class="digi-ic" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse class="tr" cx="20" cy="22" rx="5.4" ry="7.2" transform="rotate(-18 20 22)"/>
+              <ellipse class="tr" cx="34" cy="17" rx="5" ry="7.6" transform="rotate(-6 34 17)"/>
+              <ellipse class="tr" cx="47" cy="23" rx="5" ry="6.8" transform="rotate(14 47 23)"/>
+              <path class="tr" d="M33 32c7.4 0 13.6 5.2 15.4 11.6C50 49.4 45.8 55 39.8 55c-2.6 0-4.6-1-6.8-1s-4.2 1-6.8 1c-6 0-10.2-5.6-8.6-11.4C19.4 37.2 25.6 32 33 32z"/>
+            </svg>
+          </div>
+          <h3>Seguro para Mascotas</h3>
+          <p>Consultas, urgencias y cirugías de tu perro o gato, sin que una emergencia se pague completa y de contado.</p>
+          <ul class="digi-puntos">
+            <li>Red de veterinarias</li>
+            <li>Responsabilidad civil</li>
+            <li>Perros y gatos</li>
+          </ul>
+          <div class="digi-cta">
+            <a class="btn btn-primary btn-block" data-cotizador-externo="mascotas">Cotizar ahora</a>
+            <a class="digi-mas" href="/seguros/mascotas/">Ver qué cubre</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Arrendamiento -->
+      <article class="digi-card reveal" data-delay="2">
+        <span class="digi-anillo" aria-hidden="true"></span>
+        <div class="digi-inner">
+          <span class="digi-num" aria-hidden="true">02</span>
+          <div class="digi-ic" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path class="tr" d="M10 29L32 11l22 18"/>
+              <path class="tr" d="M16 27v22a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2V27"/>
+              <circle class="tr" cx="27" cy="38" r="5"/>
+              <path class="tr" d="M31.4 40.4L42 51l3.4-3.4-2.6-2.6 2.6-2.6-3-3"/>
+            </svg>
+          </div>
+          <h3>Seguro de Arrendamiento</h3>
+          <p>El canon te llega aunque el inquilino no pague, con los servicios públicos y el acompañamiento jurídico incluidos.</p>
+          <ul class="digi-puntos">
+            <li>Canon garantizado</li>
+            <li>Servicios públicos</li>
+            <li>Vivienda y comercio</li>
+          </ul>
+          <div class="digi-cta">
+            <a class="btn btn-primary btn-block" data-cotizador-externo="arrendamiento">Cotizar ahora</a>
+            <a class="digi-mas" href="/seguros/arrendamiento/">Ver qué cubre</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Viaje -->
+      <article class="digi-card reveal" data-delay="3">
+        <span class="digi-anillo" aria-hidden="true"></span>
+        <div class="digi-inner">
+          <span class="digi-num" aria-hidden="true">03</span>
+          <div class="digi-ic" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle class="tr" cx="32" cy="32" r="21"/>
+              <path class="tr" d="M11 32h42"/>
+              <path class="tr" d="M32 11c5.4 5.8 8.2 13.2 8.2 21S37.4 47.2 32 53c-5.4-5.8-8.2-13.2-8.2-21S26.6 16.8 32 11z"/>
+              <path class="av" d="M45 19l-9.6 5.6-6.4-2.4-2.4 1.4 4.6 3.6-4.2 2.6-3.4-1-1.6 1 3.4 2.8.8 4.2 1.6-1 .4-3.4 4.4-2.4.8 5.8 4.6-2.6-.8-6.8 9.6-5.6z"/>
+            </svg>
+          </div>
+          <h3>Seguro de Viaje</h3>
+          <p>Asistencia médica en el exterior, cancelación y equipaje. Varios destinos lo exigen para dejarte entrar.</p>
+          <ul class="digi-puntos">
+            <li>Asistencia 24/7</li>
+            <li>Cancelación</li>
+            <li>Nacional e internacional</li>
+          </ul>
+          <div class="digi-cta">
+            <a class="btn btn-primary btn-block" data-cotizador-externo="viaje" data-wa="Hola Seguros Willisch, quiero cotizar un seguro de viaje.">Cotizar ahora</a>
+            <a class="digi-mas" href="/seguros/viaje/">Ver qué cubre</a>
+          </div>
+        </div>
+      </article>
+
     </div>
 
-<!--MENU:PORTAFOLIO-->
-    <div class="port-tabs" role="tablist" aria-label="Categorías del portafolio">
-      <span class="port-pill" data-pill aria-hidden="true"></span>
-      <button class="port-tab" type="button" role="tab" data-tab="movilidad" aria-selected="true">Movilidad</button>
-      <button class="port-tab" type="button" role="tab" data-tab="salud" aria-selected="false">Salud</button>
-      <button class="port-tab" type="button" role="tab" data-tab="vida" aria-selected="false">Vida</button>
-      <button class="port-tab" type="button" role="tab" data-tab="hogar" aria-selected="false">Hogar</button>
-      <button class="port-tab" type="button" role="tab" data-tab="digitales" aria-selected="false">Seguros 100% digitales</button>
-      <button class="port-tab" type="button" role="tab" data-tab="colectivos" aria-selected="false">Colectivos y grupos</button>
-      <button class="port-tab" type="button" role="tab" data-tab="empresas" aria-selected="false">Empresas</button>
-    </div>
-
-    <div class="port-grid">
-      <a class="port-card reveal" data-cat="movilidad" data-keys="seguro de autos seguro todo riesgo para tu carro carro carros vehiculo automovil todo riesgo particular" href="/seguros/auto/">
-        <span class="port-cat">Movilidad</span>
-        <h3>Seguro de Autos</h3>
-        <p>Tu carro protegido, y tú sin sustos en la vía.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="movilidad" data-keys="seguro de motos seguro para tu moto motos motocicleta scooter dos ruedas" href="/seguros/moto/">
-        <span class="port-cat">Movilidad</span>
-        <h3>Seguro de Motos</h3>
-        <p>La moto es tu trabajo y tu libertad. Que un golpe no te la quite.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="movilidad" data-keys="seguro de bicis y patinetas seguro para bicicletas y patinetas eléctricas bici bicicletas patineta patinetas electrica scooter ciclista" href="/seguros/bicicleta-patineta/">
-        <span class="port-cat">Movilidad</span>
-        <h3>Seguro de Bicis y Patinetas</h3>
-        <p>Te mueves en bici o en patineta. También necesitas respaldo.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="movilidad" data-keys="seguro para taxis seguro para taxis y vehículos de servicio público taxis servicio publico amarillo" href="/seguros/taxi/">
-        <span class="port-cat">Movilidad</span>
-        <h3>Seguro para Taxis</h3>
-        <p>El taxi es tu negocio. Si para, paras tú.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="movilidad" data-keys="utilitarios y pesados seguro para utilitarios y vehículos pesados camioneta camion van furgon volqueta pesado carga utilitario pickup" href="/seguros/utilitarios-pesados/">
-        <span class="port-cat">Movilidad</span>
-        <h3>Utilitarios y Pesados</h3>
-        <p>El vehículo que carga tu trabajo necesita otra póliza.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="movilidad" data-keys="soat soat obligatorio tramite renovacion transito" href="/seguros/soat/">
-        <span class="port-cat">Movilidad</span>
-        <h3>SOAT</h3>
-        <p>El SOAT es obligatorio. Que además te sirva cuando lo necesites.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="salud" data-keys="póliza de salud póliza de salud clinica medico especialista eps hospitalizacion" href="/seguros/salud/">
-        <span class="port-cat">Salud</span>
-        <h3>Póliza de Salud</h3>
-        <p>Tu salud no se improvisa.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="salud" data-keys="medicina prepagada medicina prepagada prepagada colsanitas sanitas medisanitas red propia" href="/seguros/medicina-prepagada/">
-        <span class="port-cat">Salud</span>
-        <h3>Medicina Prepagada</h3>
-        <p>Atención cuando la necesitas, no cuando haya cupo.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="salud" data-keys="plan complementario pac plan complementario de salud pac pac complementario eps habitacion" href="/seguros/plan-complementario/">
-        <span class="port-cat">Salud</span>
-        <h3>Plan Complementario (PAC)</h3>
-        <p>El punto medio entre la EPS y la póliza.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="vida" data-keys="seguro de vida seguro de vida fallecimiento beneficiarios familia proteccion" href="/seguros/vida/">
-        <span class="port-cat">Vida</span>
-        <h3>Seguro de Vida</h3>
-        <p>Que tu ausencia no sea también un problema de plata.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="vida" data-keys="seguro de vida deudor seguro de vida deudor credito hipoteca banco deuda saldo" href="/seguros/vida-deudor/">
-        <span class="port-cat">Vida</span>
-        <h3>Seguro de Vida Deudor</h3>
-        <p>Si faltas, que la deuda no se herede.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="vida" data-keys="seguro de accidentes seguro de accidentes personales accidente gastos medicos incapacidad" href="/seguros/accidentes-personales/">
-        <span class="port-cat">Vida</span>
-        <h3>Seguro de Accidentes</h3>
-        <p>Lo que cubre el accidente que no viste venir.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="vida" data-keys="seguro exequial seguro exequial funerario funeraria exequial velacion" href="/seguros/exequias/">
-        <span class="port-cat">Vida</span>
-        <h3>Seguro Exequial</h3>
-        <p>El día más difícil no debería empezar con una cuenta.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="hogar" data-keys="seguro de hogar seguro de hogar casa apartamento vivienda contenido terremoto incendio" href="/seguros/hogar/">
-        <span class="port-cat">Hogar</span>
-        <h3>Seguro de Hogar</h3>
-        <p>Tu casa es el patrimonio que más te costó.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="hogar digitales" data-keys="seguro de arrendamiento seguro de arrendamiento arriendo canon inmobiliaria inquilino arrendatario" href="/seguros/arrendamiento/">
-        <span class="port-cat">Hogar</span>
-        <h3>Seguro de Arrendamiento</h3>
-        <p>Arrienda tranquilo: el canon llega aunque el inquilino falle.</p>
-        <span class="port-go">Ver el seguro →</span><span class="port-tag">100% digital</span>
-      </a>
-      <a class="port-card reveal" data-cat="hogar digitales" data-keys="seguro para mascotas seguro para mascotas perro gato veterinario animal" href="/seguros/mascotas/">
-        <span class="port-cat">Hogar</span>
-        <h3>Seguro para Mascotas</h3>
-        <p>Tu mascota también es familia.</p>
-        <span class="port-go">Ver el seguro →</span><span class="port-tag">100% digital</span>
-      </a>
-      <a class="port-card reveal" data-cat="digitales" data-keys="seguro de viaje seguro de viaje viajes viajero internacional asistencia equipaje schengen" href="/seguros/viaje/">
-        <span class="port-cat">Seguros 100% digitales</span>
-        <h3>Seguro de Viaje</h3>
-        <p>Que el viaje se dañe es una cosa. Que además te cueste, otra.</p>
-        <span class="port-go">Ver el seguro →</span><span class="port-tag">100% digital</span>
-      </a>
-      <a class="port-card reveal" data-cat="colectivos" data-keys="vida grupo seguro de vida grupo colectivo grupo empleados fondo asociacion" href="/seguros/vida-grupo/">
-        <span class="port-cat">Colectivos y grupos</span>
-        <h3>Vida Grupo</h3>
-        <p>Una sola póliza para todo el grupo.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="colectivos" data-keys="escuelas deportivas seguro para escuelas deportivas deporte club academia torneo futbol liga deportistas" href="/seguros/escuelas-deportivas/">
-        <span class="port-cat">Colectivos y grupos</span>
-        <h3>Escuelas Deportivas</h3>
-        <p>Que jueguen tranquilos.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="colectivos" data-keys="accidentes colectivos accidentes personales colectivos colegios eventos grupos brigada voluntarios" href="/seguros/accidentes-colectivos/">
-        <span class="port-cat">Colectivos y grupos</span>
-        <h3>Accidentes Colectivos</h3>
-        <p>Un grupo, una póliza, todos cubiertos.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="colectivos" data-keys="exequias colectivas exequias colectivas funerario colectivo fondo asociacion afiliados" href="/seguros/exequias-colectivas/">
-        <span class="port-cat">Colectivos y grupos</span>
-        <h3>Exequias Colectivas</h3>
-        <p>El beneficio que más agradecen los afiliados.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="colectivos" data-keys="póliza de daño material póliza de daño material bienes equipos sede electronicos hurto" href="/seguros/dano-material/">
-        <span class="port-cat">Colectivos y grupos</span>
-        <h3>Póliza de Daño Material</h3>
-        <p>Los equipos del grupo también valen plata.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="todo riesgo empresarial todo riesgo empresarial empresa pyme bodega maquinaria inventario lucro cesante" href="/seguros/todo-riesgo-empresarial/">
-        <span class="port-cat">Empresas</span>
-        <h3>Todo Riesgo Empresarial</h3>
-        <p>Tu empresa no puede parar.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="responsabilidad civil responsabilidad civil extracontractual rce extracontractual terceros licitacion patronal" href="/seguros/responsabilidad-civil/">
-        <span class="port-cat">Empresas</span>
-        <h3>Responsabilidad Civil</h3>
-        <p>Responde por el daño sin que se lleve la empresa.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="transporte de mercancías transporte de mercancías carga despacho mercancia logistica importacion" href="/seguros/transporte-mercancias/">
-        <span class="port-cat">Empresas</span>
-        <h3>Transporte de Mercancías</h3>
-        <p>La carga vale más que el flete.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="flotas y camiones flotas y camiones flota camion parque automotor vehiculos empresa" href="/seguros/flotas-camiones/">
-        <span class="port-cat">Empresas</span>
-        <h3>Flotas y Camiones</h3>
-        <p>Todo el parque automotor, bajo un mismo contrato.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="energía y paneles solares energía y paneles solares paneles solares fotovoltaico energia montaje" href="/seguros/energia-solar/">
-        <span class="port-cat">Empresas</span>
-        <h3>Energía y Paneles Solares</h3>
-        <p>La inversión en energía se paga en años. Protégela desde el primer día.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="cultivos y agro cultivos y agro agricola cosecha campo finca agro clima" href="/seguros/cultivos-agro/">
-        <span class="port-cat">Empresas</span>
-        <h3>Cultivos y Agro</h3>
-        <p>La cosecha depende del clima. La empresa, no.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="pólizas de cumplimiento" href="/cumplimiento/">
-        <span class="port-cat">Empresas</span>
-        <h3>Pólizas de Cumplimiento</h3>
-        <p>Tiene su propia página, con el detalle completo del producto.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-      <a class="port-card reveal" data-cat="empresas" data-keys="arl" href="/arl/">
-        <span class="port-cat">Empresas</span>
-        <h3>ARL</h3>
-        <p>Tiene su propia página, con el detalle completo del producto.</p>
-        <span class="port-go">Ver el seguro →</span>
-      </a>
-    </div>
-    <!--MENU:PORTAFOLIO-FIN-->
-
-    <p class="port-vacio" data-sin-resultados>No encontramos ese seguro en la lista. Escríbenos por WhatsApp y te decimos si lo manejamos.</p>
+    <p class="digi-pie reveal">¿Buscas otro seguro? Están todos en el menú de arriba, o
+      <a data-wa="Hola Seguros Willisch, quiero cotizar un seguro.">escríbenos por WhatsApp</a>.</p>
   </div>
 </section>
 
@@ -792,7 +690,7 @@
   <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<script src="/assets/js/config.js?v=2026092902" defer></script>
-<script src="/assets/js/site.js?v=2026092902" defer></script>
+<script src="/assets/js/config.js?v=2026092903" defer></script>
+<script src="/assets/js/site.js?v=2026092903" defer></script>
 </body>
 </html>
