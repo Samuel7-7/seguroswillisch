@@ -42,6 +42,7 @@ Si prefieres, mándame las fotos y yo hago el cambio en todas las páginas.
 | `productos/moto-hero.webp` | /seguros/moto/ | Motociclista con equipo de protección |
 | `productos/bici-hero.webp` | /seguros/bicicleta-patineta/ | Ciclista urbano en la ciudad |
 | `productos/taxi-hero.webp` | /seguros/taxi/ | Taxi en la ciudad, jornada de trabajo |
+| `productos/pesados-hero.webp` | /seguros/utilitarios-pesados/ | Camioneta de trabajo o camión cargando |
 | `productos/soat-hero.webp` | /seguros/soat/ | Tarjeta de propiedad y llaves sobre una mesa |
 | `productos/salud-hero.webp` | /seguros/salud/ | Consulta médica tranquila |
 | `productos/prepagada-hero.webp` | /seguros/medicina-prepagada/ | Médico y paciente en consultorio |

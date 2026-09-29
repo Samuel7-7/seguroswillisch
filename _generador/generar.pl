@@ -18,9 +18,9 @@ use utf8;
 
 my $RAIZ = ".";
 require "./_generador/productos.pl";
-our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS);
+our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026092901";
+my $VER = "2026092902";
 
 # Índice por slug, para los "relacionados".
 my %POR_SLUG = map { $_->{slug} => $_ } @PRODUCTOS;
@@ -52,26 +52,56 @@ sub hueco {
 }
 
 # ------------------------------------------------------------------ menús
-# Se generan una sola vez y se usan igual en el inicio y en cada producto,
-# para que la navegación sea idéntica en todo el sitio.
+# Tres grupos arriba (Personas, Empresas, Colectivos) y, dentro de cada uno,
+# los subgrupos a la izquierda con sus seguros a la derecha, como en el menú
+# de las aseguradoras grandes. Todo sale de @MENU en productos.pl.
+
+# Devuelve el enlace de un ítem del menú: un slug del catálogo o "ext:<id>".
+sub item_menu {
+  my ($clave) = @_;
+  if ($clave =~ /^ext:(.+)$/) {
+    my ($e) = grep { ($_->{id} || "") eq $1 } @EXTERNOS;
+    return $e ? { url => "/$e->{url}", texto => $e->{menu}, digital => 0 } : undef;
+  }
+  my $p = $POR_SLUG{$clave} or return undef;
+  return { url => "/seguros/$p->{slug}/", texto => $p->{menu}, digital => $p->{digital} ? 1 : 0 };
+}
+
 sub menu_escritorio {
   my $html = "";
-  for my $c (@CATEGORIAS) {
-    my @items = grep { $_->{cat} eq $c->{id} } @PRODUCTOS;
-    my @ext   = grep { $_->{cat} eq $c->{id} } @EXTERNOS;
-    next unless @items || @ext;
+  for my $g (@MENU) {
     $html .= qq{        <li data-mega>\n};
-    $html .= qq{          <button type="button" aria-expanded="false">}.esc($c->{nombre}).qq{\n};
+    $html .= qq{          <button type="button" aria-expanded="false">}.esc($g->{nombre}).qq{\n};
     $html .= qq{            <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>\n};
     $html .= qq{          </button>\n};
-    $html .= qq{          <div class="mega mega-lista">\n};
-    $html .= qq{            <div class="mega-col">\n};
-    for my $p (@items) {
-      my $tag = $p->{digital} ? qq{ <span class="mega-tag">100% digital</span>} : "";
-      $html .= qq{              <a href="/seguros/$p->{slug}/">}.esc($p->{menu}).qq{$tag</a>\n};
+    $html .= qq{          <div class="mega mega-dos">\n};
+
+    # Columna izquierda: los subgrupos
+    $html .= qq{            <div class="mega-subs" role="tablist" aria-label="Categorías de }.esc($g->{nombre}).qq{">\n};
+    my $i = 0;
+    for my $s (@{$g->{subs}}) {
+      my $id = "$g->{id}-$i";
+      my $sel = $i == 0 ? "true" : "false";
+      $html .= qq{              <button class="mega-sub" type="button" role="tab" data-sub="$id" aria-selected="$sel">}.esc($s->{nombre});
+      $html .= qq{<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>\n};
+      $i++;
     }
-    for my $e (@ext) {
-      $html .= qq{              <a href="/$e->{url}">}.esc($e->{menu}).qq{</a>\n};
+    $html .= qq{            </div>\n};
+
+    # Columna derecha: los seguros del subgrupo activo
+    $html .= qq{            <div class="mega-prods">\n};
+    $i = 0;
+    for my $s (@{$g->{subs}}) {
+      my $id = "$g->{id}-$i";
+      my $oculto = $i == 0 ? "" : " hidden";
+      $html .= qq{              <div class="mega-panel" data-sub-panel="$id"$oculto>\n};
+      for my $clave (@{$s->{items}}) {
+        my $it = item_menu($clave) or next;
+        my $tag = $it->{digital} ? qq{ <span class="mega-tag">100% digital</span>} : "";
+        $html .= qq{                <a href="$it->{url}">}.esc($it->{texto}).qq{$tag</a>\n};
+      }
+      $html .= qq{              </div>\n};
+      $i++;
     }
     $html .= qq{            </div>\n          </div>\n        </li>\n};
   }
@@ -80,17 +110,15 @@ sub menu_escritorio {
 
 sub menu_movil {
   my $html = "";
-  for my $c (@CATEGORIAS) {
-    my @items = grep { $_->{cat} eq $c->{id} } @PRODUCTOS;
-    my @ext   = grep { $_->{cat} eq $c->{id} } @EXTERNOS;
-    next unless @items || @ext;
+  for my $g (@MENU) {
     $html .= qq{  <details class="m-grupo">\n};
-    $html .= qq{    <summary>}.esc($c->{nombre}).qq{</summary>\n};
-    for my $p (@items) {
-      $html .= qq{    <a class="m-link" href="/seguros/$p->{slug}/">}.esc($p->{menu}).qq{</a>\n};
-    }
-    for my $e (@ext) {
-      $html .= qq{    <a class="m-link" href="/$e->{url}">}.esc($e->{menu}).qq{</a>\n};
+    $html .= qq{    <summary>}.esc($g->{nombre}).qq{</summary>\n};
+    for my $s (@{$g->{subs}}) {
+      $html .= qq{    <p class="m-sub">}.esc($s->{nombre}).qq{</p>\n};
+      for my $clave (@{$s->{items}}) {
+        my $it = item_menu($clave) or next;
+        $html .= qq{    <a class="m-link" href="$it->{url}">}.esc($it->{texto}).qq{</a>\n};
+      }
     }
     $html .= qq{  </details>\n};
   }
@@ -113,11 +141,12 @@ sub portafolio {
 
   my $cards = qq{    <div class="port-grid">\n};
   for my $p (@PRODUCTOS) {
+    my $cats = $p->{cats} || $p->{cat};
     my $claves = lc($p->{menu}." ".$p->{nombre}." ".($p->{claves}||""));
     $claves =~ s/[^a-z0-9áéíóúñü ]/ /g;
     $claves =~ s/\s+/ /g; $claves =~ s/^ | $//g;
     my $tag = $p->{digital} ? qq{<span class="port-tag">100% digital</span>} : "";
-    $cards .= qq{      <a class="port-card reveal" data-cat="$p->{cat}" data-keys="}.esc($claves).qq{" href="/seguros/$p->{slug}/">\n};
+    $cards .= qq{      <a class="port-card reveal" data-cat="$cats" data-keys="}.esc($claves).qq{" href="/seguros/$p->{slug}/">\n};
     $cards .= qq{        <span class="port-cat">}.esc($NOMBRE_CAT{$p->{cat}}).qq{</span>\n};
     $cards .= qq{        <h3>}.esc($p->{menu}).qq{</h3>\n};
     $cards .= qq{        <p>}.esc($p->{h1}).qq{</p>\n};

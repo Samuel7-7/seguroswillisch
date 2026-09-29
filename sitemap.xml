@@ -29,6 +29,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://seguroswillisch.com/seguros/utilitarios-pesados/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://seguroswillisch.com/seguros/soat/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

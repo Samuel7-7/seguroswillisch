@@ -146,6 +146,36 @@ our @PRODUCTOS = (
 },
 
 {
+  slug => "utilitarios-pesados", cat => "movilidad", menu => "Utilitarios y Pesados",
+  nombre => "Seguro para utilitarios y vehículos pesados",
+  titulo => "Seguro para camionetas, camiones y vehículos pesados | Seguros Willisch",
+  meta => "Pólizas para camionetas de trabajo, vans, camiones y volquetas: responsabilidad civil, pérdida total y parcial, asistencia y cobertura de la carga propia.",
+  kicker => "Movilidad",
+  h1 => "El vehículo que carga tu trabajo necesita otra póliza.",
+  lead => "Una camioneta de trabajo, una van o un camión no se aseguran como un carro particular: pesan más, cargan más y responden por más. Buscamos la póliza que corresponda al uso real del vehículo.",
+  coberturas => [
+    ["Responsabilidad civil ampliada", "Límites más altos, acordes al daño que puede causar un vehículo pesado."],
+    ["Pérdida total y parcial", "Por daños y por hurto, con el valor asegurado del vehículo y de sus equipos fijos."],
+    ["Carga propia", "La mercancía que transportas por tu cuenta, si se contrata la extensión."],
+    ["Asistencia para pesados", "Grúa con capacidad para el peso del vehículo, no la de un carro particular."],
+  ],
+  incluye => [
+    "Revisamos el uso real: trabajo propio, carga de terceros o servicio especial.",
+    "Te decimos si te conviene una póliza individual o entrar a una de flota.",
+    "Cobertura de equipos fijos: furgón, carrocería, grúa, tanque o refrigeración.",
+    "Acompañamiento en la reclamación para que el vehículo vuelva a rodar rápido.",
+  ],
+  faq => [
+    ["¿Me sirve la póliza de un carro particular?", "No. Si el vehículo se usa para trabajo o carga, una póliza de particular puede quedar sin efecto justo cuando la necesitas. El uso hay que declararlo."],
+    ["¿Cubre la mercancía que llevo?", "La carga propia se cubre con una extensión. Si transportas mercancía de terceros, lo que aplica es la póliza de transporte de mercancías."],
+    ["¿Desde qué tonelaje entra como pesado?", "Cada aseguradora lo define distinto. Mándanos la tarjeta de propiedad y te decimos en qué categoría cae tu vehículo."],
+  ],
+  wa => "Hola Seguros Willisch, quiero cotizar el seguro de mi camioneta o vehículo de carga.",
+  imgs => [ ["pesados-hero", "16/10", "Camioneta de trabajo o camión cargando"] ],
+  relacionados => ["auto","flotas-camiones","transporte-mercancias"],
+},
+
+{
   slug => "soat", cat => "movilidad", menu => "SOAT",
   nombre => "SOAT",
   titulo => "SOAT: expedición y renovación | Seguros Willisch",
@@ -422,7 +452,7 @@ our @PRODUCTOS = (
 },
 
 {
-  slug => "arrendamiento", cat => "hogar", menu => "Seguro de Arrendamiento",
+  slug => "arrendamiento", cat => "hogar", cats => "hogar digitales", menu => "Seguro de Arrendamiento",
   nombre => "Seguro de arrendamiento",
   titulo => "Seguro de arrendamiento: canon garantizado | Seguros Willisch",
   meta => "Garantiza el pago del canon de tu inmueble arrendado, con cobertura de servicios públicos y acompañamiento jurídico. Cotiza en línea.",
@@ -453,7 +483,7 @@ our @PRODUCTOS = (
 },
 
 {
-  slug => "mascotas", cat => "hogar", menu => "Seguro para Mascotas",
+  slug => "mascotas", cat => "hogar", cats => "hogar digitales", menu => "Seguro para Mascotas",
   nombre => "Seguro para mascotas",
   titulo => "Seguro para mascotas: salud veterinaria | Seguros Willisch",
   meta => "Consultas, urgencias, cirugías y responsabilidad civil para tu perro o gato. Cotiza y compra en línea en minutos.",
@@ -858,6 +888,7 @@ our %CLAVES = (
   "moto"                    => "motos motocicleta scooter dos ruedas",
   "bicicleta-patineta"      => "bici bicicletas patineta patinetas electrica scooter ciclista",
   "taxi"                    => "taxis servicio publico amarillo",
+  "utilitarios-pesados"     => "camioneta camion van furgon volqueta pesado carga utilitario pickup",
   "soat"                    => "obligatorio tramite renovacion transito",
   "salud"                   => "clinica medico especialista eps hospitalizacion",
   "medicina-prepagada"      => "prepagada colsanitas sanitas medisanitas red propia",
@@ -886,8 +917,51 @@ for my $p (@PRODUCTOS) { $p->{claves} = $CLAVES{$p->{slug}} if $CLAVES{$p->{slug
 
 # Productos que ya tienen su propia página y solo se enlazan desde el menú.
 our @EXTERNOS = (
-  { cat => "empresas", menu => "Pólizas de Cumplimiento", url => "cumplimiento/" },
-  { cat => "empresas", menu => "ARL",                     url => "arl/" },
+  { id => "cumplimiento", cat => "empresas", menu => "Pólizas de Cumplimiento", url => "cumplimiento/" },
+  { id => "arl",          cat => "empresas", menu => "ARL",                     url => "arl/" },
+);
+
+# =========================================================
+#  EL MENÚ DE ARRIBA
+#  Tres grupos por tipo de cliente, y de cada uno cuelgan sus subgrupos.
+#  Un mismo seguro puede aparecer en varios sitios: por ejemplo el de
+#  arrendamiento está en Hogar y también en Seguros 100% digitales.
+#  Para enlazar una página que no sale del catálogo, usa "ext:<id>"
+#  con un id de la lista @EXTERNOS de arriba.
+# =========================================================
+our @MENU = (
+  { id => "personas", nombre => "Personas", subs => [
+      { nombre => "Movilidad",
+        items => [qw(auto moto bicicleta-patineta taxi utilitarios-pesados soat)] },
+      { nombre => "Salud",
+        items => [qw(salud medicina-prepagada plan-complementario)] },
+      { nombre => "Vida",
+        items => [qw(vida vida-deudor accidentes-personales exequias)] },
+      { nombre => "Hogar",
+        items => [qw(hogar arrendamiento mascotas)] },
+      { nombre => "Seguros 100% digitales",
+        items => [qw(viaje arrendamiento mascotas)] },
+  ]},
+
+  { id => "empresas", nombre => "Empresas", subs => [
+      { nombre => "Patrimonio",
+        items => [qw(todo-riesgo-empresarial dano-material energia-solar cultivos-agro)] },
+      { nombre => "Contratos y terceros",
+        items => ["ext:cumplimiento", "responsabilidad-civil"] },
+      { nombre => "Transporte y flotas",
+        items => [qw(transporte-mercancias flotas-camiones utilitarios-pesados)] },
+      { nombre => "Personas de tu empresa",
+        items => ["ext:arl", "vida-grupo", "accidentes-colectivos"] },
+  ]},
+
+  { id => "colectivos", nombre => "Colectivos", subs => [
+      { nombre => "Vida y protección",
+        items => [qw(vida-grupo accidentes-colectivos exequias-colectivas)] },
+      { nombre => "Deporte y educación",
+        items => [qw(escuelas-deportivas accidentes-colectivos)] },
+      { nombre => "Bienes del grupo",
+        items => [qw(dano-material)] },
+  ]},
 );
 
 1;

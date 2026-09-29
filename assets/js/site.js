@@ -154,6 +154,26 @@
       }
       $$("a", li).forEach(function (a) { a.addEventListener("click", cerrar); });
 
+      // Subgrupos: la lista de la izquierda cambia los seguros de la derecha.
+      // Con el ratón basta pasar por encima; con teclado o táctil, el clic.
+      var subs = $$("[data-sub]", li);
+      if (subs.length) {
+        var mostrarSub = function (id) {
+          subs.forEach(function (s) {
+            s.setAttribute("aria-selected", s.getAttribute("data-sub") === id ? "true" : "false");
+          });
+          $$("[data-sub-panel]", li).forEach(function (p) {
+            p.hidden = p.getAttribute("data-sub-panel") !== id;
+          });
+        };
+        subs.forEach(function (s) {
+          var id = s.getAttribute("data-sub");
+          s.addEventListener("click", function (e) { e.preventDefault(); mostrarSub(id); });
+          s.addEventListener("focus", function () { mostrarSub(id); });
+          if (finePointer) s.addEventListener("mouseenter", function () { mostrarSub(id); });
+        });
+      }
+
       return { li: li, btn: btn, cerrar: cerrar };
     });
 
@@ -431,7 +451,10 @@
       var q = (input && input.value || "").trim().toLowerCase();
       var visibles = 0;
       cards.forEach(function (c) {
-        var okCat = q ? true : c.getAttribute("data-cat") === catActiva;
+        // data-cat puede traer varias categorías separadas por espacio: un mismo
+        // seguro puede salir en dos pestañas (arrendamiento está en Hogar y en digitales).
+        var cats = " " + (c.getAttribute("data-cat") || "") + " ";
+        var okCat = q ? true : cats.indexOf(" " + catActiva + " ") >= 0;
         var okQ = !q || coincide(c.getAttribute("data-keys") || "", q);
         var mostrar = okCat && okQ;
         c.classList.toggle("hide", !mostrar);

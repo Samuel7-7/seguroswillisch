@@ -70,7 +70,7 @@ seguroswillisch.com/seguros/salud/
 
 Esas páginas **no se escriben a mano**: las genera un pequeño programa a partir de
 un archivo de texto con todo el catálogo. Así el menú, el pie, el buscador del
-inicio y las 27 páginas siempre dicen lo mismo.
+inicio y las 28 páginas siempre dicen lo mismo.
 
 ### Dónde está el catálogo
 
@@ -93,14 +93,28 @@ generar. Para eso, en Git Bash y desde la carpeta del proyecto:
 perl _generador/generar.pl
 ```
 
-Eso reescribe las 27 páginas, el menú y el pie del inicio, y el `sitemap.xml`.
+Eso reescribe las 28 páginas, el menú y el pie del inicio, y el `sitemap.xml`.
 
 ### Agregar un producto nuevo
 
-1. Copia un bloque completo de `_generador/productos.pl` y pégalo dentro de la
-   lista, con su propio `slug` (el nombre que irá en la URL).
-2. Corre el generador.
-3. Listo: aparece en el menú, en el buscador del inicio, en el pie y en el sitemap.
+1. Copia un bloque completo de `@PRODUCTOS`, en `_generador/productos.pl`, y pégalo
+   dentro de la lista con su propio `slug` (el nombre que irá en la URL).
+2. Añádelo al menú: en `@MENU`, escribe su `slug` dentro del subgrupo donde quieras
+   que salga. Puede ir en varios a la vez.
+3. Corre el generador.
+
+### El menú de arriba
+
+Tiene tres grupos —**Personas**, **Empresas** y **Colectivos**— y de cada uno cuelgan
+sus subgrupos. Todo eso se define en `@MENU`, dentro de `_generador/productos.pl`:
+
+```perl
+{ nombre => "Movilidad",
+  items => [qw(auto moto bicicleta-patineta taxi utilitarios-pesados soat)] },
+```
+
+Para mover un seguro de sitio, cambia su `slug` de lista. Para enlazar una página
+que no sale del catálogo (ARL, cumplimiento) usa `ext:arl` o `ext:cumplimiento`.
 
 ### Los tres seguros 100% digitales
 
@@ -129,7 +143,7 @@ va en la página del producto, no en el inicio.
 
 ```
 index.html                  Página principal (tres secciones)
-seguros/<producto>/         Una carpeta por seguro, 27 en total (generadas)
+seguros/<producto>/         Una carpeta por seguro, 28 en total (generadas)
 politica-datos.html         Política de tratamiento de datos
 personas.html               Redirección al portafolio (la página vieja)
 empresas.html               Redirección al portafolio (la página vieja)
