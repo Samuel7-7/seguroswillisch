@@ -2,7 +2,7 @@
 #  SEGUROS WILLISCH — FOTOS NUEVAS A SU LUGAR
 #
 #  Uso (desde la raíz del proyecto):
-#      python _generador/fotos.py
+#      python _generador/fotos.py [carpeta]   (sin carpeta lee assets/img/nuevas/)
 #      perl _generador/generar.pl
 #
 #  Toma cada assets/img/nuevas/<número>.<ext>, busca ese número en la tabla
@@ -32,8 +32,9 @@ def tabla():
 
 def main():
     filas = tabla()
+    origen = Path(sys.argv[1]) if len(sys.argv) > 1 else NUEVAS
     hechas = 0
-    for f in sorted(NUEVAS.iterdir()):
+    for f in sorted(origen.iterdir()):
         if not f.stem.isdigit() or f.suffix.lower() not in (".jpg", ".jpeg", ".png", ".webp"):
             continue
         n = int(f.stem)
@@ -42,7 +43,9 @@ def main():
             continue
         w, h, destino = filas[n]
         im = ImageOps.exif_transpose(Image.open(f)).convert("RGB")
-        im = ImageOps.fit(im, (w, h), Image.LANCZOS, centering=(0.5, 0.5))
+        # En los retratos la cara va arriba: el recorte vertical sube un poco.
+        centro = (0.5, 0.3) if h > w else (0.5, 0.5)
+        im = ImageOps.fit(im, (w, h), Image.LANCZOS, centering=centro)
         salida = IMG / destino
         salida.parent.mkdir(parents=True, exist_ok=True)
         im.save(salida, "WEBP", quality=78, method=6)

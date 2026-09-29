@@ -483,6 +483,7 @@ body::before{
 
   /* El retrato del equipo se vuelve apaisado para no ocupar media pantalla */
   .eq-card .ph{--ph-ratio:16/10 !important}
+  .eq-foto img{aspect-ratio:16/10;object-position:50% 22%}
   .equipo-grid{gap:22px}
 }
 

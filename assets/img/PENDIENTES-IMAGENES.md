@@ -1,7 +1,9 @@
 # Fotos pendientes — 40 en total
 
-Hoy **el sitio no tiene ninguna foto**. En cada lugar donde va una hay un
-recuadro punteado con el escudo de la marca que reserva el espacio exacto.
+Hoy **las 40 tienen una foto provisional de Unsplash** (la lista de cuáles
+son está en `assets/img/CREDITOS-FOTOS.md`). Sirven para que ninguna página se
+vea vacía, pero la idea es cambiarlas por fotos propias, sobre todo las tres
+del equipo, que hoy no son las personas reales.
 
 ## Cómo mandármelas
 
