@@ -83,35 +83,25 @@ Si prefieres, mándame las fotos y yo hago el cambio en todas las páginas.
 
 ### Equipo, en el inicio — proporción 3/4 vertical (1200×1600)
 
+Ahora es **una foto por persona**, no por área.
+
 | Archivo | Qué debería mostrar |
 |---|---|
-| `equipo/gerencia.webp` | Foto del equipo de gerencia |
-| `equipo/operaciones.webp` | Foto del equipo de operaciones |
-| `equipo/comercial.webp` | Foto del equipo comercial |
+| `equipo/gerencia.webp` | Retrato de quien está en gerencia |
+| `equipo/operaciones.webp` | Retrato de quien está en operaciones |
+| `equipo/comercial.webp` | Retrato de quien asesora comercialmente |
 
-> En el teléfono estas tres se muestran apaisadas (16/10) para no alargar la
-> página, así que conviene que la persona quede centrada en el encuadre.
+Además de la foto faltan el **nombre y el cargo** de cada persona: están
+marcados como `[COMPLETAR] Nombre` dentro de `index.html`.
+
+> En el teléfono se muestran apaisadas (16/10) para no alargar la página, así
+> que conviene que la persona quede centrada en el encuadre.
 
 ---
 
 ## Qué NO hace falta
 
-- **Logos de aseguradoras** (`assets/logos/`): ya están, salvo los siete que
+- **Logos de aseguradoras** (`assets/logos/`): ya están, salvo dos que
   faltan y que hoy salen en texto. Ver `LEEME.md`.
 - **Isotipo de Willisch**: ya está en alta calidad.
 
-### Publicaciones de Instagram, en el bloque "Síguenos" — 1/1 (1080×1080)
-
-| Archivo | Qué debería mostrar |
-|---|---|
-| `social/social-1.webp` … `social/social-6.webp` | Capturas de tus últimas seis publicaciones de Instagram |
-
-Cada una enlaza al perfil. Si prefieres que se vean las publicaciones reales en
-vivo hay que usar el widget de Instagram, que pesa bastante y frena la página;
-por eso quedaron como imágenes.
-
-### Equipo, en el inicio — 3/4 vertical (1200×1600)
-
-Ahora es **una foto por persona**, no por área. Además de la foto faltan el
-nombre y el cargo de cada una: están marcados como `[COMPLETAR] Nombre` dentro
-de `index.html`.

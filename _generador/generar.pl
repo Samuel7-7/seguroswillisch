@@ -20,7 +20,7 @@ my $RAIZ = ".";
 require "./_generador/productos.pl";
 our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026093001";
+my $VER = "2026093002";
 
 # Índice por slug, para los "relacionados".
 my %POR_SLUG = map { $_->{slug} => $_ } @PRODUCTOS;
@@ -347,27 +347,15 @@ sub siguenos {
       </a>
     </div>
 
-    <!-- Seis huecos para capturas de publicaciones. Cada uno enlaza al perfil.
-         Para poner una: cambia el .ph por <img src="/assets/img/social/1.webp" alt="">. -->
-    <div class="sig-grid reveal">
+  </div>
+</section>
 HTML
-}
-
-sub siguenos_fin {
-  my $html = "";
-  for my $i (1 .. 6) {
-    $html .= qq{      <a class="sig-post" data-red-btn="instagram" target="_blank" rel="noopener" data-evento="clic_redes" data-red="instagram" aria-label="Ver nuestras publicaciones en Instagram">\n};
-    $html .= qq{        }.hueco("social-$i", "1/1", "Publicación $i de Instagram").qq{\n};
-    $html .= qq{      </a>\n};
-  }
-  $html .= qq{    </div>\n  </div>\n</section>\n};
-  return $html;
 }
 
 # --------------------------------------------------------------- pie compartido
 sub pie {
   my ($cols) = @_;
-  my $sig = siguenos() . siguenos_fin();
+  my $sig = siguenos();
   return $sig . <<"HTML";
 <!-- ============ PIE ============ -->
 <footer class="site-footer">

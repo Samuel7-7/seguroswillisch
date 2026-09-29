@@ -42,7 +42,7 @@ El archivo va en `assets/logos/`. Si todavía no tienes el logo oficial, pon
 `archivo: null` y el sitio mostrará el nombre en texto con la tipografía de la marca.
 
 **Faltan estos logos oficiales** (hoy salen en texto): AXA Colpatria, La Equidad
-Seguros y Universal de Fianzas.
+Seguros.
 
 ### Muy importante al publicar cambios
 

@@ -793,13 +793,6 @@ body.con-barra .wa-float{opacity:0;pointer-events:none;transition:opacity .25s e
 .sig-fb:hover{color:#fff;border-color:transparent;background:#1877F2}
 .sig-fb:hover i{color:rgba(255,255,255,.86)}
 
-.sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:34px}
-@media (min-width:760px){ .sig-grid{grid-template-columns:repeat(6,1fr);gap:12px} }
-.sig-post{display:block;border-radius:var(--r-sm);overflow:hidden;transition:transform .3s var(--ease-out)}
-.sig-post:hover{transform:scale(1.04)}
-.sig-post .ph{border-radius:var(--r-sm)}
-.sig-post .ph-txt{display:none}
-.sig-post .ph-mark{width:26px;height:26px}
 
 /* ---- Redes en el menú móvil (Bloque 9.4) ---- */
 .m-redes{display:flex;gap:12px;margin-top:22px}

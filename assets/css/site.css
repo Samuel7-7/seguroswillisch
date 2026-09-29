@@ -1099,7 +1099,10 @@ section{position:relative}
   /* Windows trae "reducir movimiento" activo de fábrica, así que aquí no se apaga la
      flotación del isotipo: se suaviza. Solo se retiran los pulsos decorativos. */
   .mark-float{animation:flotar-suave 9s ease-in-out infinite}
-  .marquee-track,.wa-btn::before,.robot-antena,.quote::before,.scroll-hint i::after,
+  /* El carrusel de aseguradoras no se apaga: solo va más despacio. Es la
+     manera de mostrar con quién trabajamos, no un adorno. */
+  .marquee-track{animation-duration:64s}
+  .wa-btn::before,.robot-antena,.quote::before,.scroll-hint i::after,
   .mark-glow,.mark-shadow{animation:none!important}
   .esc-visual:hover img{transform:none}
 }

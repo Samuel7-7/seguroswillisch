@@ -44,8 +44,7 @@ window.WILLISCH = {
     { nombre: "La Equidad Seguros",         archivo: null,           alt: "La Equidad Seguros" },
     { nombre: "Colmena Seguros",            archivo: "colmena.png",  alt: "Colmena Seguros" },
     { nombre: "Quálitas",                   archivo: "qualitas.png", alt: "Quálitas" },
-    { nombre: "Coomeva Medicina Prepagada", archivo: "coomeva.png",  alt: "Coomeva Medicina Prepagada" },
-    { nombre: "Universal de Fianzas",       archivo: null,           alt: "Universal de Fianzas" }
+    { nombre: "Coomeva Medicina Prepagada", archivo: "coomeva.png",  alt: "Coomeva Medicina Prepagada" }
   ],
 
   /* --- Cotizadores externos ---
