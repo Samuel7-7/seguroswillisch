@@ -124,6 +124,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://seguroswillisch.com/seguros/maquinaria-equipos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://seguroswillisch.com/seguros/copropiedad/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

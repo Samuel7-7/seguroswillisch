@@ -20,7 +20,7 @@ my $RAIZ = ".";
 require "./_generador/productos.pl";
 our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026093003";
+my $VER = "2026093004";
 
 # Índice por slug, para los "relacionados".
 my %POR_SLUG = map { $_->{slug} => $_ } @PRODUCTOS;
@@ -430,10 +430,6 @@ $cols      <div class="f-col f-contact">
 
 <!-- Barra fija de móvil -->
 <div class="barra-movil" data-barra>
-  <a class="bm-cotizar" href="#cotizar" data-scroll>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3 7-7" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9" stroke-linecap="round"/></svg>
-    Cotizar
-  </a>
   <a class="bm-wa" data-wa="Hola Seguros Willisch, quiero cotizar un seguro." data-evento="clic_whatsapp" data-producto="Barra móvil">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
     WhatsApp

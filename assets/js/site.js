@@ -1020,10 +1020,6 @@
   function initBarraMovil() {
     var barra = $("[data-barra]");
     if (!barra) return;
-    var cotizar = $(".bm-cotizar", barra);
-    var destino = document.getElementById("cotizar") || document.getElementById("selector");
-    if (cotizar && !destino) cotizar.setAttribute("href", "/#selector");
-
     function pintar() {
       var visible = window.innerWidth < 760 && window.scrollY > 260;
       barra.classList.toggle("show", visible);
