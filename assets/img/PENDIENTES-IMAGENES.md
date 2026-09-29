@@ -1,77 +1,98 @@
-# Imágenes pendientes — página `/personas.html`
+# Fotos pendientes
 
-## Cómo usar este archivo
+Hoy **el sitio no tiene ninguna foto**. En cada lugar donde va una, hay un
+recuadro punteado con el escudo de la marca que reserva el espacio exacto.
 
-Cada fila de abajo tiene una **ruta exacta**. En el sitio ya hay un archivo en esa ruta
-con el patrón de marca (degradado + escudo), del tamaño correcto, así que **la página
-no tiene huecos ni imágenes rotas**.
+Cada recuadro lleva un atributo `data-img` que dice **qué archivo va ahí**.
+Por ejemplo, en `/seguros/auto/`:
 
-Para poner la foto real:
+```html
+<div class="ph ph-hero" style="--ph-ratio:16/10" data-img="assets/img/productos/auto-hero.webp" …>
+```
 
-1. Recorta la foto a la proporción indicada y guárdala como **WebP, calidad 80**.
-2. Guarda **dos archivos** con los nombres exactos: `nombre.webp` (tamaño grande) y
-   `nombre-800.webp` (la mitad de ancho, para celulares).
-3. Reemplaza los archivos existentes en `assets/img/`.
-4. Sube el cambio. **No hay que tocar nada de código**: la página los toma tal cual.
+## Cómo poner una foto
 
-> Si solo tienes la foto en JPG o PNG, mándamela y yo hago la conversión y los dos tamaños.
+1. Guarda la imagen con **exactamente** el nombre y la ruta que dice `data-img`.
+2. En el HTML, reemplaza todo el bloque `<div class="ph" …>…</div>` por:
 
-**Criterio para todas:** luz natural cálida, personas latinoamericanas en contextos
-colombianos, composición limpia con espacio para el texto, **sin logos ni marcas
-visibles**, y sin rostros que puedan leerse como clientes reales de la agencia.
+```html
+<img src="/assets/img/productos/auto-hero.webp" alt="Descripción de la foto"
+     width="1600" height="1000" loading="lazy">
+```
 
-Prompt base si las generas con IA:
-`editorial photography, natural warm light, shallow depth of field, Latin American people, Colombian setting, clean composition with negative space, 35mm, cinematic color grading, no logos, no text`
+3. Sube el `?v=` de los archivos CSS y JS (ver `LEEME.md`), y publica.
 
----
+Si prefieres, mándame las fotos y yo hago el cambio en todas las páginas.
 
-## Pendientes (10)
+## Formato recomendado
 
-| Ruta | Dónde se ve | Proporción / tamaño mínimo | Qué debe mostrar |
-|---|---|---|---|
-| `assets/img/hero-vida.webp` | Tríptico del hero, panel derecho | 3:4 · 1200×1600 | Familia en casa, luz cálida de tarde, escena cotidiana y tranquila |
-| `assets/img/vehiculo-carretera.webp` | Galería del bloque Vehículo | 16:9 · 1600×900 | Carro recorriendo una vía, tomado desde afuera, hora dorada |
-| `assets/img/vehiculo-moto.webp` | Galería del bloque Vehículo | 4:3 · 1600×1200 | Motociclista urbano con casco, luz de mañana |
-| `assets/img/vehiculo-grua.webp` | Galería del bloque Vehículo | 4:3 · 1600×1200 | Asistencia en vía o grúa atendiendo un vehículo |
-| `assets/img/salud-familia.webp` | Bloque Salud, galería | 4:3 · 1600×1200 | Consulta pediátrica: madre o padre con el niño y el médico |
-| `assets/img/salud-clinica.webp` | Bloque Salud, galería | 4:3 · 1600×1200 | Pasillo o sala de espera de clínica moderna y luminosa |
-| `assets/img/vida-familia.webp` | Bloque Vida, pieza ancha | 16:9 · 1600×900 | Familia de varias generaciones reunida en casa, luz de ventana |
-| `assets/img/vida-hogar.webp` | Bloque Vida, visual lateral | 4:3 · 1600×1200 | Pareja joven con las llaves de su vivienda |
-| `assets/img/vida-estudio.webp` | Bloque Vida, galería | 4:3 · 1600×1200 | Adolescente estudiando en su escritorio, luz natural |
+- **WebP**, calidad 80. Pesa la mitad que un JPG y se ve igual.
+- Ancho de 1600 px es más que suficiente.
+- Respeta la proporción que pide cada hueco (`--ph-ratio`), o la foto se recorta.
 
 ---
 
-## Ya tienen foto real (4)
+## Lista completa
 
-Estas funcionan, pero son de banco genérico y se pueden mejorar cuando haya material propio.
+### Portada de cada producto — proporción 16/10 (1600×1000)
 
-| Ruta | Dónde se ve | De dónde salió |
+| Archivo | Página | Qué debería mostrar |
 |---|---|---|
-| `assets/img/hero-vehiculo.webp` | Tríptico del hero, panel izquierdo | Carretera con vehículos (la del hero anterior) |
-| `assets/img/hero-salud.webp` | Tríptico del hero, panel central | Profesional de la salud junto a una ventana |
-| `assets/img/vehiculo-taller.webp` | Galería del bloque Vehículo | Técnico revisando el motor de un vehículo |
-| `assets/img/salud-consulta.webp` | Bloque Salud, visual principal con el electrocardiograma | Equipo médico conversando |
+| `productos/auto-hero.webp` | /seguros/auto/ | Carro particular en carretera, luz de tarde |
+| `productos/moto-hero.webp` | /seguros/moto/ | Motociclista con equipo de protección |
+| `productos/bici-hero.webp` | /seguros/bicicleta-patineta/ | Ciclista urbano en la ciudad |
+| `productos/taxi-hero.webp` | /seguros/taxi/ | Taxi en la ciudad, jornada de trabajo |
+| `productos/soat-hero.webp` | /seguros/soat/ | Tarjeta de propiedad y llaves sobre una mesa |
+| `productos/salud-hero.webp` | /seguros/salud/ | Consulta médica tranquila |
+| `productos/prepagada-hero.webp` | /seguros/medicina-prepagada/ | Médico y paciente en consultorio |
+| `productos/pac-hero.webp` | /seguros/plan-complementario/ | Familia en sala de espera |
+| `productos/vida-hero.webp` | /seguros/vida/ | Familia reunida, varias generaciones |
+| `productos/deudor-hero.webp` | /seguros/vida-deudor/ | Pareja joven con las llaves de su casa |
+| `productos/accidentes-hero.webp` | /seguros/accidentes-personales/ | Persona activa, día cotidiano |
+| `productos/exequias-hero.webp` | /seguros/exequias/ | Manos acompañando, ambiente sereno |
+| `productos/hogar-hero.webp` | /seguros/hogar/ | Sala de una casa, luz natural |
+| `productos/arrendamiento-hero.webp` | /seguros/arrendamiento/ | Llaves y contrato sobre una mesa |
+| `productos/mascotas-hero.webp` | /seguros/mascotas/ | Perro o gato con su familia |
+| `productos/viaje-hero.webp` | /seguros/viaje/ | Maleta y pasaporte, salida de viaje |
+| `productos/vidagrupo-hero.webp` | /seguros/vida-grupo/ | Equipo de trabajo reunido |
+| `productos/escuelas-hero.webp` | /seguros/escuelas-deportivas/ | Niños entrenando en una cancha |
+| `productos/colectivos-hero.webp` | /seguros/accidentes-colectivos/ | Grupo en una actividad organizada |
+| `productos/exequias-col-hero.webp` | /seguros/exequias-colectivas/ | Reunión de un grupo o asociación |
+| `productos/dano-hero.webp` | /seguros/dano-material/ | Equipos y bienes de una sede |
+| `productos/empresarial-hero.webp` | /seguros/todo-riesgo-empresarial/ | Bodega o planta en operación |
+| `productos/rce-hero.webp` | /seguros/responsabilidad-civil/ | Equipo de trabajo en obra o servicio |
+| `productos/transporte-hero.webp` | /seguros/transporte-mercancias/ | Camión de carga en ruta |
+| `productos/flotas-hero.webp` | /seguros/flotas-camiones/ | Parque automotor de una empresa |
+| `productos/energia-hero.webp` | /seguros/energia-solar/ | Paneles solares en cubierta |
+| `productos/cultivos-hero.webp` | /seguros/cultivos-agro/ | Cultivo extenso, jornada de campo |
+
+### Segunda foto, solo en los productos principales — proporción 4/3 (1600×1200)
+
+| Archivo | Página | Qué debería mostrar |
+|---|---|---|
+| `productos/auto-detalle.webp` | /seguros/auto/ | Conductor revisando su carro con tranquilidad |
+| `productos/moto-detalle.webp` | /seguros/moto/ | Moto parqueada, detalle de casco |
+| `productos/bici-detalle.webp` | /seguros/bicicleta-patineta/ | Patineta eléctrica y casco |
+| `productos/salud-detalle.webp` | /seguros/salud/ | Sala de espera de clínica moderna |
+| `productos/vida-detalle.webp` | /seguros/vida/ | Padres e hijos en casa |
+| `productos/hogar-detalle.webp` | /seguros/hogar/ | Detalle doméstico cotidiano |
+| `productos/empresarial-detalle.webp` | /seguros/todo-riesgo-empresarial/ | Detalle de maquinaria o inventario |
+
+### Equipo, en el inicio — proporción 3/4 vertical (1200×1600)
+
+| Archivo | Qué debería mostrar |
+|---|---|
+| `equipo/gerencia.webp` | Foto del equipo de gerencia |
+| `equipo/operaciones.webp` | Foto del equipo de operaciones |
+| `equipo/comercial.webp` | Foto del equipo comercial |
+
+> En el teléfono estas tres se muestran apaisadas (16/10) para no alargar la
+> página, así que conviene que la persona quede centrada en el encuadre.
 
 ---
 
-## Fotos del sitio que **no** se deben reutilizar aquí
+## Qué NO hace falta
 
-Las revisé una por una y estas están descartadas:
-
-| Archivo | Motivo |
-|---|---|
-| `arl/assets/img/sec-transporte.jpg` | Logos de **Maersk**, Hamburg Süd y Evergreen bien visibles |
-| `arl/assets/img/serv-especialistas.jpg` | Cascos y credenciales con marcas **USNRC** y **TVA Nuclear** |
-| `arl/assets/img/sec-inmobiliario.jpg` | Torre de oficinas estadounidense, no es una vivienda |
-| `arl/assets/img/sec-educacion.jpg` | Aula universitaria estadounidense, calidad baja |
-
----
-
-## Otras imágenes del sitio
-
-| Ruta | Estado |
-|---|---|
-| `assets/share/og-personas.jpg` | Lista. Composición de marca 1200×630 para la vista previa del enlace |
-| `assets/share/qr-personas.png` | Listo. QR de 990 px hacia `/personas.html` |
-| `assets/img/hero.jpg` | En uso por la máscara del "10", CIA Formando Conductores y el panel de Movilidad. **No borrar** |
-| `assets/img/hero-tecnico.jpg` | En uso por Baterías del Caribe. **No borrar** |
+- **Logos de aseguradoras** (`assets/logos/`): ya están, salvo los siete que
+  faltan y que hoy salen en texto. Ver `LEEME.md`.
+- **Isotipo de Willisch**: ya está en alta calidad.

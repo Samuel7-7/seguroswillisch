@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Las páginas de aliados (baterias-del-caribe, ciaformandoconductores, time2cars) quedan fuera a propósito:
-     son exclusivas, se comparten por enlace directo y llevan noindex. -->
+<!-- Lo genera _generador/generar.pl. Las páginas de aliados
+     (baterias-del-caribe, time2cars, ciaformandoconductores) quedan fuera
+     a propósito: son exclusivas, se comparten por enlace directo y llevan noindex. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://seguroswillisch.com/</loc>
@@ -8,19 +9,139 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://seguroswillisch.com/personas.html</loc>
+    <loc>https://seguroswillisch.com/seguros/auto/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://seguroswillisch.com/empresas.html</loc>
+    <loc>https://seguroswillisch.com/seguros/moto/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://seguroswillisch.com/colectivos.html</loc>
+    <loc>https://seguroswillisch.com/seguros/bicicleta-patineta/</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/taxi/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/soat/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/salud/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/medicina-prepagada/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/plan-complementario/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/vida/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/vida-deudor/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/accidentes-personales/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/exequias/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/hogar/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/arrendamiento/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/mascotas/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/viaje/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/vida-grupo/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/escuelas-deportivas/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/accidentes-colectivos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/exequias-colectivas/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/dano-material/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/todo-riesgo-empresarial/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/responsabilidad-civil/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/transporte-mercancias/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/flotas-camiones/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/energia-solar/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://seguroswillisch.com/seguros/cultivos-agro/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://seguroswillisch.com/arl/</loc>

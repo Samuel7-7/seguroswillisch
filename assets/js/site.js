@@ -402,7 +402,9 @@
     var vacio = $("[data-sin-resultados]");
     var cierres = $$("[data-cierre]");
     if (!tabs.length || !cards.length) return;
-    var catActiva = "individuales";
+    // La categoría inicial es la de la pestaña marcada en el HTML, para que
+    // el catálogo pueda cambiar sin tocar este archivo.
+    var catActiva = (tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0]).getAttribute("data-tab");
 
     // El enlace de cierre cambia con la pestaña; al buscar no aplica ninguno
     function pintarCierre(buscando) {
@@ -885,7 +887,8 @@
       if (duplicado) d.setAttribute("aria-hidden", "true");
       if (a.archivo) {
         var img = document.createElement("img");
-        img.src = "assets/logos/" + a.archivo;
+        // Ruta desde la raíz: el mismo marcado sirve en el inicio y en /seguros/<producto>/.
+        img.src = "/assets/logos/" + a.archivo;
         img.alt = duplicado ? "" : (a.alt || a.nombre);
         img.loading = "lazy";
         // Si el archivo falta, cae al nombre en texto en vez de dejar un hueco roto

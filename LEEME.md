@@ -58,102 +58,99 @@ seguirá viendo la versión vieja guardada en su navegador.
 
 ---
 
-## 2. Cómo compartir la página con las empresas aliadas
+## 2. El catálogo de seguros
 
-La página `personas.html` está hecha para que las empresas aliadas la compartan con
-sus clientes y empleados.
-
-**Enlace normal:**
+El sitio tiene **una página por producto**, en `/seguros/<producto>/`. Por ejemplo:
 
 ```
-https://seguroswillisch.com/personas.html
+seguroswillisch.com/seguros/auto/
+seguroswillisch.com/seguros/moto/
+seguroswillisch.com/seguros/salud/
 ```
 
-### Enlace personalizado por aliado
+Esas páginas **no se escriben a mano**: las genera un pequeño programa a partir de
+un archivo de texto con todo el catálogo. Así el menú, el pie, el buscador del
+inicio y las 27 páginas siempre dicen lo mismo.
 
-Agrega `?aliado=` seguido del nombre de la empresa:
+### Dónde está el catálogo
 
-```
-https://seguroswillisch.com/personas.html?aliado=Transportes%20del%20Caribe
-```
+`_generador/productos.pl`. Es un archivo de texto: cada producto es un bloque con
+su título, su descripción, sus coberturas y sus preguntas frecuentes. Las carpetas
+que empiezan por `_` no se publican, así que ese archivo nunca se ve en el sitio.
 
-Qué cambia con ese enlace:
+### Cambiar el texto de un producto
 
-1. En la parte de arriba aparece una línea discreta: *"Te comparte esta página: Transportes del Caribe"*.
-2. **Todos los mensajes de WhatsApp** que salgan de esa visita terminan con
-   *"Vengo de parte de Transportes del Caribe."*, así sabes de dónde viene cada persona.
-3. El nombre se conserva aunque la persona navegue a otras secciones.
+Tienes dos caminos:
 
-Sin el parámetro, la página funciona exactamente igual.
+**A. Un cambio pequeño en una sola página.** Abre directamente
+`seguros/<producto>/index.html` y edítalo: es HTML normal. Ojo: si después alguien
+corre el generador, ese cambio se pierde.
 
-> Los espacios se escriben como `%20`. Si prefieres evitarlo, usa guiones:
-> `?aliado=Transportes-del-Caribe`.
+**B. Un cambio que deba quedar.** Edita `_generador/productos.pl` y vuelve a
+generar. Para eso, en Git Bash y desde la carpeta del proyecto:
 
-### Etiquetas UTM (opcional, para medir después)
-
-Si algún día se activa Google Analytics, estas etiquetas permiten saber qué aliado
-trajo más gente. Se pueden combinar con `?aliado=`:
-
-```
-https://seguroswillisch.com/personas.html?aliado=Transportes-del-Caribe&utm_source=transportes-caribe&utm_medium=whatsapp&utm_campaign=personas-2026
+```bash
+perl _generador/generar.pl
 ```
 
-- `utm_source`: quién comparte (el aliado)
-- `utm_medium`: por dónde lo comparte (`whatsapp`, `email`, `qr`, `instagram`)
-- `utm_campaign`: la campaña (`personas-2026`)
+Eso reescribe las 27 páginas, el menú y el pie del inicio, y el `sitemap.xml`.
 
-### Código QR
+### Agregar un producto nuevo
 
-En `assets/share/` hay QR de 990 × 990 px, listos para imprimir o poner en una pantalla:
+1. Copia un bloque completo de `_generador/productos.pl` y pégalo dentro de la
+   lista, con su propio `slug` (el nombre que irá en la URL).
+2. Corre el generador.
+3. Listo: aparece en el menú, en el buscador del inicio, en el pie y en el sitemap.
 
-| Archivo | A dónde lleva |
-|---|---|
-| `qr-personas.png` | `https://seguroswillisch.com/personas.html` |
-| `qr-time2cars.png` | `https://seguroswillisch.com/time2cars/` (para que Time2Cars lo ponga en el taller) |
+### Los tres seguros 100% digitales
 
-Si necesitas un QR con el nombre de un aliado, hay que generar uno nuevo con la URL
-que lleve `?aliado=`; pídemelo y lo genero.
-
-### Botón de compartir
-
-Al final de la página hay botones para compartir: en celular abre el menú del
-sistema (WhatsApp, Instagram, correo…) y en computador copia el enlace. Si la visita
-llegó con `?aliado=`, el enlace que se comparte conserva ese dato.
+`viaje`, `arrendamiento` y `mascotas` llevan `digital => "..."` en el catálogo. Eso
+les pone la etiqueta **100% digital** y un botón «Cotizar en línea» que lleva al
+portal de la aseguradora con nuestro código de asesor. Las URL de esos portales
+están en `COTIZADORES_EXTERNOS`, dentro de `assets/js/config.js`. **No cambies los
+parámetros de esas URL**: se pierde la trazabilidad de la venta.
 
 ---
 
-## 3. Vista previa al pegar el enlace
+## 3. Las tres secciones del inicio
 
-Al pegar el enlace en WhatsApp o redes aparece la imagen `assets/share/og-personas.jpg`
-(1200 × 630 px) con la marca y los tres seguros.
+El inicio es corto a propósito. Tiene exactamente tres secciones:
 
-WhatsApp guarda esa vista previa un tiempo. Si cambias la imagen y quieres ver la nueva
-de inmediato, agrega algo al final del enlace, por ejemplo `?v=2`.
+1. **Portada** — el titular, el isotipo flotante, las cifras y las aseguradoras aliadas.
+2. **Portafolio** — el buscador, las siete categorías y las tarjetas de cada seguro.
+3. **Nosotros** — por qué con Willisch, el equipo y el contacto.
+
+El detalle de cada seguro vive en su propia página. Si quieres añadir contenido,
+va en la página del producto, no en el inicio.
 
 ---
 
 ## 4. Estructura de archivos
 
 ```
-index.html                  Página principal
-personas.html               Seguros para personas (la que se comparte con aliados)
+index.html                  Página principal (tres secciones)
+seguros/<producto>/         Una carpeta por seguro, 27 en total (generadas)
 politica-datos.html         Política de tratamiento de datos
-arl/  cumplimiento/         Presentaciones comerciales
-ciaformandoconductores/     Beneficio aliado
-baterias-del-caribe/        Página de aliado
-time2cars/                  Página de aliado (pintura y detallado automotriz)
-assets/css/                 Estilos (site.css es el sistema; personas.css solo esa página)
-assets/js/                  config.js (datos), site.js (todo el sitio), personas.js
+personas.html               Redirección al portafolio (la página vieja)
+empresas.html               Redirección al portafolio (la página vieja)
+colectivos.html             Redirección al portafolio (la página vieja)
+arl/  cumplimiento/         Presentaciones comerciales, con su propio diseño
+ciaformandoconductores/     Página de aliado (exclusiva, con noindex)
+baterias-del-caribe/        Página de aliado (exclusiva, con noindex)
+time2cars/                  Página de aliado (exclusiva, con noindex)
+_generador/                 El catálogo y el generador. No se publica.
+assets/css/site.css         El sistema de diseño de todo el sitio
+assets/css/producto.css     Las páginas de producto y las tres secciones del inicio
+assets/js/config.js         Los datos que cambian (teléfono, correo, redes, aliadas)
+assets/js/site.js           El comportamiento de todo el sitio
 assets/logos/               Logos de Willisch y de las aseguradoras
 assets/logos/aliados/       Logos de las empresas aliadas
-assets/img/                 Fotografías
-assets/img/aliados/         Fotografías de las empresas aliadas
+assets/img/                 Fotografías (hoy casi vacía: ver PENDIENTES-IMAGENES.md)
 assets/share/               Imágenes de vista previa y códigos QR
-sitemap.xml  robots.txt     Para los buscadores
+sitemap.xml  robots.txt     Para los buscadores (el sitemap lo genera el programa)
 ```
 
 ---
-
 ## 5. Páginas de aliados: cómo hacer la del próximo
 
 Hoy hay dos páginas de alianza construidas con la misma plantilla:
@@ -204,7 +201,7 @@ página de aliado nunca puede romper el resto del sitio, y al revés.
 
 ### Enlace compartible
 
-Igual que `personas.html`, estas páginas entienden `?aliado=`:
+Igual que las páginas de producto, estas entienden `?aliado=`:
 
 ```
 https://seguroswillisch.com/time2cars/?aliado=Time2Cars
@@ -236,11 +233,11 @@ Las fotos pendientes y sus rutas exactas están en
 
 ### Del resto del sitio
 
-- **Fotografías propias.** Varias tarjetas usan un patrón de marca (degradado con
-  ícono) porque no hay foto disponible. Lo ideal es una sesión con personas
-  latinoamericanas, luz natural y sin marcas de terceros visibles.
+- **Fotografías propias.** Hoy el sitio no tiene ninguna foto: cada lugar donde va
+  una tiene un recuadro que reserva el espacio. La lista completa, con el nombre de
+  archivo y la proporción de cada una, está en `assets/img/PENDIENTES-IMAGENES.md`.
 - **Logo de Willisch en vectorial (SVG).** Hoy todo sale de imágenes; con el vector
   se ve perfecto a cualquier tamaño y sirve para impresión.
-- **Datos marcados `[CONFIRMAR]`** en `personas.html`: carro de reemplazo, tiempos de
-  emisión, conductor distinto al dueño, traslado de antigüedad en salud y preexistencias.
-- **Texto del vida deudor**, marcado para revisión con asesoría legal.
+- **Textos del catálogo.** Las coberturas que describe cada página son las
+  habituales del mercado colombiano, no las de una póliza concreta. Conviene que
+  un asesor los revise producto por producto en `_generador/productos.pl`.
