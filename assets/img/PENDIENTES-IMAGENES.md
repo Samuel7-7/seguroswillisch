@@ -1,4 +1,4 @@
-# Fotos pendientes — 40 en total
+# Fotos pendientes — 42 en total
 
 Hoy **las 40 tienen una foto provisional de Unsplash** (la lista de cuáles
 son está en `assets/img/CREDITOS-FOTOS.md`). Sirven para que ninguna página se
@@ -71,13 +71,15 @@ cada página.
 | **31** | /seguros/dano-material/ | 16/10 | 1600×1000 | Equipos y bienes de una sede | `productos/dano-hero.webp` |
 | **32** | /seguros/todo-riesgo-empresarial/ | 16/10 | 1600×1000 | Bodega o planta en operación | `productos/empresarial-hero.webp` |
 | **33** | /seguros/todo-riesgo-empresarial/ | 4/3 | 1600×1200 | Detalle de maquinaria o inventario | `productos/empresarial-detalle.webp` |
-| **34** | /seguros/copropiedad/ | 16/10 | 1600×1000 | Fachada de un conjunto residencial o edificio | `productos/copropiedad-hero.webp` |
-| **35** | /seguros/drones/ | 16/10 | 1600×1000 | Dron profesional en operación | `productos/drones-hero.webp` |
-| **36** | /seguros/responsabilidad-civil/ | 16/10 | 1600×1000 | Equipo de trabajo en obra o servicio | `productos/rce-hero.webp` |
-| **37** | /seguros/transporte-mercancias/ | 16/10 | 1600×1000 | Camión de carga en ruta | `productos/transporte-hero.webp` |
-| **38** | /seguros/flotas-camiones/ | 16/10 | 1600×1000 | Parque automotor de una empresa | `productos/flotas-hero.webp` |
-| **39** | /seguros/energia-solar/ | 16/10 | 1600×1000 | Paneles solares en cubierta | `productos/energia-hero.webp` |
-| **40** | /seguros/cultivos-agro/ | 16/10 | 1600×1000 | Cultivo extenso, jornada de campo | `productos/cultivos-hero.webp` |
+| **34** | /seguros/maquinaria-equipos/ | 16/10 | 1600×1000 | Maquinaria amarilla trabajando en obra | `productos/maquinaria-hero.webp` |
+| **35** | /seguros/maquinaria-equipos/ | 4/3 | 1600×1200 | Excavadora en un frente de trabajo | `productos/maquinaria-detalle.webp` |
+| **36** | /seguros/copropiedad/ | 16/10 | 1600×1000 | Fachada de un conjunto residencial o edificio | `productos/copropiedad-hero.webp` |
+| **37** | /seguros/drones/ | 16/10 | 1600×1000 | Dron profesional en operación | `productos/drones-hero.webp` |
+| **38** | /seguros/responsabilidad-civil/ | 16/10 | 1600×1000 | Equipo de trabajo en obra o servicio | `productos/rce-hero.webp` |
+| **39** | /seguros/transporte-mercancias/ | 16/10 | 1600×1000 | Camión de carga en ruta | `productos/transporte-hero.webp` |
+| **40** | /seguros/flotas-camiones/ | 16/10 | 1600×1000 | Parque automotor de una empresa | `productos/flotas-hero.webp` |
+| **41** | /seguros/energia-solar/ | 16/10 | 1600×1000 | Paneles solares en cubierta | `productos/energia-hero.webp` |
+| **42** | /seguros/cultivos-agro/ | 16/10 | 1600×1000 | Cultivo extenso, jornada de campo | `productos/cultivos-hero.webp` |
 <!--TABLA:FIN-->
 
 ---

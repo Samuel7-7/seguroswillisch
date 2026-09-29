@@ -728,6 +728,37 @@ our @PRODUCTOS = (
 },
 
 {
+  slug => "maquinaria-equipos", cat => "empresas", menu => "Maquinaria y Equipos",
+  nombre => "Seguro de Maquinaria y Equipos",
+  titulo => "Seguro de maquinaria amarilla y equipos | Seguros Willisch",
+  meta => "Todo riesgo para retroexcavadoras, excavadoras, cargadores, montacargas y equipos de obra: daños, volcamiento, hurto y responsabilidad civil.",
+  kicker => "Empresas",
+  h1 => "Tu maquinaria trabaja. Nosotros la respaldamos.",
+  lead => "Una retroexcavadora varada o robada detiene la obra y el contrato. Este seguro cubre la maquinaria amarilla y los equipos de tu empresa en la obra, en la bodega y en el traslado, para que un accidente no se convierta en una pérdida que no puedes asumir.",
+  coberturas => [
+    ["Daños accidentales en operación", "Volcamiento, choque, caída, hundimiento del terreno y otros daños súbitos mientras la máquina trabaja."],
+    ["Hurto", "Hurto calificado de la máquina completa o de sus partes, en la obra o en la bodega."],
+    ["Eventos de la naturaleza", "Incendio, rayo, inundación, avalancha y terremoto."],
+    ["Responsabilidad civil", "Daños a terceros, a sus bienes o a redes de servicios públicos durante la operación."],
+  ],
+  incluye => [
+    "Aseguramos máquinas nuevas y usadas: retroexcavadoras, excavadoras, cargadores, bulldozers, montacargas, grúas y equipos de obra.",
+    "Una sola póliza para toda tu flota de maquinaria, o una máquina a la vez.",
+    "Cobertura durante el traslado en cama baja entre obras, si la contratas.",
+    "Acompañamiento en la reclamación, con el soporte técnico que pide la aseguradora.",
+  ],
+  faq => [
+    ["¿Cubre la máquina si la alquilo a terceros?", "Sí, se puede. Cuéntanos cómo la operas, porque las condiciones cambian si la maneja tu operador o el de quien la alquila."],
+    ["¿Qué necesito para cotizar?", "Marca, modelo, año, serie y valor comercial de cada máquina, y dónde trabaja normalmente."],
+    ["¿Me sirve para cumplir un contrato de obra?", "Muchos contratos exigen asegurar la maquinaria y la responsabilidad civil. Revisamos lo que te piden y armamos la póliza para cumplirlo."],
+  ],
+  wa => "Hola Seguros Willisch, quiero cotizar el seguro de mi maquinaria.",
+  imgs => [ ["maquinaria-hero", "16/10", "Maquinaria amarilla trabajando en obra"],
+            ["maquinaria-detalle", "4/3", "Excavadora en un frente de trabajo"] ],
+  relacionados => ["todo-riesgo-empresarial","responsabilidad-civil","flotas-camiones"],
+},
+
+{
   slug => "copropiedad", cat => "empresas", menu => "Todo Riesgo Copropiedad",
   nombre => "Todo Riesgo Copropiedad",
   titulo => "Seguro Todo Riesgo para copropiedades y edificios | Seguros Willisch",
@@ -966,6 +997,7 @@ our %CLAVES = (
   "exequias-colectivas"     => "funerario colectivo fondo asociacion afiliados",
   "dano-material"           => "bienes equipos sede electronicos hurto",
   "todo-riesgo-empresarial" => "empresa pyme bodega maquinaria inventario lucro cesante",
+  "maquinaria-equipos"      => "maquinaria amarilla retroexcavadora excavadora cargador bulldozer montacargas grua obra equipo pesado",
   "copropiedad"             => "conjunto edificio propiedad horizontal bienes comunes ley 675 administracion asamblea",
   "drones"                  => "dron drone rpas aerocivil rac100 vuelo piloto fotografia aerea",
   "responsabilidad-civil"   => "rce extracontractual terceros licitacion patronal",
@@ -1182,6 +1214,26 @@ our %VALOR = (
   extra => "Soy administrador(a) de la copropiedad",
 },
 
+"maquinaria-equipos" => {
+  frase => "Que una máquina varada no pare la obra.",
+  destacados => [
+    "Daños accidentales en operación: volcamiento, choque, caída y hundimiento del terreno.",
+    "Hurto calificado de la máquina o de sus partes, en la obra o en la bodega.",
+    "Incendio, inundación, avalancha, terremoto y demás eventos de la naturaleza.",
+    "Responsabilidad civil por daños a terceros y a redes de servicios públicos.",
+  ],
+  adicionales => [
+    ["Traslado entre obras", "Cobertura mientras la máquina viaja en cama baja, si la contratas."],
+    ["Toda la flota en una póliza", "Una sola vigencia y un solo pago para todas tus máquinas."],
+    ["Máquinas usadas", "También aseguramos equipos con años de trabajo, según su estado y valor comercial."],
+  ],
+  ideal => "Constructoras, contratistas de obra civil, minería, agroindustria, alquiladoras de maquinaria y dueños de una sola máquina.",
+  campos => [
+    ["maquina", "Tipo de máquina", "texto", "Retroexcavadora CAT 416"],
+    ["ciudad", "Ciudad donde trabaja", "texto", "Pasto"],
+  ],
+},
+
 "drones" => {
   frase => "Vuela tranquilo y cumple la norma de la Aerocivil.",
   destacados => [
@@ -1274,11 +1326,11 @@ our @MENU = (
 
   { id => "empresas", nombre => "Empresas", subs => [
       { nombre => "Patrimonio",
-        items => [qw(todo-riesgo-empresarial copropiedad dano-material energia-solar cultivos-agro)] },
+        items => [qw(todo-riesgo-empresarial maquinaria-equipos copropiedad dano-material energia-solar cultivos-agro)] },
       { nombre => "Contratos y terceros",
         items => ["ext:cumplimiento", "responsabilidad-civil"] },
       { nombre => "Operación especializada",
-        items => [qw(drones energia-solar cultivos-agro)] },
+        items => [qw(maquinaria-equipos drones energia-solar cultivos-agro)] },
       { nombre => "Transporte y flotas",
         items => [qw(transporte-mercancias flotas-camiones utilitarios-pesados)] },
       { nombre => "Personas de tu empresa",
