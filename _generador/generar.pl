@@ -44,6 +44,13 @@ sub json_esc {
 sub hueco {
   my ($id, $ratio, $desc, $clase) = @_;
   $clase = $clase ? " $clase" : "";
+  # Si la foto ya está en assets/img/productos/, va la foto y no el hueco.
+  if (-f "$RAIZ/assets/img/productos/$id.webp") {
+    my ($w, $h) = $ratio eq "4/3" ? (1600, 1200) : (1600, 1000);
+    my $carga = $clase =~ /ph-hero/ ? qq{fetchpriority="high"} : qq{loading="lazy"};
+    return qq{<img class="ph-foto$clase" style="--ph-ratio:$ratio" src="/assets/img/productos/$id.webp" alt="}.esc($desc).
+      qq{" width="$w" height="$h" $carga decoding="async">};
+  }
   return
     qq{<div class="ph$clase" style="--ph-ratio:$ratio" data-img="assets/img/productos/$id.webp" role="img" aria-label="}.esc($desc).qq{">\n}.
     qq{        <svg class="ph-mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8l22 8.5v18.6c0 13.6-9.3 23.4-22 26.9-12.7-3.5-22-13.3-22-26.9V16.5L32 8z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M23 33l6.5 6.5L42 26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>\n}.

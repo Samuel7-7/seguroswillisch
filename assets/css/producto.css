@@ -233,6 +233,10 @@ body::before{
   color:var(--text-mute);max-width:26ch;
 }
 .ph-hero{aspect-ratio:var(--ph-ratio,16/10)}
+.ph-foto{
+  display:block;width:100%;height:auto;aspect-ratio:var(--ph-ratio,16/10);
+  object-fit:cover;border-radius:var(--r);background:var(--bg-alt);
+}
 @media (max-width:760px){
   .ph-mark{width:38px;height:38px}
   .ph-txt{font-size:11.8px}
