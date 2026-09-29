@@ -62,6 +62,8 @@ Si prefieres, mándame las fotos y yo hago el cambio en todas las páginas.
 | `productos/dano-hero.webp` | /seguros/dano-material/ | Equipos y bienes de una sede |
 | `productos/empresarial-hero.webp` | /seguros/todo-riesgo-empresarial/ | Bodega o planta en operación |
 | `productos/rce-hero.webp` | /seguros/responsabilidad-civil/ | Equipo de trabajo en obra o servicio |
+| `productos/copropiedad-hero.webp` | /seguros/copropiedad/ | Fachada de un conjunto residencial o edificio |
+| `productos/drones-hero.webp` | /seguros/drones/ | Dron profesional en operación |
 | `productos/transporte-hero.webp` | /seguros/transporte-mercancias/ | Camión de carga en ruta |
 | `productos/flotas-hero.webp` | /seguros/flotas-camiones/ | Parque automotor de una empresa |
 | `productos/energia-hero.webp` | /seguros/energia-solar/ | Paneles solares en cubierta |
@@ -97,3 +99,19 @@ Si prefieres, mándame las fotos y yo hago el cambio en todas las páginas.
 - **Logos de aseguradoras** (`assets/logos/`): ya están, salvo los siete que
   faltan y que hoy salen en texto. Ver `LEEME.md`.
 - **Isotipo de Willisch**: ya está en alta calidad.
+
+### Publicaciones de Instagram, en el bloque "Síguenos" — 1/1 (1080×1080)
+
+| Archivo | Qué debería mostrar |
+|---|---|
+| `social/social-1.webp` … `social/social-6.webp` | Capturas de tus últimas seis publicaciones de Instagram |
+
+Cada una enlaza al perfil. Si prefieres que se vean las publicaciones reales en
+vivo hay que usar el widget de Instagram, que pesa bastante y frena la página;
+por eso quedaron como imágenes.
+
+### Equipo, en el inicio — 3/4 vertical (1200×1600)
+
+Ahora es **una foto por persona**, no por área. Además de la foto faltan el
+nombre y el cargo de cada una: están marcados como `[COMPLETAR] Nombre` dentro
+de `index.html`.

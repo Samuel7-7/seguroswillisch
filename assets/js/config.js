@@ -49,16 +49,24 @@ window.WILLISCH = {
   ],
 
   /* --- Cotizadores externos ---
-     Estos dos productos se compran solos en el portal de la aseguradora.
+     Estos tres productos se compran solos en el portal de la aseguradora.
      Las URL llevan nuestro código de asesor: NO cambies los parámetros,
      porque se pierde la trazabilidad de la venta. */
   COTIZADORES_EXTERNOS: {
     mascotas: "https://surapet.com.co/asesorcliente/97726",
     arrendamiento: "https://arrienda.facilito.ai/cotizadorarrendamiento?codasesor=97726&nombreasesor=Seguros+Willisch",
-    // Cuando tengas el enlace del portal de viajes con tu código de asesor,
-    // pégalo aquí. Mientras esté vacío, el botón "Cotizar ahora" del seguro
-    // de viaje lleva a WhatsApp en vez de quedarse muerto.
-    viaje: ""
+    viaje: "https://www.suraenlinea.com/viajes/sura?codigoAsesor=97726"
+  },
+
+  /* --- Medición ---
+     [COMPLETAR] Pega aquí tus identificadores y el sitio empieza a medir solo.
+     Mientras estén vacíos no se carga ningún script de terceros, así que la
+     página no pierde velocidad ni deja cookies.
+       GA4        : se ve como G-XXXXXXXXXX en Google Analytics.
+       META_PIXEL : los 15 dígitos del píxel, en el Administrador de eventos. */
+  ANALYTICS: {
+    GA4: "",
+    META_PIXEL: ""
   },
 
   /* --- Mensaje por defecto de WhatsApp --- */

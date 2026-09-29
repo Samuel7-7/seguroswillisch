@@ -14,7 +14,6 @@ our @CATEGORIAS = (
   { id => "salud",      nombre => "Salud" },
   { id => "vida",       nombre => "Vida" },
   { id => "hogar",      nombre => "Hogar" },
-  { id => "digitales",  nombre => "Seguros 100% digitales" },
   { id => "colectivos", nombre => "Colectivos y grupos" },
   { id => "empresas",   nombre => "Empresas" },
 );
@@ -515,7 +514,7 @@ our @PRODUCTOS = (
 
 # ---------------------------------------------------------------- DIGITALES
 {
-  slug => "viaje", cat => "digitales", menu => "Seguro de Viaje",
+  slug => "viaje", cat => "vida", menu => "Seguro de Viaje",
   nombre => "Seguro de viaje",
   titulo => "Seguro de viaje internacional y nacional | Seguros Willisch",
   meta => "Asistencia médica en el exterior, cancelación y equipaje. El seguro que te exigen para entrar a varios países, cotizado a la medida de tu viaje.",
@@ -729,6 +728,66 @@ our @PRODUCTOS = (
 },
 
 {
+  slug => "copropiedad", cat => "empresas", menu => "Todo Riesgo Copropiedad",
+  nombre => "Todo Riesgo Copropiedad",
+  titulo => "Seguro Todo Riesgo para copropiedades y edificios | Seguros Willisch",
+  meta => "La póliza que exige la Ley 675 para los bienes comunes de tu conjunto o edificio, con cobertura todo riesgo, terremoto, equipos y hurto.",
+  kicker => "Empresas",
+  h1 => "La copropiedad respondió. Y tú también puedes responder.",
+  lead => "La ley obliga a asegurar los bienes comunes contra incendio y terremoto. Nosotros vamos más allá: armamos una póliza todo riesgo que cubre la maquinaria, los equipos y la oficina de administración, y te la explicamos para que la asamblea la entienda.",
+  coberturas => [
+    ["Bienes comunes todo riesgo", "Cubre cualquier daño súbito e imprevisto que no esté expresamente excluido en la póliza."],
+    ["Terremoto y eventos de la naturaleza", "Temblor, erupción volcánica y tsunami, como exige la Ley 675 de 2001."],
+    ["Maquinaria y equipos", "Incluidos los daños eléctricos por cortocircuito o sobrevoltaje."],
+    ["Hurto calificado", "De los bienes comunes, incluidos el dinero y los cheques de la administración."],
+  ],
+  incluye => [
+    "Levantamiento del valor asegurable para que la copropiedad no quede infraasegurada.",
+    "Te preparamos el resumen para presentar la póliza en asamblea.",
+    "Comparamos entre varias aseguradoras con el mismo alcance, para que la cuenta sea justa.",
+    "Acompañamiento en la reclamación con el soporte que exige la aseguradora.",
+  ],
+  faq => [
+    ["¿Es obligatorio asegurar la copropiedad?", "Sí. La Ley 675 de 2001 obliga a asegurar los bienes comunes contra incendio y terremoto. La póliza todo riesgo cumple ese mínimo y cubre bastante más."],
+    ["¿Cubre el apartamento de cada propietario?", "No. Esta póliza cubre los bienes comunes. Lo de cada apartamento se cubre con la póliza de hogar de cada propietario."],
+    ["¿Qué pasa si aseguramos por menos del valor real?", "Aplica el infraseguro: la aseguradora indemniza en proporción. Por eso insistimos en hacer bien el levantamiento del valor."],
+  ],
+  wa => "Hola Seguros Willisch, quiero cotizar la póliza de mi copropiedad.",
+  imgs => [ ["copropiedad-hero", "16/10", "Fachada de un conjunto residencial o edificio"] ],
+  relacionados => ["todo-riesgo-empresarial","responsabilidad-civil","dano-material"],
+},
+
+{
+  slug => "drones", cat => "empresas", menu => "Seguro de Drones",
+  nombre => "Seguro de Drones",
+  titulo => "Seguro para drones y operaciones RPAS | Seguros Willisch",
+  meta => "Responsabilidad civil con el límite que exige la RAC 100, daños al dron, cámaras y sensores, y cobertura durante el traslado.",
+  kicker => "Empresas",
+  h1 => "Vuela tranquilo y cumple la norma.",
+  lead => "Si operas un dron con fines comerciales, la Aerocivil te exige responsabilidad civil. Esta póliza cumple ese requisito y además cubre el equipo, que casi siempre vale más que el propio dron.",
+  coberturas => [
+    ["Responsabilidad civil", "Daños a terceros durante la operación, con el límite que exige la RAC 100 para las categorías específica y certificada."],
+    ["Daños al dron", "Daño accidental del equipo durante la operación."],
+    ["Cámaras y sensores", "El equipo que va montado: cámaras, sensores y transmisores."],
+    ["Traslado", "Cobertura mientras llevas el dron al sitio de operación."],
+  ],
+  incluye => [
+    "Revisamos tu categoría de operación antes de cotizar, para que el límite coincida con lo que exige la norma.",
+    "Te decimos exactamente qué documentos necesitas para la expedición.",
+    "Condiciones especiales si operas una flota de drones.",
+    "Opción para uso no comercial, en categoría abierta.",
+  ],
+  faq => [
+    ["¿Es obligatorio el seguro para volar un dron?", "Para operaciones comerciales sí: la RAC 100 exige responsabilidad civil con un límite según la categoría de la operación. Te confirmamos cuál aplica a tu caso."],
+    ["¿Cubre la cámara?", "Sí. Cámaras, sensores y transmisores entran en la cobertura del equipo."],
+    ["¿Cubre vuelos recreativos?", "Esta póliza está pensada para operación comercial. Para uso no comercial hay una opción en categoría abierta; cuéntanos tu caso y te asesoramos."],
+  ],
+  wa => "Hola Seguros Willisch, quiero cotizar el seguro de mi dron.",
+  imgs => [ ["drones-hero", "16/10", "Dron profesional en operación"] ],
+  relacionados => ["responsabilidad-civil","todo-riesgo-empresarial","transporte-mercancias"],
+},
+
+{
   slug => "responsabilidad-civil", cat => "empresas", menu => "Responsabilidad Civil",
   nombre => "Responsabilidad Civil Extracontractual",
   titulo => "Responsabilidad Civil Extracontractual (RCE) | Seguros Willisch",
@@ -907,6 +966,8 @@ our %CLAVES = (
   "exequias-colectivas"     => "funerario colectivo fondo asociacion afiliados",
   "dano-material"           => "bienes equipos sede electronicos hurto",
   "todo-riesgo-empresarial" => "empresa pyme bodega maquinaria inventario lucro cesante",
+  "copropiedad"             => "conjunto edificio propiedad horizontal bienes comunes ley 675 administracion asamblea",
+  "drones"                  => "dron drone rpas aerocivil rac100 vuelo piloto fotografia aerea",
   "responsabilidad-civil"   => "rce extracontractual terceros licitacion patronal",
   "transporte-mercancias"   => "carga despacho mercancia logistica importacion",
   "flotas-camiones"         => "flota camion parque automotor vehiculos empresa",
@@ -914,6 +975,274 @@ our %CLAVES = (
   "cultivos-agro"           => "agricola cosecha campo finca agro clima",
 );
 for my $p (@PRODUCTOS) { $p->{claves} = $CLAVES{$p->{slug}} if $CLAVES{$p->{slug}}; }
+
+
+# =========================================================
+#  PROPUESTA DE VALOR Y COTIZADOR POR PRODUCTO
+#
+#  frase       : la línea que encabeza la ficha del cotizador.
+#  destacados  : los beneficios que se ven arriba, con check.
+#  adicionales : tarjetas de "Lo que hace diferente este seguro".
+#  ideal       : para quién es.
+#  campos      : los dos datos que pide el formulario, además del nombre.
+#                [ clave, etiqueta, tipo, ejemplo, opciones ]
+#                tipo: texto | numero | fecha | lista
+#  extra       : casilla opcional al final del formulario.
+#  aviso       : nota de condiciones propia, si el producto la necesita.
+#
+#  Los productos que no estén aquí usan su propio texto: el generador
+#  arma la ficha con su "lead" y sus coberturas.
+# =========================================================
+our %VALOR = (
+
+"auto" => {
+  frase => "Mucho más que un seguro: te acompañamos desde el choque hasta que tu carro vuelve a rodar.",
+  destacados => [
+    "Abogado y acompañamiento en el sitio del choque, con conciliación para evitarte audiencias y multas.",
+    "Daños a terceros con límite por evento: si tienes otro accidente, el valor asegurado se recarga.",
+    "Grúa de amplio alcance, taller móvil ilimitado y conductor elegido.",
+    "Si tu carro es pérdida total, anticipo de hasta el 90%, según el plan, para que cambies de carro o pagues tu crédito.",
+  ],
+  adicionales => [
+    ["Pequeños eventos, sin tocar tu póliza", "Retrovisores, emblemas y accesorios sin deducible; llantas estalladas sin deducible; golpes menores en bómper, capó o farolas con un deducible bajo. Disponible en algunos planes y ciudades."],
+    ["Carro de reemplazo", "Un vehículo mientras reparan el tuyo, si contratas esa cobertura."],
+    ["Si te varas de viaje", "Hotel hasta 3 noches o transporte para ti y tus pasajeros."],
+    ["Revisión preventiva", "Revisión y asesoría de mecánico sin costo en centros de servicio y talleres aliados, según el plan y la ciudad."],
+    ["Tu mascota, también", "Queda cubierta si se lesiona en un accidente dentro del carro."],
+    ["Protección de tu patrimonio", "Pagamos los daños sin cobrarte después, aun si infringiste una norma de tránsito."],
+    ["Reparación en el concesionario", "Opción de reparar en el taller de la marca de tu carro."],
+    ["Reposición de llaves", "Si las pierdes o te las roban."],
+  ],
+  ideal => "Carros particulares, camionetas y pickups de uso personal.",
+  campos => [
+    ["placa", "Placa del vehículo", "texto", "ABC123"],
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+  ],
+},
+
+"moto" => {
+  frase => "Tu moto protegida en cada trayecto, y tú también.",
+  destacados => [
+    "Retrovisores, direccionales, farolas, stops y maniguetas cubiertos sin deducible y sin afectar tu póliza.",
+    "Llanta estallada: te la reemplazamos sin deducible, y también rines y suspensión.",
+    "Renta diaria si quedas hospitalizado por un accidente en tu moto, desde el tercer día y hasta 30 días al año.",
+    "Grúa, taller móvil, abogado y conductor elegido.",
+  ],
+  adicionales => [
+    ["Daños a terceros", "Responde por el daño que causes, con gastos de defensa judicial."],
+    ["Daños y hurto de la moto", "Coberturas opcionales, según lo que necesites."],
+    ["Conductor y pasajero", "Accidentes personales para los dos."],
+  ],
+  ideal => "Motos de trabajo o de uso personal.",
+  aviso => "Los beneficios de accesorios pequeños y llantas aplican en algunos planes, sobre todo para motos de bajo cilindraje.",
+  campos => [
+    ["placa", "Placa de la moto", "texto", "ABC12D"],
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+  ],
+},
+
+"salud" => {
+  frase => "Atención médica sin filas, con especialistas y clínicas de primer nivel, para ti y tu familia.",
+  destacados => [
+    "Especialistas sin remisión de la EPS.",
+    "Clínicas en convenio en todo el país.",
+    "Te ayudamos a elegir el plan según tu edad y tu presupuesto.",
+    "Comparamos los planes de varias aseguradoras antes de recomendarte uno.",
+  ],
+  adicionales => [
+    ["Plan para dos", "Para compartir con una persona: consultas virtuales prioritarias ilimitadas con médico general —y con pediatra si compartes con un menor— todos los días; especialistas en medicina interna, ginecología, dermatología, ortopedia, oftalmología, urología, otorrino y nutrición; médico a domicilio y urgencias odontológicas en tu casa; psicología y psiquiatría incluidas."],
+    ["Plan esencial", "Hospitalización y cirugías en habitación individual con cama de acompañante, UCI, maternidad, tratamiento de cáncer y leucemia, atención hospitalaria domiciliaria y asistencia en el exterior. Con anexos opcionales de urgencias ilimitadas y odontología."],
+    ["Plan integral", "Todo lo del plan esencial, con opción de habitación suite, cobertura más amplia y asistencia en el exterior."],
+    ["Plan premium internacional", "Telemedicina ilimitada en varias especialidades, cobertura en el exterior, maternidad también fuera del país, trasplantes, tratamiento del cáncer y enfermera o cuidador a domicilio."],
+  ],
+  ideal => "Personas y familias que quieren resolver rápido y elegir a su médico.",
+  campos => [
+    ["edad", "Tu edad", "numero", "38"],
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+    ["personas", "¿Para cuántas personas?", "numero", "3"],
+  ],
+},
+
+"vida" => {
+  frase => "Protege a quienes dependen de ti, y úsalo también en vida.",
+  destacados => [
+    "Ambulancia sin límite de costo.",
+    "Médico, enfermera y pediatra a domicilio.",
+    "Orientación psicológica telefónica sin límite.",
+    "Asistencia dental de emergencia y veterinario a domicilio por emergencia para tus mascotas.",
+  ],
+  adicionales => [
+    ["Orientación telefónica", "Médica y nutricional, cuando la necesites."],
+    ["A domicilio", "Exámenes de laboratorio y terapias físicas en tu casa."],
+    ["Contratación 100% digital", "Sin desplazamientos ni papeleo."],
+  ],
+  ideal => "Quien tiene hijos, pareja o padres que dependen de su ingreso.",
+  aviso => "Las asistencias cubren a tu grupo familiar que vive contigo, según el plan contratado.",
+  campos => [
+    ["edad", "Tu edad", "numero", "38"],
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+  ],
+},
+
+"hogar" => {
+  frase => "Tu casa y todo lo que hay en ella, protegidos frente a lo inesperado.",
+  destacados => [
+    "Incendio, terremoto, daños por agua, granizo y vientos fuertes.",
+    "Hurto con violencia de tus bienes.",
+    "Responsabilidad civil si causas daños a tus vecinos o a terceros.",
+    "Si tienes que desalojar la casa para repararla, te cubrimos el arriendo o la pérdida de arrendamiento.",
+  ],
+  adicionales => [
+    ["Vidrios", "Rotura accidental de vidrios."],
+    ["Empleada del servicio", "Gastos médicos si sufre un accidente en tu casa."],
+    ["Si quedas inválido", "Exoneración del pago de la prima antes de los 60 años."],
+    ["Después del siniestro", "Remoción de escombros."],
+  ],
+  ideal => "Propietarios e inquilinos.",
+  campos => [
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+    ["vivienda", "Tipo de vivienda", "lista", "", ["Propia", "Arrendada"]],
+  ],
+},
+
+"todo-riesgo-empresarial" => {
+  frase => "Que un imprevisto no frene tu negocio.",
+  destacados => [
+    "Incendio, terremoto, inundación, actos vandálicos y daños internos a maquinaria y equipos.",
+    "Robo de mercancía, equipos y bienes, incluso por parte de empleados.",
+    "Pérdida de utilidad: hasta 3 meses de ingresos si el negocio tiene que parar, sin deducible.",
+    "Daños a terceros.",
+  ],
+  adicionales => [
+    ["Bienes nuevos, cubiertos solos", "Lo que compres durante la vigencia queda cubierto automáticamente, sin aumento de prima."],
+    ["Equipos portátiles", "Cubiertos también fuera del local."],
+    ["Pertenencias de tus empleados", "Daño y robo, sin aumento de prima."],
+    ["Mercancía y dinero en tránsito", "Cubiertos durante el transporte."],
+    ["Asistencia Pyme", "Plomero, electricista, cerrajero, gas y vidrios para tu local."],
+    ["Vigilancia tras un siniestro", "Hasta 48 horas si el local queda inseguro."],
+    ["Orientación profesional", "Jurídica, laboral, tributaria y de importaciones, por teléfono."],
+    ["Apoyo administrativo", "Revisión de contratos y documentos legales, y soporte informático remoto."],
+  ],
+  ideal => "Comercios, restaurantes, oficinas, talleres y pymes en general.",
+  campos => [
+    ["negocio", "Tipo de negocio", "texto", "Restaurante"],
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+  ],
+},
+
+"utilitarios-pesados" => {
+  frase => "Tu flota siempre en movimiento.",
+  destacados => [
+    "Grúa de amplio alcance, taller móvil y cerrajería.",
+    "Envío de repuestos y desplazamiento del mecánico si el vehículo se vara lejos.",
+    "Hotel o transporte para el conductor si el vehículo no se puede reparar el mismo día.",
+    "Atención integral en el sitio del choque y protección del patrimonio de tu empresa.",
+  ],
+  adicionales => [
+    ["Revisión preventiva", "Revisión y asesoría de mecánico sin costo, 2 por vehículo al año, para utilitarios livianos de menos de 3.000 kg."],
+    ["Daños a terceros", "Con límite por evento."],
+    ["Si hay pérdida total", "Anticipo para que la operación no se detenga."],
+  ],
+  ideal => "Empresas con camionetas, furgones, camiones o flotas.",
+  campos => [
+    ["tipo", "Tipo de vehículo", "texto", "Furgón / camión / camioneta"],
+    ["cuantos", "¿Cuántos vehículos?", "numero", "4"],
+  ],
+},
+
+"copropiedad" => {
+  frase => "Protección completa para tu conjunto o edificio, y tranquilidad para la administración.",
+  gancho => "¿Tu copropiedad cumple con la póliza obligatoria? La Ley 675 de 2001 obliga a asegurar los bienes comunes contra incendio y terremoto.",
+  destacados => [
+    "Todo riesgo para zonas y bienes comunes: cualquier daño súbito e imprevisto que no esté expresamente excluido, incluidos incendio, rayo, explosión, daños por agua, inundación, granizo, vientos fuertes, impacto de vehículos, actos mal intencionados y terrorismo.",
+    "Terremoto, temblor, erupción volcánica y tsunami, como exige la ley.",
+    "Daños a la maquinaria y los equipos de la copropiedad, incluidos los daños eléctricos por cortocircuito o sobrevoltaje.",
+    "Hurto calificado de los bienes comunes, incluidos el dinero y los cheques de la oficina de administración.",
+  ],
+  adicionales => [
+    ["Después del siniestro", "Remoción de escombros."],
+    ["Para reconstruir", "Honorarios de arquitectos, ingenieros e interventores."],
+    ["Proteger y reponer", "Gastos para proteger los bienes y para reponer la información perdida."],
+    ["Más bienes cubiertos", "Bienes de los empleados, bienes a la intemperie, traslados temporales y construcciones nuevas."],
+    ["Equipos de la administración", "Equipos móviles y portátiles, y hurto simple de los equipos electrónicos de la oficina."],
+  ],
+  complementa => [
+    "Responsabilidad civil frente a terceros.",
+    "Responsabilidad civil para administradores y consejo de administración.",
+    "Manejo, ante pérdidas causadas por empleados.",
+    "Cuotas de administración.",
+    "Transporte de valores.",
+    "Asistencia para copropiedades.",
+  ],
+  ideal => "Conjuntos residenciales, edificios, centros comerciales y administradores de propiedad horizontal.",
+  campos => [
+    ["conjunto", "Nombre del conjunto o edificio", "texto", "Conjunto Los Robles"],
+    ["unidades", "Número de unidades", "numero", "120"],
+  ],
+  extra => "Soy administrador(a) de la copropiedad",
+},
+
+"drones" => {
+  frase => "Vuela tranquilo y cumple la norma de la Aerocivil.",
+  destacados => [
+    "Responsabilidad civil por daños a terceros durante la operación, con el límite que exige la norma RAC 100 para operaciones comerciales en las categorías específica y certificada.",
+    "Daños accidentales al dron.",
+    "Cámaras, sensores y transmisores cubiertos.",
+    "Cobertura durante el traslado del dron al sitio de operación.",
+  ],
+  adicionales => [
+    ["Privacidad y ruido", "Cobertura por invasión a la privacidad y por ruido, con sublímite."],
+    ["Flotas de drones", "Condiciones especiales si operas varios equipos."],
+    ["Uso no comercial", "Opción para la categoría abierta."],
+  ],
+  ideal => "Fotografía y video, agricultura y ganadería, topografía y cartografía, catastro, arquitectura, ingeniería e investigación.",
+  tenAMano => [
+    "El formulario diligenciado.",
+    "Fotos del dron y de su número de serie.",
+    "Cédula del piloto.",
+  ],
+  aviso => "No cubre actividades recreativas, deportivas, en interiores ni de seguridad. Si tu caso es otro, cuéntanoslo en el formulario y te asesoramos.",
+  campos => [
+    ["modelo", "Modelo del dron", "texto", "DJI Mavic 3"],
+    ["uso", "¿Para qué lo usas?", "texto", "Fotografía, agricultura, topografía…"],
+  ],
+},
+
+# --- Los tres que se compran en línea: la ficha sale de su propia subpágina ---
+"mascotas" => {
+  campos => [
+    ["mascota", "Tipo y edad de tu mascota", "texto", "Perro, 3 años"],
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+  ],
+},
+"viaje" => {
+  campos => [
+    ["destino", "Destino", "texto", "España"],
+    ["fechas", "Fechas del viaje", "texto", "12 al 28 de marzo"],
+  ],
+},
+"arrendamiento" => {
+  campos => [
+    ["canon", "Valor del canon", "texto", "El valor del arriendo mensual"],
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+  ],
+},
+
+);
+
+# Vuelca la propuesta de valor sobre el catálogo.
+for my $p (@PRODUCTOS) {
+  my $v = $VALOR{$p->{slug}} or next;
+  $p->{$_} = $v->{$_} for keys %$v;
+}
+# Los que no tienen formulario propio piden ciudad y una nota libre.
+for my $p (@PRODUCTOS) {
+  $p->{campos} ||= [
+    ["ciudad", "Ciudad", "texto", "Pasto"],
+    ["detalle", "Cuéntanos qué necesitas", "texto", "En una línea"],
+  ];
+}
+
 
 # Productos que ya tienen su propia página y solo se enlazan desde el menú.
 our @EXTERNOS = (
@@ -945,9 +1274,11 @@ our @MENU = (
 
   { id => "empresas", nombre => "Empresas", subs => [
       { nombre => "Patrimonio",
-        items => [qw(todo-riesgo-empresarial dano-material energia-solar cultivos-agro)] },
+        items => [qw(todo-riesgo-empresarial copropiedad dano-material energia-solar cultivos-agro)] },
       { nombre => "Contratos y terceros",
         items => ["ext:cumplimiento", "responsabilidad-civil"] },
+      { nombre => "Operación especializada",
+        items => [qw(drones energia-solar cultivos-agro)] },
       { nombre => "Transporte y flotas",
         items => [qw(transporte-mercancias flotas-camiones utilitarios-pesados)] },
       { nombre => "Personas de tu empresa",

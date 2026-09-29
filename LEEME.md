@@ -103,6 +103,12 @@ Eso reescribe las 28 páginas, el menú y el pie del inicio, y el `sitemap.xml`.
    que salga. Puede ir en varios a la vez.
 3. Corre el generador.
 
+### Los dos productos nuevos
+
+`copropiedad` y `drones` viven en `/seguros/copropiedad/` y `/seguros/drones/`.
+El documento sugería `/empresas/...`, pero se dejaron junto al resto del catálogo
+para que todas las subpáginas tengan la misma forma de dirección.
+
 ### El menú de arriba
 
 Tiene tres grupos —**Personas**, **Empresas** y **Colectivos**— y de cada uno cuelgan
@@ -130,14 +136,15 @@ el enlace con tu código de asesor, pégalo ahí y el botón cambia solo.
 
 ---
 
-## 3. Las tres secciones del inicio
+## 3. Las dos secciones del inicio
 
-El inicio es corto a propósito. Tiene exactamente tres secciones:
+El inicio es corto a propósito. Tiene dos secciones:
 
-1. **Portada** — el titular, el isotipo flotante, las cifras y las aseguradoras aliadas.
-2. **Seguros 100% digitales** — los tres que el cliente compra solo: mascotas,
-   arrendamiento y viaje. El resto del catálogo está en el menú de arriba.
-3. **Nosotros** — por qué con Willisch, el equipo y el contacto.
+1. **Portada** — el titular, la palabra que rota, el selector "¿Qué quieres
+   asegurar?", la fila de confianza y las aseguradoras aliadas.
+2. **Nosotros** — por qué con Willisch, el equipo y el contacto.
+
+Después van el bloque "Síguenos" y el pie, que son iguales en todo el sitio.
 
 El detalle de cada seguro vive en su propia página. Si quieres añadir contenido,
 va en la página del producto, no en el inicio.
@@ -264,3 +271,67 @@ Las fotos pendientes y sus rutas exactas están en
 - **Textos del catálogo.** Las coberturas que describe cada página son las
   habituales del mercado colombiano, no las de una póliza concreta. Conviene que
   un asesor los revise producto por producto en `_generador/productos.pl`.
+
+---
+
+## 7. El cotizador rápido de cada subpágina
+
+Cada subpágina de producto lleva arriba un bloque `#cotizar` con la ficha a la
+izquierda y el formulario a la derecha. Todo sale del catálogo:
+
+| En `productos.pl` | Dónde se ve |
+|---|---|
+| `frase` | La línea grande de la ficha |
+| `destacados` | Los beneficios con check |
+| `ideal` | La línea "Ideal para" |
+| `campos` | Los dos datos que pide el formulario |
+| `adicionales` | Las tarjetas de "Lo que hace diferente este seguro" |
+| `complementa` | El recuadro "Complementa tu póliza" |
+| `aviso` | La nota de condiciones, al pie de esa sección |
+
+Si un producto no tiene `frase` ni `destacados`, el generador arma la ficha con
+su `lead` y sus coberturas. Así ninguna página se queda vacía.
+
+El botón **Recibir mi cotización** valida que no falte nada y abre WhatsApp con
+la frase ya escrita, al número de esa página. Los tres productos 100% digitales
+suman un botón **Comprar en línea** que lleva al portal de la aseguradora.
+
+---
+
+## 8. Medición
+
+En `assets/js/config.js`, dentro de `ANALYTICS`, van tu identificador de Google
+Analytics 4 y el de Meta Pixel. **Mientras estén vacíos no se carga ningún
+script de terceros**, así que la página no pierde velocidad ni deja cookies.
+
+Cuando los pongas, el sitio empieza a registrar solo estos eventos:
+
+| Evento | Cuándo |
+|---|---|
+| `selector_hero` | Clic en cada botón del selector de la portada |
+| `vista_producto` | Cada vez que alguien abre una subpágina |
+| `formulario_enviado` | Cotización enviada, con el nombre del producto |
+| `comprar_en_linea` | Clic en "Comprar en línea" |
+| `clic_whatsapp` | Cualquier botón de WhatsApp |
+| `hablar_asesor` | Clic en "Hablar con un asesor" |
+| `clic_redes` | Clic en Instagram o Facebook |
+
+Para medir algo nuevo basta con ponerle a ese enlace
+`data-evento="nombre" data-producto="lo que sea"`.
+
+---
+
+## 9. Los números de WhatsApp
+
+Cada página usa el suyo y **no se tocan**:
+
+| Página | Número |
+|---|---|
+| Portada y las 30 subpáginas de producto | 300 7525773 (el de `config.js`) |
+| `arl/`, `cumplimiento/`, `politica-datos.html` | 300 7525773 |
+| `arl_/` (versión antigua) | 300 6330544 |
+| `ciaformandoconductores/` | 300 7525773 y 324 5961294 (CIA) |
+| `baterias-del-caribe/` | 300 7525773 y 301 6163418 (Baterías) |
+| `time2cars/` | 300 7525773 y 300 2825331 (Time2Cars) |
+
+Los botones nuevos de cada página usan el número que ya tenía esa página.

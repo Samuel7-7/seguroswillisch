@@ -20,7 +20,7 @@ my $RAIZ = ".";
 require "./_generador/productos.pl";
 our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026092903";
+my $VER = "2026093001";
 
 # Índice por slug, para los "relacionados".
 my %POR_SLUG = map { $_->{slug} => $_ } @PRODUCTOS;
@@ -157,18 +157,11 @@ sub cabecera {
 
     <nav aria-label="Principal">
       <ul class="nav">
-$mega      </ul>
+$mega        <li><a href="/#nosotros">Nosotros</a></li>
+      </ul>
     </nav>
 
     <div class="header-actions">
-      <button class="theme-btn" data-theme-btn type="button" aria-label="Cambiar entre modo claro y oscuro">
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2 12h2.6M19.4 12H22M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9" stroke-linecap="round"/></svg>
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" stroke-linejoin="round"/></svg>
-      </button>
-      <a class="btn btn-wa btn-sm header-cta" data-wa="Hola Seguros Willisch, quiero cotizar un seguro.">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-        Cotiza por WhatsApp
-      </a>
       <button class="burger" data-burger type="button" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -182,15 +175,200 @@ $mmenu  <a class="m-link" href="/#nosotros">Nosotros y contacto</a>
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
     Cotiza por WhatsApp
   </a>
+  <div class="m-redes" data-redes-menu></div>
   <p class="m-menu-foot">Atendemos en toda Colombia<br><span data-cfg="HORARIO"></span></p>
 </div>
 HTML
 }
 
+# ----------------------------------------------------- cotizador rápido (#cotizar)
+# Ficha del producto a la izquierda y formulario a la derecha. El botón abre
+# WhatsApp con el mensaje ya escrito; el número sale de config.js, que es el
+# que usa esta página.
+sub cotizador {
+  my ($p) = @_;
+  my $frase = $p->{frase} || $p->{lead};
+
+  # Beneficios: los del bloque de valor o, si no hay, los títulos de sus coberturas.
+  my @ben = $p->{destacados} ? @{$p->{destacados}}
+          : map { $_->[0] . ". " . $_->[1] } @{$p->{coberturas}}[0 .. ($#{$p->{coberturas}} > 3 ? 3 : $#{$p->{coberturas}})];
+  my $lista = "";
+  for my $b (@ben) {
+    $lista .= qq{            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>}.esc($b).qq{</span></li>\n};
+  }
+
+  my $gancho = $p->{gancho}
+    ? qq{        <p class="cot-gancho"><b>}.esc($p->{gancho}).qq{</b></p>\n} : "";
+
+  my $ideal = $p->{ideal}
+    ? qq{        <p class="cot-ideal"><b>Ideal para:</b> }.esc($p->{ideal}).qq{</p>\n} : "";
+
+  my $tenamano = "";
+  if ($p->{tenAMano}) {
+    $tenamano .= qq{        <div class="cot-tener">\n          <b>Ten a mano</b>\n          <ul>\n};
+    $tenamano .= qq{            <li>}.esc($_).qq{</li>\n} for @{$p->{tenAMano}};
+    $tenamano .= qq{          </ul>\n        </div>\n};
+  }
+
+  # Campos del formulario
+  my $campos = "";
+  for my $c (@{$p->{campos}}) {
+    my ($clave, $etiqueta, $tipo, $ej, $ops) = @$c;
+    my $id = "cot-$clave";
+    $campos .= qq{          <div class="field">\n};
+    $campos .= qq{            <label for="$id">}.esc($etiqueta).qq{</label>\n};
+    if ($tipo eq "lista" && $ops) {
+      $campos .= qq{            <select id="$id" name="$clave" data-campo="}.esc($etiqueta).qq{" required>\n};
+      $campos .= qq{              <option value="">Elige una opción</option>\n};
+      $campos .= qq{              <option value="}.esc($_).qq{">}.esc($_).qq{</option>\n} for @$ops;
+      $campos .= qq{            </select>\n};
+    } else {
+      my $t = $tipo eq "numero" ? "number" : "text";
+      my $extra = $tipo eq "numero" ? qq{ inputmode="numeric" min="0"} : "";
+      $campos .= qq{            <input id="$id" name="$clave" type="$t"$extra placeholder="}.esc($ej).qq{" data-campo="}.esc($etiqueta).qq{" required>\n};
+    }
+    $campos .= qq{            <p class="field-error" data-error hidden></p>\n};
+    $campos .= qq{          </div>\n};
+  }
+
+  my $extra = $p->{extra}
+    ? qq{          <label class="cot-check"><input type="checkbox" name="extra" data-campo="}.esc($p->{extra}).qq{"><span>}.esc($p->{extra}).qq{</span></label>\n} : "";
+
+  my $comprar = $p->{digital}
+    ? qq{\n          <a class="btn btn-ghost btn-block" data-cotizador-externo="$p->{digital}" data-evento="comprar_en_linea" data-producto="}.esc($p->{menu}).qq{">Comprar en línea</a>} : "";
+
+  return <<"HTML";
+<!-- ============ COTIZADOR RÁPIDO ============ -->
+<section class="cot" id="cotizar">
+  <div class="container">
+    <div class="cot-grid">
+
+      <div class="cot-ficha reveal">
+        <span class="kicker">@{[ esc($p->{kicker}) ]}</span>
+        <h2 class="h-md">@{[ esc($p->{nombre}) ]}</h2>
+        <p class="cot-frase">@{[ esc($frase) ]}</p>
+$gancho        <ul class="cot-ben">
+$lista        </ul>
+$ideal$tenamano        <p class="cot-comparamos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12" stroke-linecap="round"/></svg>
+          Comparamos entre varias aseguradoras para darte la mejor opción.
+        </p>
+      </div>
+
+      <form class="cot-form reveal" data-cot data-producto="@{[ esc($p->{menu}) ]}" novalidate>
+        <h3>Recibe tu cotización</h3>
+        <p class="cot-hint">Te escribimos por WhatsApp con opciones concretas. Sin compromiso.</p>
+
+        <div class="field">
+          <label for="cot-nombre">Tu nombre</label>
+          <input id="cot-nombre" name="nombre" type="text" placeholder="María Fernanda" autocomplete="given-name" data-campo="Tu nombre" required>
+          <p class="field-error" data-error hidden></p>
+        </div>
+$campos$extra
+        <button class="btn btn-wa btn-block" type="submit">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+          Recibir mi cotización
+        </button>$comprar
+
+        <a class="cot-asesor" data-wa="@{[ esc($p->{wa}) ]}" data-evento="hablar_asesor" data-producto="@{[ esc($p->{menu}) ]}">Prefiero hablar con un asesor</a>
+        <p class="cot-legal">Al enviar autorizas el tratamiento de tus datos conforme a la <a href="/politica-datos.html">política de tratamiento de datos</a>.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+HTML
+}
+
+# ------------------------------------- "Lo que hace diferente este seguro"
+sub diferencia {
+  my ($p) = @_;
+  return "" unless $p->{adicionales};
+  my $tarjetas = "";
+  my $i = 0;
+  for my $a (@{$p->{adicionales}}) {
+    my $d = $i % 4;
+    $tarjetas .= qq{      <article class="dif-card reveal"}.($d ? qq{ data-delay="$d"} : "").qq{>\n};
+    $tarjetas .= qq{        <span class="dif-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>\n};
+    $tarjetas .= qq{        <h3>}.esc($a->[0]).qq{</h3>\n};
+    $tarjetas .= qq{        <p>}.esc($a->[1]).qq{</p>\n};
+    $tarjetas .= qq{      </article>\n};
+    $i++;
+  }
+
+  my $complementa = "";
+  if ($p->{complementa}) {
+    $complementa .= qq{    <div class="dif-mas reveal">\n      <h3>Complementa tu póliza</h3>\n      <ul>\n};
+    $complementa .= qq{        <li>}.esc($_).qq{</li>\n} for @{$p->{complementa}};
+    $complementa .= qq{      </ul>\n    </div>\n};
+  }
+
+  my $aviso = $p->{aviso} ? qq{ }.esc($p->{aviso}) : "";
+
+  return <<"HTML";
+<!-- ============ LO QUE HACE DIFERENTE ============ -->
+<section class="pad franja" id="diferente">
+  <div class="container">
+    <div class="head reveal">
+      <span class="kicker">La diferencia</span>
+      <h2 class="h-md">Lo que hace diferente este seguro</h2>
+    </div>
+    <div class="dif-grid">
+$tarjetas    </div>
+$complementa
+    <p class="dif-nota">Beneficios sujetos al plan contratado, ciudad y condiciones de la póliza. Te confirmamos cuáles aplican en tu caso.$aviso</p>
+
+    <div class="center" style="margin-top:38px">
+      <a class="btn btn-primary" href="#cotizar" data-scroll>Cotizar este seguro</a>
+    </div>
+  </div>
+</section>
+HTML
+}
+# ------------------------------------------------- bloque "Síguenos" (antes del pie)
+sub siguenos {
+  return <<"HTML";
+<!-- ============ SÍGUENOS ============ -->
+<section class="sig pad" id="siguenos">
+  <div class="container">
+    <div class="head center reveal">
+      <span class="kicker">Síguenos</span>
+      <h2 class="h-md">Tips, noticias y beneficios para protegerte</h2>
+    </div>
+
+    <div class="sig-btns reveal">
+      <a class="sig-btn sig-ig" data-red-btn="instagram" target="_blank" rel="noopener" data-evento="clic_redes" data-red="instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+        <span><b>Síguenos en Instagram</b><i data-red-usuario="instagram"></i></span>
+      </a>
+      <a class="sig-btn sig-fb" data-red-btn="facebook" target="_blank" rel="noopener" data-evento="clic_redes" data-red="facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+        <span><b>Síguenos en Facebook</b><i data-red-usuario="facebook"></i></span>
+      </a>
+    </div>
+
+    <!-- Seis huecos para capturas de publicaciones. Cada uno enlaza al perfil.
+         Para poner una: cambia el .ph por <img src="/assets/img/social/1.webp" alt="">. -->
+    <div class="sig-grid reveal">
+HTML
+}
+
+sub siguenos_fin {
+  my $html = "";
+  for my $i (1 .. 6) {
+    $html .= qq{      <a class="sig-post" data-red-btn="instagram" target="_blank" rel="noopener" data-evento="clic_redes" data-red="instagram" aria-label="Ver nuestras publicaciones en Instagram">\n};
+    $html .= qq{        }.hueco("social-$i", "1/1", "Publicación $i de Instagram").qq{\n};
+    $html .= qq{      </a>\n};
+  }
+  $html .= qq{    </div>\n  </div>\n</section>\n};
+  return $html;
+}
+
 # --------------------------------------------------------------- pie compartido
 sub pie {
   my ($cols) = @_;
-  return <<"HTML";
+  my $sig = siguenos() . siguenos_fin();
+  return $sig . <<"HTML";
 <!-- ============ PIE ============ -->
 <footer class="site-footer">
   <div class="container">
@@ -199,7 +377,7 @@ sub pie {
         <b>¿Tuviste un siniestro? Escríbenos de inmediato</b>
         <p>Te decimos qué hacer en el sitio y radicamos contigo la reclamación.</p>
       </div>
-      <a class="btn btn-warm" data-wa="Hola Seguros Willisch, tuve un siniestro y necesito ayuda urgente.">Reportar un siniestro</a>
+      <a class="btn btn-warm" data-wa="Hola, tuve un siniestro y necesito ayuda." data-evento="clic_whatsapp" data-producto="Siniestro">Reportar un siniestro</a>
     </div>
 
     <div class="f-grid f-grid-ancha">
@@ -214,7 +392,7 @@ sub pie {
 
 $cols      <div class="f-col f-contact">
         <h4>Contacto</h4>
-        <a data-wa="Hola Seguros Willisch, quiero cotizar un seguro.">
+        <a data-wa="Hola Seguros Willisch, quiero cotizar un seguro." data-evento="clic_whatsapp" data-producto="Pie de página">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
           <span>WhatsApp: +57 300 7525773</span>
         </a>
@@ -226,7 +404,7 @@ $cols      <div class="f-col f-contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.9-7-11a7 7 0 0 1 14 0c0 6.1-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
           <span data-cfg="DIRECCION"></span>
         </a>
-        <span>
+        <span class="f-horario">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.4 2" stroke-linecap="round"/></svg>
           <span data-cfg="HORARIO"></span>
         </span>
@@ -238,6 +416,9 @@ $cols      <div class="f-col f-contact">
       <div class="f-legal-links">
         <a href="/politica-datos.html">Política de tratamiento de datos</a>
         <span>·</span>
+        <!-- [COMPLETAR] Falta la página de términos y condiciones. -->
+        <a href="#" data-pendiente>Términos y condiciones</a>
+        <span>·</span>
         <span>© <span data-year>2026</span> Seguros Willisch. Todos los derechos reservados.</span>
       </div>
     </div>
@@ -247,13 +428,24 @@ $cols      <div class="f-col f-contact">
 <!-- ============ FLOTANTES ============ -->
 <div class="wa-float" data-wa-float>
   <span class="wa-msg"></span>
-  <a class="wa-btn" href="https://wa.me/573007525773" data-wa="Hola Seguros Willisch, quiero cotizar un seguro." aria-label="Escribir por WhatsApp" style="position:relative">
+  <a class="wa-btn" href="https://wa.me/573007525773" data-wa="Hola Seguros Willisch, quiero cotizar un seguro." data-evento="clic_whatsapp" data-producto="Burbuja" aria-label="Escribir por WhatsApp" style="position:relative">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
   </a>
 </div>
 
+<!-- Barra fija de móvil -->
+<div class="barra-movil" data-barra>
+  <a class="bm-cotizar" href="#cotizar" data-scroll>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3 7-7" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9" stroke-linecap="round"/></svg>
+    Cotizar
+  </a>
+  <a class="bm-wa" data-wa="Hola Seguros Willisch, quiero cotizar un seguro." data-evento="clic_whatsapp" data-producto="Barra móvil">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
 <button class="to-top" data-totop type="button" aria-label="Volver arriba" style="position:fixed">
-  <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22"/></svg>
   <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
@@ -269,6 +461,8 @@ sub pagina {
   my $cat  = $NOMBRE_CAT{$p->{cat}} || "";
   my $head = cabecera($mega, $mmenu);
   my $foot = pie($cols);
+  my $cot  = cotizador($p);
+  my $dif  = diferencia($p);
 
   # --- JSON-LD: el servicio y sus preguntas frecuentes
   my @faqjson = map {
@@ -330,7 +524,7 @@ sub pagina {
   my $btn_digital = "";
   my $nota_digital = "";
   if ($p->{digital}) {
-    $btn_digital = qq{\n        <a class="btn btn-primary" data-cotizador-externo="$p->{digital}">Cotizar en línea</a>};
+    $btn_digital = qq{\n          <a class="btn btn-ghost" data-cotizador-externo="$p->{digital}" data-evento="comprar_en_linea" data-producto="} . esc($p->{menu}) . qq{">Comprar en línea</a>};
     $nota_digital = qq{\n        <p class="prod-nota"><b>100% digital.</b> Este seguro lo cotizas y lo compras tú mismo en el portal de la aseguradora, con nuestro código de asesor. Si prefieres que te acompañemos, escríbenos.</p>};
   }
 
@@ -372,14 +566,14 @@ $ld
 
 <script>document.documentElement.classList.remove("no-js");</script>
 </head>
-<body class="no-js pagina-producto">
+<body class="no-js pagina-producto" data-producto="@{[ esc($p->{menu}) ]}">
 
 $head
 <main>
 
 <!-- ============ PORTADA ============ -->
 <section class="prod-hero" id="inicio"
-         data-wa-context="¿Cotizamos este seguro?" data-wa-msg="@{[ esc($p->{wa}) ]}">
+         data-wa-context="¿Hablamos de tu @{[ esc($p->{menu}) ]}?" data-wa-msg="@{[ esc($p->{wa}) ]}">
   <div class="container">
     <nav class="miga" aria-label="Ruta">
       <a href="/">Inicio</a> <span aria-hidden="true">›</span>
@@ -392,9 +586,10 @@ $head
         <h1 class="h-lg">@{[ esc($p->{h1}) ]}</h1>
         <p class="lead">@{[ esc($p->{lead}) ]}</p>
         <div class="prod-cta">
-          <a class="btn btn-wa" data-wa="@{[ esc($p->{wa}) ]}">
+          <a class="btn btn-primary" href="#cotizar" data-scroll>Cotizar este seguro</a>
+          <a class="btn btn-wa" data-wa="@{[ esc($p->{wa}) ]}" data-evento="hablar_asesor" data-producto="@{[ esc($p->{menu}) ]}">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-            Cotizar por WhatsApp
+            Hablar con un asesor
           </a>$btn_digital
         </div>$nota_digital
       </div>
@@ -406,6 +601,7 @@ $head
   </div>
 </section>
 
+$cot
 <!-- ============ QUÉ CUBRE ============ -->
 <section class="pad franja" id="cubre">
   <div class="container">
@@ -439,6 +635,7 @@ $incluye        </ul>
   </div>
 </section>
 
+$dif
 <!-- ============ PREGUNTAS FRECUENTES ============ -->
 <section class="pad franja" id="faq">
   <div class="container container-angosto">
@@ -470,11 +667,11 @@ $rel    </div>
     <h2 class="h-md">¿Hablamos de tu caso?</h2>
     <p class="lead">Escríbenos por WhatsApp y te respondemos con opciones concretas, comparadas y explicadas. Sin compromiso.</p>
     <div class="prod-cta center-cta">
-      <a class="btn btn-wa" data-wa="@{[ esc($p->{wa}) ]}">
+      <a class="btn btn-wa" data-wa="@{[ esc($p->{wa}) ]}" data-evento="hablar_asesor" data-producto="@{[ esc($p->{menu}) ]}">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-        Cotizar por WhatsApp
+        Hablar con un asesor
       </a>
-      <a class="btn btn-ghost" href="/#nosotros">Conocer al equipo</a>
+      <a class="btn btn-primary" href="#cotizar" data-scroll>Cotizar este seguro</a>
     </div>
   </div>
 </section>
@@ -511,9 +708,11 @@ if (-f "$RAIZ/index.html") {
   open(my $in, "<:encoding(UTF-8)", "$RAIZ/index.html") or die $!;
   local $/; my $html = <$in>; close $in;
   my $antes = $html;
+  my $piehtml = pie($cols);
+  $html =~ s{(<!--PIE:INICIO-->).*?(<!--PIE:FIN-->)}{$1
+$piehtml$2}s;
   $html =~ s{(<!--MENU:ESCRITORIO-->).*?(<!--MENU:FIN-->)}{$1\n$mega      $2}s;
   $html =~ s{(<!--MENU:MOVIL-->).*?(<!--MENU:MOVIL-FIN-->)}{$1\n$mmenu  $2}s;
-  $html =~ s{(<!--MENU:PIE-->).*?(<!--MENU:PIE-FIN-->)}{$1\n$cols      $2}s;
   if ($html !~ /<!--MENU:ESCRITORIO-->/) {
     print "  ! index.html: faltan los marcadores <!--MENU:*-->, no toqué nada\n";
   } elsif ($html ne $antes) {

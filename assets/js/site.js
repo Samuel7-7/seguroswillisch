@@ -34,24 +34,6 @@
     setTimeout(cerrar, 4000); // salida de emergencia
     window.addEventListener("load", function () { setTimeout(cerrar, 900); });
   }
-
-  /* ---------- Tema claro / oscuro ---------- */
-  function initTema() {
-    var btn = $("[data-theme-btn]");
-    var guardado = null;
-    try { guardado = localStorage.getItem("willisch_tema"); } catch (e) {}
-    if (guardado) document.documentElement.setAttribute("data-theme", guardado);
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      // El sitio arranca siempre en claro (es el look de marca); el oscuro es una
-      // elección explícita del visitante y se recuerda en su navegador.
-      var actual = document.documentElement.getAttribute("data-theme") || "light";
-      var nuevo = actual === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", nuevo);
-      try { localStorage.setItem("willisch_tema", nuevo); } catch (e) {}
-    });
-  }
-
   /* ---------- Enlaces de WhatsApp ---------- */
   function initWhatsApp() {
     if (typeof window.waLink !== "function") return;
@@ -301,7 +283,49 @@
         b.classList.remove("out");
         b.classList.add("entra");
       }, 380);
-    }, 2800);
+    }, 2300);
+  }
+
+  /* ---------- El selector sigue a la palabra que rota ---------- */
+  function initSelectorRotativo() {
+    var mask = $("[data-rotator]");
+    var botones = $$("[data-rot]");
+    if (!mask || !botones.length) return;
+    var b = $("b", mask);
+    if (!b) return;
+
+    function resaltar() {
+      // "tu carro" -> "carro"
+      var palabra = (b.textContent || "").trim().replace(/^tus+/i, "").toLowerCase();
+      botones.forEach(function (x) {
+        x.classList.toggle("activo", x.getAttribute("data-rot") === palabra);
+      });
+    }
+    resaltar();
+    if (typeof MutationObserver === "undefined") return;
+    new MutationObserver(resaltar).observe(b, { childList: true, characterData: true, subtree: true });
+  }
+
+  /* ---------- Pie: columnas plegables en celular (Bloque 8) ---------- */
+  function initPieMovil() {
+    var cols = $$(".site-footer .f-col:not(.f-contact)");
+    if (!cols.length) return;
+    cols.forEach(function (col) {
+      var h = $("h4", col);
+      if (!h) return;
+      h.setAttribute("role", "button");
+      h.setAttribute("tabindex", "0");
+      h.setAttribute("aria-expanded", "false");
+      function alternar() {
+        if (window.innerWidth >= 760) return;
+        var abierto = col.classList.toggle("abierta");
+        h.setAttribute("aria-expanded", abierto ? "true" : "false");
+      }
+      h.addEventListener("click", alternar);
+      h.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); alternar(); }
+      });
+    });
   }
 
   /* ---------- Hero: el isotipo sigue suavemente al cursor ---------- */
@@ -894,11 +918,222 @@
     if (anio) anio.textContent = new Date().getFullYear();
   }
 
+
+  /* ---------- El punto y la coma de los títulos ----------
+     Plus Jakarta Sans deja mucho aire a la izquierda del punto y de la coma;
+     en los tamaños grandes se lee como un espacio ("mismo ." en vez de
+     "mismo."). Se lo quitamos solo en los títulos, sin tocar el texto. */
+  function initPuntos() {
+    $$("h1, h2").forEach(function (h) {
+      if (h.dataset.puntos === "1") return;
+      h.dataset.puntos = "1";
+      var caminante = document.createTreeWalker(h, NodeFilter.SHOW_TEXT, null);
+      var nodos = [];
+      while (caminante.nextNode()) nodos.push(caminante.currentNode);
+      nodos.forEach(function (n) {
+        if (!/[.,]/.test(n.data)) return;
+        var frag = document.createDocumentFragment();
+        n.data.split(/([.,])/).forEach(function (t) {
+          if (!t) return;
+          if (t === "." || t === ",") {
+            var s = document.createElement("span");
+            s.className = "pt";
+            s.textContent = t;
+            frag.appendChild(s);
+          } else {
+            frag.appendChild(document.createTextNode(t));
+          }
+        });
+        n.parentNode.replaceChild(frag, n);
+      });
+    });
+  }
+
+  /* ---------- Bajar suave hasta el cotizador ---------- */
+  function initScrollSuave() {
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("[data-scroll]");
+      if (!a) return;
+      var id = (a.getAttribute("href") || "").replace(/^.*#/, "");
+      var destino = id && document.getElementById(id);
+      if (!destino) return;
+      e.preventDefault();
+      destino.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      var primero = $("input, select", destino);
+      if (primero) setTimeout(function () { primero.focus({ preventScroll: true }); }, reduce ? 0 : 600);
+    });
+  }
+
+  /* ---------- Cotizador rápido de cada subpágina ----------
+     Valida, arma la frase y abre WhatsApp con el número de esta página. */
+  function initCotizadorRapido() {
+    $$("[data-cot]").forEach(function (form) {
+      var producto = form.getAttribute("data-producto") || "un seguro";
+
+      function marcar(campo, mensaje) {
+        var caja = campo.closest(".field") || campo.parentNode;
+        var aviso = $("[data-error]", caja);
+        campo.classList.toggle("mal", !!mensaje);
+        campo.setAttribute("aria-invalid", mensaje ? "true" : "false");
+        if (!aviso) return;
+        aviso.textContent = mensaje || "";
+        aviso.hidden = !mensaje;
+      }
+
+      $$("input, select", form).forEach(function (c) {
+        c.addEventListener("input", function () { if (c.classList.contains("mal")) marcar(c, ""); });
+        c.addEventListener("change", function () { if (c.classList.contains("mal")) marcar(c, ""); });
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var obligatorios = $$("input[required], select[required]", form);
+        var falla = null;
+        obligatorios.forEach(function (c) {
+          var v = (c.value || "").trim();
+          if (!v) { marcar(c, "Nos falta este dato"); if (!falla) falla = c; }
+          else marcar(c, "");
+        });
+        if (falla) { falla.focus(); return; }
+
+        var nombre = ($("[name='nombre']", form) || {}).value || "";
+        var partes = [];
+        obligatorios.forEach(function (c) {
+          if (c.name === "nombre") return;
+          partes.push(c.getAttribute("data-campo") + ": " + c.value.trim());
+        });
+        var check = $("input[type='checkbox'][data-campo]", form);
+        if (check && check.checked) partes.push(check.getAttribute("data-campo"));
+
+        var msg = "Hola, soy " + nombre.trim() + ". Quiero cotizar " + producto +
+          (partes.length ? ". " + partes.join(". ") : "") + ".";
+
+        evento("formulario_enviado", { producto: producto });
+        window.open(window.waLink(msg), "_blank", "noopener");
+      });
+    });
+  }
+
+  /* ---------- Barra fija de móvil ----------
+     Aparece al bajar. Si está visible, la burbuja de WhatsApp se esconde
+     para que no se pisen. */
+  function initBarraMovil() {
+    var barra = $("[data-barra]");
+    if (!barra) return;
+    var cotizar = $(".bm-cotizar", barra);
+    var destino = document.getElementById("cotizar") || document.getElementById("selector");
+    if (cotizar && !destino) cotizar.setAttribute("href", "/#selector");
+
+    function pintar() {
+      var visible = window.innerWidth < 760 && window.scrollY > 260;
+      barra.classList.toggle("show", visible);
+      document.body.classList.toggle("con-barra", visible);
+    }
+    pintar();
+    window.addEventListener("scroll", pintar, { passive: true });
+    window.addEventListener("resize", pintar);
+  }
+
+  /* ---------- Botones grandes de redes ---------- */
+  function initRedesBotones() {
+    var redes = CFG.REDES || [];
+    function url(red) {
+      var r = redes.filter(function (x) { return x.red === red; })[0];
+      return r ? r.url : "";
+    }
+    function usuario(u) {
+      if (!u) return "";
+      var m = u.match(/instagram\.com\/([^\/?#]+)/i);
+      if (m) return "@" + m[1];
+      return "Seguros Willisch";
+    }
+    $$("[data-red-btn]").forEach(function (el) {
+      var u = url(el.getAttribute("data-red-btn"));
+      if (!u) { el.remove(); return; }
+      el.setAttribute("href", u);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener");
+    });
+    $$("[data-red-usuario]").forEach(function (el) {
+      el.textContent = usuario(url(el.getAttribute("data-red-usuario")));
+    });
+
+    // Los mismos íconos, al final del menú móvil
+    var menu = $("[data-redes-menu]");
+    if (!menu) return;
+    redes.forEach(function (r) {
+      var a = document.createElement("a");
+      a.href = r.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.setAttribute("aria-label", r.red === "instagram" ? "Instagram" : "Facebook");
+      a.setAttribute("data-evento", "clic_redes");
+      a.setAttribute("data-red", r.red);
+      a.innerHTML = r.red === "instagram"
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>';
+      menu.appendChild(a);
+    });
+  }
+
+  /* ---------- Medición ----------
+     Manda el mismo evento a Google Analytics 4 y a Meta Pixel. Si no hay ID
+     configurado en config.js, no se carga nada y la función no hace ruido. */
+  function evento(nombre, datos) {
+    datos = datos || {};
+    try { if (window.gtag) window.gtag("event", nombre, datos); } catch (e) {}
+    try { if (window.fbq) window.fbq("trackCustom", nombre, datos); } catch (e) {}
+  }
+
+  function initMedicion() {
+    var cfg = CFG.ANALYTICS || {};
+
+    if (cfg.GA4) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", cfg.GA4);
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.GA4);
+      document.head.appendChild(s);
+    }
+
+    if (cfg.META_PIXEL) {
+      /* eslint-disable */
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      /* eslint-enable */
+      window.fbq("init", cfg.META_PIXEL);
+      window.fbq("track", "PageView");
+    }
+
+    // Vista de subpágina de producto
+    var prod = document.body.getAttribute("data-producto");
+    if (prod) evento("vista_producto", { producto: prod });
+
+    // Cualquier elemento con data-evento se mide solo
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest("[data-evento]");
+      if (!el) return;
+      evento(el.getAttribute("data-evento"), {
+        producto: el.getAttribute("data-producto") || "",
+        red: el.getAttribute("data-red") || ""
+      });
+    });
+  }
   /* ---------- Arranque ---------- */
   function boot() {
+    safe(initMedicion, "medicion");
     safe(initPreloader, "preloader");
-    safe(initTema, "tema");
     safe(initDatos, "datos");
+    safe(initRedesBotones, "redes-botones");
+    safe(initScrollSuave, "scroll-suave");
+    safe(initCotizadorRapido, "cotizador-rapido");
+    safe(initBarraMovil, "barra-movil");
     safe(initRedes, "redes");
     safe(initAliadas, "aliadas");
     safe(initCotizadoresExternos, "cotizadores-externos");
@@ -907,8 +1142,11 @@
     safe(initMega, "mega");
     safe(initMenuMovil, "menu-movil");
     safe(initTitular, "titular");
+    safe(initPuntos, "puntos");
     safe(initReveal, "reveal");
     safe(initRotator, "rotator");
+    safe(initSelectorRotativo, "selector-rotativo");
+    safe(initPieMovil, "pie-movil");
     safe(initHero, "hero");
     safe(initContadores, "contadores");
     safe(initDrawer, "drawer");
