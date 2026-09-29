@@ -712,6 +712,43 @@ $piehtml$2}s;
   }
 }
 
+# --- Lista numerada de fotos pendientes, para que nunca se desfase del catálogo.
+#     Se regenera con el resto: si agregas un producto, su foto entra sola.
+{
+  my @filas; my $n = 0;
+  for my $e (["gerencia","Gerencia"], ["operaciones","Operaciones"], ["comercial","Asesoría comercial"]) {
+    $n++;
+    push @filas, [$n, "Inicio · equipo", "3/4 vertical", "1200×1600",
+      "Retrato de quien está en $e->[1]", "equipo/$e->[0].webp"];
+  }
+  for my $p (@PRODUCTOS) {
+    for my $im (@{ $p->{imgs} || [] }) {
+      $n++;
+      my ($id, $ratio, $desc) = @$im;
+      my $medida = $ratio eq "16/10" ? "1600×1000" : $ratio eq "4/3" ? "1600×1200" : $ratio;
+      push @filas, [$n, "/seguros/$p->{slug}/", $ratio, $medida, $desc, "productos/$id.webp"];
+    }
+  }
+  my $tabla = "| # | Dónde va | Proporción | Medida | Qué debería mostrar | Archivo final |
+";
+  $tabla .= "|---|---|---|---|---|---|
+";
+  $tabla .= sprintf("| **%d** | %s | %s | %s | %s | `%s` |
+", @$_) for @filas;
+
+  my $md = "$RAIZ/assets/img/PENDIENTES-IMAGENES.md";
+  if (-f $md) {
+    open(my $fh, "<:encoding(UTF-8)", $md) or die $!;
+    local $/; my $t = <$fh>; close $fh;
+    $t =~ s{^# Fotos pendientes — \d+ en total}{# Fotos pendientes — $n en total}m;
+    $t =~ s{(<!--TABLA:INICIO-->).*?(<!--TABLA:FIN-->)}{$1\n$tabla$2}s;
+    open(my $o, ">:encoding(UTF-8)", $md) or die $!;
+    print $o $t; close $o;
+    print "  ~ assets/img/PENDIENTES-IMAGENES.md ($n fotos)
+";
+  }
+}
+
 # --- Sitemap: el inicio, todos los productos y las dos páginas propias.
 #     Las páginas de aliados se quedan fuera a propósito.
 {

@@ -1,0 +1,7 @@
+Guarda aquí las fotos con el número de la lista como nombre: 1.jpg, 2.png, 7.jpeg...
+
+La lista completa, con qué va en cada número, está en:
+  assets/img/PENDIENTES-IMAGENES.md
+
+No hace falta que estén todas. Manda las que tengas y avísame cuáles subiste:
+yo las recorto, las convierto a WebP, las comprimo y las pongo en su página.
