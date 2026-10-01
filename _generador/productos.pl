@@ -1327,7 +1327,7 @@ our @MENU = (
   { id => "empresas", nombre => "Empresas", subs => [
       { nombre => "Patrimonio",
         items => [qw(todo-riesgo-empresarial maquinaria-equipos copropiedad dano-material energia-solar cultivos-agro)] },
-      { nombre => "Contratos y terceros",
+      { nombre => "Cumplimiento y RCE",
         items => ["ext:cumplimiento", "responsabilidad-civil"] },
       { nombre => "Operación especializada",
         items => [qw(maquinaria-equipos drones energia-solar cultivos-agro)] },
