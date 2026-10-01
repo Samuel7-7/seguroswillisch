@@ -432,9 +432,9 @@ section{position:relative}
 @keyframes slide{to{transform:translateX(-50%)}}
 .mq-item{
   display:flex;align-items:center;justify-content:center;height:52px;min-width:120px;
-  filter:grayscale(1);opacity:.55;transition:filter .3s ease,opacity .3s ease,transform .3s ease;
+  opacity:.9;transition:opacity .3s ease,transform .3s ease;
 }
-.mq-item:hover{filter:none;opacity:1;transform:scale(1.06)}
+.mq-item:hover{opacity:1;transform:scale(1.06)}
 .mq-item img{max-height:100%;width:auto;object-fit:contain}
 .mq-item .mq-name{
   font-family:var(--font-display);font-weight:800;font-size:16px;letter-spacing:-.02em;

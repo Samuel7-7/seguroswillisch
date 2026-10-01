@@ -608,13 +608,13 @@ body::before{
 /* ---- Carrusel de aseguradoras (Bloque 2.7) ----
    Todos los logos ocupan la misma caja, así que se ven del mismo tamaño
    aunque los archivos tengan proporciones distintas. */
-.mq-item{height:auto;min-width:0;width:150px}
+.mq-item{height:auto;min-width:0;width:170px}
 .mq-item img{
-  height:38px;width:150px;max-height:none;max-width:none;object-fit:contain;
+  height:48px;width:170px;max-height:none;max-width:none;object-fit:contain;
 }
 @media (max-width:620px){
-  .mq-item{width:118px}
-  .mq-item img{height:30px;width:118px}
+  .mq-item{width:132px}
+  .mq-item img{height:38px;width:132px}
 }
 
 /* ---- Nosotros: se lee más grande en celular (Bloque 4.1) ---- */

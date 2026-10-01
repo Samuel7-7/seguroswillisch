@@ -20,7 +20,7 @@ my $RAIZ = ".";
 require "./_generador/productos.pl";
 our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026093004";
+my $VER = "2026100101";
 
 # Índice por slug, para los "relacionados".
 my %POR_SLUG = map { $_->{slug} => $_ } @PRODUCTOS;
