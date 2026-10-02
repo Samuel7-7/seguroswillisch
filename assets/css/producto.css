@@ -473,6 +473,36 @@ body::before{
   letter-spacing:.04em;text-transform:uppercase;color:var(--text-mute);
 }
 .cont-datos span{display:block;margin-top:2px;font-size:14.6px;color:var(--text-soft)}
+/* El botón fantasma nació para fondos oscuros; en la tarjeta clara de contacto
+   era blanco sobre blanco y no se veía */
+.contacto-bloque .btn-ghost{
+  background:transparent;color:var(--blue);
+  border-color:color-mix(in srgb,var(--blue) 40%,transparent);
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+}
+.contacto-bloque .btn-ghost:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+/* WhatsApp, correo y oficina son botones: toda la tarjeta se puede tocar */
+.cont-datos li.cd-info{padding:4px 16px}
+.cd-btn{
+  display:flex;gap:14px;align-items:flex-start;width:100%;padding:14px 16px;
+  border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface);
+  color:inherit;cursor:pointer;
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.cd-btn:hover,.cd-btn:focus-visible{
+  border-color:color-mix(in srgb,var(--blue) 45%,transparent);
+  box-shadow:0 10px 24px -14px color-mix(in srgb,var(--blue) 55%,transparent);
+  transform:translateY(-2px);
+}
+.cd-btn > div{flex:1;min-width:0}
+.cd-btn span{overflow-wrap:anywhere}
+.cd-btn em{
+  display:inline-block;margin-top:6px;font-style:normal;font-family:var(--font-display);
+  font-weight:700;font-size:13px;color:var(--blue);
+}
+.cd-ir{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--blue) 10%,transparent);color:var(--blue);align-self:center}
+.cd-ir svg{width:15px;height:15px;margin:0}
 
 /* ============ 14. AJUSTES DE ALTURA EN MÓVIL ============
    En el teléfono el pie con las siete categorías y las fotos verticales
