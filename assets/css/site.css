@@ -168,18 +168,39 @@ section{position:relative}
   transition:clip-path 1s var(--ease-out),opacity .4s ease .55s;
 }
 .preloader.done{clip-path:circle(0% at 50% 50%);opacity:0;pointer-events:none}
-.preloader svg{width:104px;height:104px}
-.preloader .shield-path{
-  fill:none;stroke:var(--warm);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:240;stroke-dashoffset:240;
-  animation:drawShield 1.15s var(--ease-out) forwards;
+.preloader{flex-direction:column;gap:22px}
+/* Logo de Willisch: entra con desenfoque, un anillo lo rodea y un brillo lo cruza */
+.pre-wrap{position:relative;width:148px;height:148px;display:grid;place-items:center}
+.pre-ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.pre-ring circle{
+  fill:none;stroke:var(--warm);stroke-width:2.4;stroke-linecap:round;
+  stroke-dasharray:352;stroke-dashoffset:352;
+  animation:preAnillo 1.25s var(--ease-out) .15s forwards;
 }
-.preloader .shield-check{
-  fill:none;stroke:#fff;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:40;stroke-dashoffset:40;
-  animation:drawShield .5s var(--ease-out) .75s forwards;
+.pre-logo{
+  position:relative;width:96px;display:block;
+  opacity:0;transform:scale(.78);filter:blur(10px);
+  animation:preLogo .85s var(--ease-out) .1s forwards;
 }
-@keyframes drawShield{to{stroke-dashoffset:0}}
+.pre-logo img{display:block;width:100%;height:auto}
+.pre-brillo{
+  position:absolute;inset:0;pointer-events:none;
+  -webkit-mask:url(/assets/logos/logo-willisch-monograma.png) center/contain no-repeat;
+          mask:url(/assets/logos/logo-willisch-monograma.png) center/contain no-repeat;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.9) 50%,transparent 65%) no-repeat;
+  background-size:260% 100%;background-position:130% 0;
+  animation:preBrillo .9s ease-in-out .85s forwards;
+}
+.pre-nombre{
+  font-family:var(--font-display);font-weight:800;font-size:15px;letter-spacing:.32em;
+  text-transform:uppercase;color:#fff;
+  opacity:0;transform:translateY(8px);
+  animation:preNombre .6s var(--ease-out) .7s forwards;
+}
+@keyframes preAnillo{to{stroke-dashoffset:0}}
+@keyframes preLogo{to{opacity:1;transform:none;filter:none}}
+@keyframes preBrillo{to{background-position:-30% 0}}
+@keyframes preNombre{to{opacity:.88;transform:none;letter-spacing:.22em}}
 
 /* ============ 7. HEADER ============ */
 .site-header{

@@ -30,9 +30,12 @@
       return;
     }
     sessionStorage.setItem("willisch_visto", "1");
-    setTimeout(cerrar, 1800);
+    // La animación del logo dura ~1,8 s: se cierra al terminar, aunque la página cargue antes.
+    var inicio = Date.now();
     setTimeout(cerrar, 4000); // salida de emergencia
-    window.addEventListener("load", function () { setTimeout(cerrar, 900); });
+    function alCargar() { setTimeout(cerrar, Math.max(300, 1900 - (Date.now() - inicio))); }
+    if (document.readyState === "complete") alCargar();
+    else window.addEventListener("load", alCargar);
   }
   /* ---------- Enlaces de WhatsApp ---------- */
   function initWhatsApp() {

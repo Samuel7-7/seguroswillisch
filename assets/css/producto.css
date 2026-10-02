@@ -13,10 +13,10 @@ body::before{
   content:"";
   position:fixed;inset:-18vmax;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(34% 30% at 16% 10%, color-mix(in srgb,var(--blue) 20%,transparent), transparent 66%),
-    radial-gradient(30% 28% at 86% 24%, color-mix(in srgb,var(--warm) 17%,transparent), transparent 66%),
-    radial-gradient(36% 30% at 72% 78%, color-mix(in srgb,var(--blue-light) 19%,transparent), transparent 68%),
-    radial-gradient(30% 26% at 24% 88%, color-mix(in srgb,var(--blue) 14%,transparent), transparent 68%);
+    radial-gradient(38% 34% at 16% 10%, color-mix(in srgb,var(--blue) 30%,transparent), transparent 68%),
+    radial-gradient(34% 30% at 86% 24%, color-mix(in srgb,var(--warm) 27%,transparent), transparent 68%),
+    radial-gradient(40% 34% at 72% 78%, color-mix(in srgb,var(--blue-light) 30%,transparent), transparent 70%),
+    radial-gradient(34% 30% at 24% 88%, color-mix(in srgb,var(--blue) 22%,transparent), transparent 70%);
   animation:fondo-vivo 42s var(--ease) infinite alternate;
 }
 @keyframes fondo-vivo{
@@ -47,7 +47,7 @@ body::before{
 .digi-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:clip}
 .digi-aurora .au{
   position:absolute;border-radius:50%;
-  filter:blur(70px);opacity:.6;
+  filter:blur(70px);opacity:.82;
 }
 .au-1{
   width:46vw;height:46vw;min-width:320px;min-height:320px;top:-14%;left:-8%;
