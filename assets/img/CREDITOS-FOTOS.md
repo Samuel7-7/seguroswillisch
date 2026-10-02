@@ -9,9 +9,9 @@ Ninguna repite una imagen que el sitio ya usaba.
 
 | Archivo | Foto original |
 |---|---|
-| `assets/img/equipo/comercial.webp` | https://images.unsplash.com/photo-1705645930353-0e335311ef20 |
-| `assets/img/equipo/gerencia.webp` | https://images.unsplash.com/photo-1778858239662-b04147da16c0 |
-| `assets/img/equipo/operaciones.webp` | https://images.unsplash.com/photo-1733348137468-90b917d2ebf1 |
+| `assets/img/equipo/comercial.webp` | https://images.unsplash.com/photo-1632593726992-f8638ce51165 |
+| `assets/img/equipo/gerencia.webp` | https://images.unsplash.com/photo-1603394151492-5e9b974b090b |
+| `assets/img/equipo/operaciones.webp` | https://images.unsplash.com/photo-1611703371950-244fa15e9486 |
 | `assets/img/nosotros/comparamos.webp` | https://images.unsplash.com/photo-1626105985445-6430a31f6f96 |
 | `assets/img/nosotros/persona.webp` | https://images.unsplash.com/photo-1758874383719-7c801adb7e5c |
 | `assets/img/nosotros/siniestro.webp` | https://images.unsplash.com/photo-1673187139612-6bf684a74815 |
