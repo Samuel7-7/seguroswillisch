@@ -91,6 +91,32 @@ cada página.
   PNG con fondo transparente, mándalos aparte.
 - **Isotipo de Willisch**: ya está en alta calidad.
 
+## Las tres fotos del equipo, con más detalle
+
+Son las únicas **verticales** del sitio y las únicas donde sale gente de la
+agencia, así que vale la pena cuidarlas:
+
+- **Formato de archivo:** mándalas como vengan de la cámara o del celular
+  (JPG, PNG, HEIC). Yo las convierto a WebP, que es lo que usa el sitio.
+- **Forma:** vertical, proporción 3/4. Si la cámara te da 3/4 exacto, perfecto;
+  si no, cualquier vertical sirve y yo recorto.
+- **Tamaño mínimo:** 1200 px de ancho por 1600 de alto. Más grande, mejor.
+- **Encuadre:** de la cintura o el pecho para arriba, la persona centrada y
+  mirando a la cámara. Deja aire sobre la cabeza.
+- **Fondo:** liso y claro, o la oficina desenfocada. Nada de logos de otras
+  marcas detrás.
+- **Luz:** de frente o de lado, nunca a contraluz con una ventana atrás.
+- **Las tres parecidas:** mismo fondo, misma distancia y misma altura de
+  cámara. Si se toman el mismo día y en el mismo sitio, quedan como un
+  conjunto en vez de tres fotos sueltas.
+
+> En el celular la foto se recorta a formato apaisado para no alargar la
+> página, y el recorte toma desde el 13% hasta el 60% de la altura. Por eso
+> importa que la cara quede en el tercio superior: así se ve bien en
+> computador y en teléfono.
+
+---
+
 ## Lo que falta además de las fotos
 
 - El **nombre y el cargo** de las tres personas del equipo. Hoy están marcados

@@ -517,7 +517,10 @@ body::before{
 
   /* El retrato del equipo se vuelve apaisado para no ocupar media pantalla */
   .eq-card .ph{--ph-ratio:16/10 !important}
-  .eq-foto img{aspect-ratio:16/10;object-position:50% 50%}
+  /* En celular el retrato se recorta a 16/10 para no alargar la página. El
+     encuadre se sube al 25%: centrado cortaba la cara, que en un retrato de
+     medio cuerpo cae entre el 15% y el 35% de la altura. */
+  .eq-foto img{aspect-ratio:16/10;object-position:50% 25%}
   .equipo-grid{gap:22px}
 }
 
@@ -656,7 +659,10 @@ body::before{
 
 /* ---- Equipo: una tarjeta por persona (Bloque 4.2 y 4.3) ---- */
 .eq-foto{position:relative;border-radius:var(--r);overflow:hidden}
-.eq-foto img{width:100%;height:auto;display:block;aspect-ratio:3/4;object-fit:cover}
+.eq-foto img{
+  width:100%;height:auto;display:block;
+  aspect-ratio:3/4;object-fit:cover;object-position:50% 28%;
+}
 .eq-hover{
   position:absolute;inset:auto 0 0 0;padding:20px 18px 18px;
   display:flex;flex-direction:column;gap:4px;align-items:flex-start;
