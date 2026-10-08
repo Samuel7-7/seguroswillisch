@@ -469,12 +469,12 @@ our @PRODUCTOS = (
     "Cotización y expedición en línea, sin intermediarios.",
     "Estudio del inquilino incluido en el proceso.",
     "Te explicamos qué exige la póliza del contrato de arrendamiento.",
-    "Si prefieres que lo hagamos nosotros, escríbenos y lo tramitamos.",
+    "Todo desde el celular o el computador, a cualquier hora.",
   ],
   faq => [
     ["¿Quién paga la póliza?", "Depende de lo que acuerden las partes. Puede asumirla el propietario o trasladarse al arrendatario dentro del contrato."],
     ["¿Cubre los daños del inmueble?", "El foco de esta póliza es el canon y los servicios. Los daños materiales se cubren con la póliza de hogar."],
-    ["¿Sirve para local comercial?", "Sí, hay planes para vivienda y para comercio. Te decimos cuál aplica a tu inmueble."],
+    ["¿Sirve para local comercial?", "Sí, hay planes para vivienda y para comercio. En el cotizador eliges el que aplica a tu inmueble."],
   ],
   wa => "Hola Seguros Willisch, quiero cotizar un seguro de arrendamiento.",
   imgs => [ ["arrendamiento-hero", "16/10", "Llaves y contrato sobre una mesa"] ],
@@ -500,12 +500,12 @@ our @PRODUCTOS = (
     "Cotización y compra en línea, sin papeleo.",
     "Planes para perros y gatos, con distintas edades de ingreso.",
     "Te explicamos las exclusiones por raza y por condición previa.",
-    "Si prefieres que te asesoremos antes de comprar, escríbenos.",
+    "Todo desde el celular o el computador, a cualquier hora.",
   ],
   faq => [
     ["¿Hay límite de edad?", "Sí, cada plan define una edad mínima y máxima de ingreso. En la cotización en línea lo verás de inmediato."],
     ["¿Cubre enfermedades que ya tiene?", "Las condiciones preexistentes suelen quedar excluidas. Conviene asegurar temprano."],
-    ["¿Puedo usar mi veterinario de siempre?", "Depende de si está en la red del plan. Revísalo antes de comprar y, si tienes dudas, escríbenos."],
+    ["¿Puedo usar mi veterinario de siempre?", "Depende de si está en la red del plan. Lo puedes revisar en el cotizador en línea antes de comprar."],
   ],
   wa => "Hola Seguros Willisch, quiero cotizar un seguro para mi mascota.",
   imgs => [ ["mascotas-hero", "16/10", "Perro o gato con su familia"] ],
@@ -521,7 +521,7 @@ our @PRODUCTOS = (
   kicker => "100% digital",
   digital => "viaje",
   h1 => "Que el viaje se dañe es una cosa. Que además te cueste, otra.",
-  lead => "Una urgencia médica fuera del país se paga en la moneda del país. Varios destinos exigen el seguro para dejarte entrar. Te lo cotizamos según el destino, los días y quién viaja.",
+  lead => "Una urgencia médica fuera del país se paga en la moneda del país. Varios destinos exigen el seguro para dejarte entrar. Lo cotizas en línea según el destino, los días y quién viaja.",
   coberturas => [
     ["Asistencia médica en el exterior", "Atención por enfermedad o accidente durante el viaje, hasta el monto contratado."],
     ["Cancelación e interrupción", "Reembolso de lo no utilizado cuando el viaje se cancela por causa cubierta."],
@@ -535,8 +535,8 @@ our @PRODUCTOS = (
     "Emisión inmediata: te llega al correo.",
   ],
   faq => [
-    ["¿Es obligatorio para viajar?", "Para algunos destinos sí; el espacio Schengen, por ejemplo, exige una cobertura mínima. Te confirmamos según tu destino."],
-    ["¿Cubre si me enfermo antes de viajar?", "La cobertura de cancelación puede aplicar si la causa está dentro de las cubiertas por la póliza. Te explicamos cuáles son."],
+    ["¿Es obligatorio para viajar?", "Para algunos destinos sí; el espacio Schengen, por ejemplo, exige una cobertura mínima. En el cotizador en línea ves qué plan cumple con tu destino."],
+    ["¿Cubre si me enfermo antes de viajar?", "La cobertura de cancelación puede aplicar si la causa está dentro de las cubiertas por la póliza. En el cotizador ves cuáles aplican a cada plan."],
     ["¿Sirve para viajes dentro de Colombia?", "Sí, hay planes nacionales con asistencia médica y equipaje."],
   ],
   wa => "Hola Seguros Willisch, quiero cotizar un seguro de viaje.",
@@ -1260,25 +1260,8 @@ our %VALOR = (
   ],
 },
 
-# --- Los tres que se compran en línea: la ficha sale de su propia subpágina ---
-"mascotas" => {
-  campos => [
-    ["mascota", "Tipo y edad de tu mascota", "texto", "Perro, 3 años"],
-    ["ciudad", "Ciudad", "texto", "Pasto"],
-  ],
-},
-"viaje" => {
-  campos => [
-    ["destino", "Destino", "texto", "España"],
-    ["fechas", "Fechas del viaje", "texto", "12 al 28 de marzo"],
-  ],
-},
-"arrendamiento" => {
-  campos => [
-    ["canon", "Valor del canon", "texto", "El valor del arriendo mensual"],
-    ["ciudad", "Ciudad", "texto", "Pasto"],
-  ],
-},
+# Los tres que se compran en línea (mascotas, viaje, arrendamiento) no llevan
+# formulario: su página manda directo al cotizador de la aseguradora.
 
 );
 

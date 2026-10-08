@@ -20,7 +20,29 @@ my $RAIZ = ".";
 require "./_generador/productos.pl";
 our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026100205";
+my $VER = "2026100801";
+
+# URL de los cotizadores en línea: salen de config.js, que es la única fuente.
+# Se escriben también en el HTML para que el botón funcione aunque el JS tarde.
+my %EXTERNO;
+{
+  open(my $cf, "<:encoding(UTF-8)", "$RAIZ/assets/js/config.js") or die "No encuentro config.js: $!";
+  local $/; my $txt = <$cf>; close $cf;
+  if ($txt =~ /COTIZADORES_EXTERNOS:\s*\{(.*?)\}/s) {
+    my $bloque = $1;
+    while ($bloque =~ /(\w+):\s*"([^"]+)"/g) { $EXTERNO{$1} = $2; }
+  }
+}
+
+# Botón que lleva al cotizador en línea de la aseguradora.
+sub btn_online {
+  my ($p, $texto, $clase) = @_;
+  my $url = $EXTERNO{$p->{digital}} || "#";
+  $url =~ s/&/&amp;/g;
+  $clase = $clase ? " $clase" : "";
+  return qq{<a class="btn btn-primary btn-online$clase" href="$url" target="_blank" rel="noopener noreferrer" data-cotizador-externo="$p->{digital}" data-evento="comprar_en_linea" data-producto="}.esc($p->{menu}).qq{">}.esc($texto).
+    qq{<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>};
+}
 
 # Índice por slug, para los "relacionados".
 my %POR_SLUG = map { $_->{slug} => $_ } @PRODUCTOS;
@@ -241,27 +263,26 @@ sub cotizador {
   my $extra = $p->{extra}
     ? qq{          <label class="cot-check"><input type="checkbox" name="extra" data-campo="}.esc($p->{extra}).qq{"><span>}.esc($p->{extra}).qq{</span></label>\n} : "";
 
-  my $comprar = $p->{digital}
-    ? qq{\n          <a class="btn btn-ghost btn-block" data-cotizador-externo="$p->{digital}" data-evento="comprar_en_linea" data-producto="}.esc($p->{menu}).qq{">Comprar en línea</a>} : "";
-
-  return <<"HTML";
-<!-- ============ COTIZADOR RÁPIDO ============ -->
-<section class="cot" id="cotizar">
-  <div class="container">
-    <div class="cot-grid">
-
-      <div class="cot-ficha reveal">
-        <span class="kicker">@{[ esc($p->{kicker}) ]}</span>
-        <h2 class="h-md">@{[ esc($p->{nombre}) ]}</h2>
-        <p class="cot-frase">@{[ esc($frase) ]}</p>
-$gancho        <ul class="cot-ben">
-$lista        </ul>
-$ideal$tenamano        <p class="cot-comparamos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12" stroke-linecap="round"/></svg>
-          Comparamos entre varias aseguradoras para darte la mejor opción.
-        </p>
+  # Los 100% digitales no llevan formulario ni WhatsApp: una tarjeta que
+  # explica la compra en línea y un botón al cotizador de la aseguradora.
+  my $derecha;
+  if ($p->{digital}) {
+    my $btn = btn_online($p, "Cotizar ahora", "btn-block btn-grande");
+    $derecha = <<"ONLINE";
+      <div class="cot-online reveal">
+        <span class="cot-online-tag"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4.5 13.5H11l-1 8.5 8.5-11.5H12z"/></svg>100% en línea · en minutos</span>
+        <h3>Cotiza y compra tú mismo</h3>
+        <ol class="cot-pasos">
+          <li><b>Cotiza</b><span>Ingresa unos pocos datos y ves el precio al momento.</span></li>
+          <li><b>Elige tu plan</b><span>Compara las opciones y quédate con la que te sirve.</span></li>
+          <li><b>Compra en línea</b><span>Pagas desde el celular o el computador y recibes tu póliza, sin papeleo.</span></li>
+        </ol>
+        $btn
+        <p class="cot-legal">Te lleva al cotizador en línea de la aseguradora, con el código de asesor de Seguros Willisch.</p>
       </div>
-
+ONLINE
+  } else {
+    $derecha = <<"FORM";
       <form class="cot-form reveal" data-cot data-producto="@{[ esc($p->{menu}) ]}" novalidate>
         <h3>Recibe tu cotización</h3>
         <p class="cot-hint">Te escribimos por WhatsApp con opciones concretas. Sin compromiso.</p>
@@ -275,12 +296,37 @@ $campos$extra
         <button class="btn btn-wa btn-block" type="submit">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
           Recibir mi cotización
-        </button>$comprar
+        </button>
 
         <a class="cot-asesor" data-wa="@{[ esc($p->{wa}) ]}" data-evento="hablar_asesor" data-producto="@{[ esc($p->{menu}) ]}">Prefiero hablar con un asesor</a>
         <p class="cot-legal">Al enviar autorizas el tratamiento de tus datos conforme a la <a href="/politica-datos.html">política de tratamiento de datos</a>.</p>
       </form>
+FORM
+  }
 
+  # Los digitales son de una sola aseguradora: no aplica "comparamos".
+  my $comparamos = $p->{digital} ? "" : <<"COMP";
+        <p class="cot-comparamos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12" stroke-linecap="round"/></svg>
+          Comparamos entre varias aseguradoras para darte la mejor opción.
+        </p>
+COMP
+
+  return <<"HTML";
+<!-- ============ COTIZADOR RÁPIDO ============ -->
+<section class="cot" id="cotizar">
+  <div class="container">
+    <div class="cot-grid">
+
+      <div class="cot-ficha reveal">
+        <span class="kicker">@{[ esc($p->{kicker}) ]}</span>
+        <h2 class="h-md">@{[ esc($p->{nombre}) ]}</h2>
+        <p class="cot-frase">@{[ esc($frase) ]}</p>
+$gancho        <ul class="cot-ben">
+$lista        </ul>
+$ideal$tenamano$comparamos      </div>
+
+$derecha
     </div>
   </div>
 </section>
@@ -511,12 +557,56 @@ sub pagina {
     $rel .= qq{      </a>\n};
   }
 
-  # --- Botón de cotizador en línea, solo para los productos 100% digitales
-  my $btn_digital = "";
-  my $nota_digital = "";
+  # --- Botones de llamada a la acción. Los 100% digitales no llevan WhatsApp:
+  #     todo apunta al cotizador en línea de la aseguradora.
+  my ($cta_hero, $nota_hero, $cta_incluye, $cierre, $ctx_hero);
   if ($p->{digital}) {
-    $btn_digital = qq{\n          <a class="btn btn-ghost" data-cotizador-externo="$p->{digital}" data-evento="comprar_en_linea" data-producto="} . esc($p->{menu}) . qq{">Comprar en línea</a>};
-    $nota_digital = qq{\n        <p class="prod-nota"><b>100% digital.</b> Este seguro lo cotizas y lo compras tú mismo en el portal de la aseguradora, con nuestro código de asesor. Si prefieres que te acompañemos, escríbenos.</p>};
+    $cta_hero = btn_online($p, "Cotizar en línea", "btn-grande") .
+      qq{\n          <a class="btn btn-claro" href="#cubre" data-scroll>Ver qué cubre</a>};
+    $nota_hero = qq{\n        <p class="prod-nota"><b>100% en línea.</b> Lo cotizas y lo compras tú mismo en minutos, en el portal de la aseguradora y con el código de asesor de Seguros Willisch.</p>};
+    $cta_incluye = btn_online($p, "Cotizar en línea", "reveal") =~ s/class="btn /style="margin-top:28px" class="btn /r;
+    $cierre = <<"CIERRE";
+    <span class="kicker">100% en línea</span>
+    <h2 class="h-md">Cotízalo ahora, en minutos</h2>
+    <p class="lead">Cotizas, eliges tu plan y compras sin salir de casa. Sin formularios ni esperas.</p>
+    <div class="prod-cta center-cta">
+      @{[ btn_online($p, "Cotizar en línea", "btn-grande") ]}
+    </div>
+CIERRE
+    $ctx_hero = "";
+  } else {
+    $cta_hero = qq{<a class="btn btn-primary" href="#cotizar" data-scroll>Cotizar este seguro</a>
+          <a class="btn btn-wa" data-wa="}.esc($p->{wa}).qq{" data-evento="hablar_asesor" data-producto="}.esc($p->{menu}).qq{">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+            Hablar con un asesor
+          </a>};
+    $nota_hero = "";
+    $cta_incluye = qq{<a class="btn btn-wa reveal" style="margin-top:28px" data-wa="}.esc($p->{wa}).qq{">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+          Hablar con un asesor
+        </a>};
+    $cierre = <<"CIERRE";
+    <h2 class="h-md">¿Hablamos de tu caso?</h2>
+    <p class="lead">Escríbenos por WhatsApp y te respondemos con opciones concretas, comparadas y explicadas. Sin compromiso.</p>
+    <div class="prod-cta center-cta">
+      <a class="btn btn-wa" data-wa="@{[ esc($p->{wa}) ]}" data-evento="hablar_asesor" data-producto="@{[ esc($p->{menu}) ]}">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+        Hablar con un asesor
+      </a>
+      <a class="btn btn-primary" href="#cotizar" data-scroll>Cotizar este seguro</a>
+    </div>
+CIERRE
+    $ctx_hero = qq{\n         data-wa-context="¿Hablamos de tu }.esc($p->{menu}).qq{?" data-wa-msg="}.esc($p->{wa}).qq{"};
+  }
+
+  # Sin burbuja de WhatsApp en los digitales, y la barra del celular lleva al cotizador.
+  if ($p->{digital}) {
+    $foot =~ s{<div class="wa-float" data-wa-float>.*?</div>\n\n}{}s;
+    my $bm = btn_online($p, "Cotizar en línea") =~ s/class="btn btn-primary btn-online"/class="bm-online"/r;
+    # El menú del celular también lleva al cotizador en vez de a WhatsApp.
+    my $mm = btn_online($p, "Cotizar en línea", "btn-block");
+    $head =~ s{<a class="btn btn-wa btn-block" data-wa="[^"]*">.*?</a>}{$mm}s;
+    $foot =~ s{(<div class="barra-movil" data-barra>\n).*?(\n</div>)}{$1  $bm$2}s;
   }
 
   # --- Huecos de foto
@@ -566,8 +656,7 @@ $head
 <main>
 
 <!-- ============ PORTADA ============ -->
-<section class="prod-hero" id="inicio"
-         data-wa-context="¿Hablamos de tu @{[ esc($p->{menu}) ]}?" data-wa-msg="@{[ esc($p->{wa}) ]}">
+<section class="prod-hero" id="inicio"$ctx_hero>
   <div class="container">
     <nav class="miga" aria-label="Ruta">
       <a href="/">Inicio</a> <span aria-hidden="true">›</span>
@@ -580,12 +669,8 @@ $head
         <h1 class="h-lg">@{[ esc($p->{h1}) ]}</h1>
         <p class="lead">@{[ esc($p->{lead}) ]}</p>
         <div class="prod-cta">
-          <a class="btn btn-primary" href="#cotizar" data-scroll>Cotizar este seguro</a>
-          <a class="btn btn-wa" data-wa="@{[ esc($p->{wa}) ]}" data-evento="hablar_asesor" data-producto="@{[ esc($p->{menu}) ]}">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-            Hablar con un asesor
-          </a>$btn_digital
-        </div>$nota_digital
+          $cta_hero
+        </div>$nota_hero
       </div>
 
       <div class="prod-hero-img">
@@ -620,10 +705,7 @@ $coberturas    </div>
         </div>
         <ul class="inc-lista reveal">
 $incluye        </ul>
-        <a class="btn btn-wa reveal" style="margin-top:28px" data-wa="@{[ esc($p->{wa}) ]}">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-          Hablar con un asesor
-        </a>
+        $cta_incluye
       </div>$bloque_img2
     </div>
   </div>
@@ -658,16 +740,7 @@ $rel    </div>
 <!-- ============ CIERRE ============ -->
 <section class="cierre pad" id="contacto">
   <div class="container container-angosto center">
-    <h2 class="h-md">¿Hablamos de tu caso?</h2>
-    <p class="lead">Escríbenos por WhatsApp y te respondemos con opciones concretas, comparadas y explicadas. Sin compromiso.</p>
-    <div class="prod-cta center-cta">
-      <a class="btn btn-wa" data-wa="@{[ esc($p->{wa}) ]}" data-evento="hablar_asesor" data-producto="@{[ esc($p->{menu}) ]}">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-        Hablar con un asesor
-      </a>
-      <a class="btn btn-primary" href="#cotizar" data-scroll>Cotizar este seguro</a>
-    </div>
-  </div>
+$cierre  </div>
 </section>
 
 </main>
