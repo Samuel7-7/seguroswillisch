@@ -2,8 +2,12 @@
 
 Hoy **las 40 tienen una foto provisional de Unsplash** (la lista de cuáles
 son está en `assets/img/CREDITOS-FOTOS.md`). Sirven para que ninguna página se
-vea vacía, pero la idea es cambiarlas por fotos propias, sobre todo las tres
-del equipo, que hoy no son las personas reales.
+vea vacía, pero la idea es cambiarlas por fotos propias.
+
+Del equipo, **Operaciones (2) y Asesoría comercial (3) ya tienen su foto real**.
+Falta la de **Gerencia (1)**, que hoy es una imagen representativa sin cara;
+para que combine, tómala igual que las otras dos: fondo gris oscuro liso,
+camisa blanca, de los hombros para arriba.
 
 ## Cómo mandármelas
 
