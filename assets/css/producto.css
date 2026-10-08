@@ -693,6 +693,7 @@ body::before{
 }
 /* Mientras no hay nombres, el cargo va justo debajo de la foto */
 .eq-card .eq-foto + .eq-cargo{margin-top:18px}
+.eq-card .eq-lema{margin-top:6px;font-family:var(--font-display);font-weight:700;font-size:1.02rem;color:var(--text)}
 .eq-card h3{margin-top:16px;font-size:1.1rem}
 .eq-card > p:last-child{font-size:14.6px;line-height:1.66}
 .eq-instagram{margin-top:34px;text-align:center;font-size:14.8px;color:var(--text-soft)}
