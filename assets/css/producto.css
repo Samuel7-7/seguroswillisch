@@ -766,6 +766,50 @@ body::before{
 .cot-legal{margin-top:16px;font-size:11.8px;line-height:1.6;color:var(--text-mute);text-align:center}
 .cot-legal a{text-decoration:underline}
 
+/* ---- Seguros 100% digitales: sin formulario, directo al cotizador ----
+   Arrendamiento, mascotas y viaje se compran en el portal de la aseguradora.
+   El botón lleva un brillo que lo cruza y una flecha que empuja hacia afuera,
+   para que sea lo primero que se mire. */
+.btn-online{position:relative;overflow:hidden;isolation:isolate}
+.btn-online::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.38) 50%,transparent 70%) no-repeat;
+  background-size:240% 100%;background-position:160% 0;
+  animation:btnBrillo 3.6s ease-in-out 1.2s infinite;
+}
+.btn-online svg{transition:transform .3s var(--ease)}
+.btn-online:hover svg{transform:translateX(4px)}
+@keyframes btnBrillo{0%,55%{background-position:160% 0}100%{background-position:-60% 0}}
+.btn-grande{padding:18px 32px;font-size:1.04rem}
+.btn-claro{background:transparent;color:var(--blue);border:1.6px solid color-mix(in srgb,var(--blue) 40%,transparent)}
+.btn-claro:hover{background:color-mix(in srgb,var(--blue) 8%,transparent);transform:translateY(-3px)}
+
+.cot-online{
+  position:relative;padding:34px 30px;border-radius:var(--r-lg);
+  background:var(--surface);border:1.5px solid color-mix(in srgb,var(--blue) 30%,transparent);
+  box-shadow:0 26px 60px -30px color-mix(in srgb,var(--blue) 60%,transparent);
+}
+.cot-online-tag{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:var(--r-full);
+  background:color-mix(in srgb,var(--warm) 16%,transparent);color:#B5521C;
+  font-family:var(--font-display);font-weight:800;font-size:12.4px;letter-spacing:.03em;
+}
+.cot-online-tag svg{width:14px;height:14px}
+.cot-online h3{margin-top:16px;font-size:1.34rem}
+.cot-pasos{list-style:none;counter-reset:paso;display:flex;flex-direction:column;gap:16px;margin:22px 0 26px;padding:0}
+.cot-pasos li{counter-increment:paso;display:grid;grid-template-columns:34px 1fr;column-gap:14px;align-items:start}
+.cot-pasos li::before{
+  content:counter(paso);grid-row:1 / span 2;
+  width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:var(--blue);color:#fff;font-family:var(--font-display);font-weight:800;font-size:15px;
+}
+.cot-pasos b{font-family:var(--font-display);font-size:15.4px}
+.cot-pasos span{font-size:14px;line-height:1.55;color:var(--text-soft)}
+.cierre .kicker{justify-content:center}
+/* En celular la tarjeta de compra va antes de la ficha, para que el botón se vea primero */
+@media (max-width:939px){ .cot-grid .cot-online{order:-1} }
+@media (prefers-reduced-motion:reduce){ .btn-online::after{animation:none} }
+
 /* ---- Lo que hace diferente (Bloque 7) ---- */
 .dif-grid{display:grid;gap:16px;grid-template-columns:1fr;margin-top:40px}
 @media (min-width:660px){ .dif-grid{grid-template-columns:repeat(2,1fr)} }
@@ -814,6 +858,7 @@ body::before{
 }
 .barra-movil svg{width:19px;height:19px}
 .bm-wa{background:var(--wa,#25D366);color:#06331a}
+.bm-online{background:var(--blue);color:#fff}
 /* Cuando la barra está arriba, la burbuja se quita para no pisarse */
 body.con-barra .wa-float{opacity:0;pointer-events:none;transition:opacity .25s ease}
 
