@@ -20,7 +20,7 @@ my $RAIZ = ".";
 require "./_generador/productos.pl";
 our (@CATEGORIAS, @PRODUCTOS, @EXTERNOS, @MENU);
 
-my $VER = "2026100801";
+my $VER = "2026100802";
 
 # URL de los cotizadores en línea: salen de config.js, que es la única fuente.
 # Se escriben también en el HTML para que el botón funcione aunque el JS tarde.
