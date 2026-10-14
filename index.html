@@ -436,68 +436,72 @@
       </article>
     </div>
 
-    <!-- Equipo: enlace directo seguroswillisch.com/#equipo -->
-    <div class="head center reveal" id="equipo" style="margin-top:78px">
-      <span class="kicker">Nuestro equipo</span>
-      <h2 class="h-md">Las personas detrás de tu tranquilidad</h2>
-    </div>
+    <!-- EQUIPO OCULTO POR AHORA: falta la foto de Gerencia.
+         Para volver a mostrarlo, quita el atributo hidden de la línea siguiente. -->
+    <div class="equipo-oculto" hidden>
+      <!-- Equipo: enlace directo seguroswillisch.com/#equipo -->
+      <div class="head center reveal" id="equipo" style="margin-top:78px">
+        <span class="kicker">Nuestro equipo</span>
+        <h2 class="h-md">Las personas detrás de tu tranquilidad</h2>
+      </div>
 
-    <!-- Equipo: una tarjeta por persona.
-         [COMPLETAR] Faltan los nombres reales: cuando lleguen, van en un <h3> antes
-         de .eq-cargo y en un <b> dentro de .eq-hover, en cada tarjeta. Operaciones y
-         Comercial ya tienen su foto real; la de Gerencia sigue siendo
-         representativa (de Unsplash, sin cara). Cuando llegue, reemplaza
-         assets/img/equipo/gerencia.webp con el mismo nombre.
-         El botón de WhatsApp de cada persona usa el número de la portada;
-         si alguien tiene línea propia, cámbiale el data-wa-numero. -->
-    <div class="equipo-grid">
+      <!-- Equipo: una tarjeta por persona.
+           [COMPLETAR] Faltan los nombres reales: cuando lleguen, van en un <h3> antes
+           de .eq-cargo y en un <b> dentro de .eq-hover, en cada tarjeta. Operaciones y
+           Comercial ya tienen su foto real; la de Gerencia sigue siendo
+           representativa (de Unsplash, sin cara). Cuando llegue, reemplaza
+           assets/img/equipo/gerencia.webp con el mismo nombre.
+           El botón de WhatsApp de cada persona usa el número de la portada;
+           si alguien tiene línea propia, cámbiale el data-wa-numero. -->
+      <div class="equipo-grid">
 
-      <article class="eq-card reveal" tabindex="0">
-        <div class="eq-foto">
-          <img src="/assets/img/equipo/gerencia.webp" alt="Imagen representativa de Gerencia" width="1200" height="1600" loading="lazy" decoding="async">
-          <div class="eq-hover">
-            <span>Gerencia</span>
-            <a class="eq-wa" data-wa="Hola, quiero hablar con Gerencia de Seguros Willisch." data-evento="clic_whatsapp" data-producto="Equipo · Gerencia">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-              Escribir por WhatsApp
-            </a>
+        <article class="eq-card reveal" tabindex="0">
+          <div class="eq-foto">
+            <img src="/assets/img/equipo/gerencia.webp" alt="Imagen representativa de Gerencia" width="1200" height="1600" loading="lazy" decoding="async">
+            <div class="eq-hover">
+              <span>Gerencia</span>
+              <a class="eq-wa" data-wa="Hola, quiero hablar con Gerencia de Seguros Willisch." data-evento="clic_whatsapp" data-producto="Equipo · Gerencia">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+                Escribir por WhatsApp
+              </a>
+            </div>
           </div>
-        </div>
-        <p class="eq-cargo">Gerencia</p>
-        <p class="eq-lema">Estrategia y respaldo</p>
-        <p>Gestionamos nuestras alianzas con las aseguradoras para ofrecerte soluciones que se adapten a tus necesidades.</p>
-      </article>
+          <p class="eq-cargo">Gerencia</p>
+          <p class="eq-lema">Estrategia y respaldo</p>
+          <p>Gestionamos nuestras alianzas con las aseguradoras para ofrecerte soluciones que se adapten a tus necesidades.</p>
+        </article>
 
-      <article class="eq-card reveal" data-delay="1" tabindex="0">
-        <div class="eq-foto">
-          <img src="/assets/img/equipo/operaciones.webp?v=2026100802" alt="Operaciones de Seguros Willisch" width="1086" height="1448" loading="lazy" decoding="async">
-          <div class="eq-hover">
-            <span>Operaciones</span>
-            <a class="eq-wa" data-wa="Hola, quiero hablar con el área de Operaciones de Seguros Willisch." data-evento="clic_whatsapp" data-producto="Equipo · Operaciones">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-              Escribir por WhatsApp
-            </a>
+        <article class="eq-card reveal" data-delay="1" tabindex="0">
+          <div class="eq-foto">
+            <img src="/assets/img/equipo/operaciones.webp?v=2026100802" alt="Operaciones de Seguros Willisch" width="1086" height="1448" loading="lazy" decoding="async">
+            <div class="eq-hover">
+              <span>Operaciones</span>
+              <a class="eq-wa" data-wa="Hola, quiero hablar con el área de Operaciones de Seguros Willisch." data-evento="clic_whatsapp" data-producto="Equipo · Operaciones">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+                Escribir por WhatsApp
+              </a>
+            </div>
           </div>
-        </div>
-        <p class="eq-cargo">Operaciones</p>
-        <p>Nos encargamos de los trámites, documentos y gestiones para que tus pólizas estén al día y recibas acompañamiento cuando lo necesites.</p>
-      </article>
+          <p class="eq-cargo">Operaciones</p>
+          <p>Nos encargamos de los trámites, documentos y gestiones para que tus pólizas estén al día y recibas acompañamiento cuando lo necesites.</p>
+        </article>
 
-      <article class="eq-card reveal" data-delay="2" tabindex="0">
-        <div class="eq-foto">
-          <img src="/assets/img/equipo/comercial.webp?v=2026100802" alt="Asesoría comercial de Seguros Willisch" width="1086" height="1448" loading="lazy" decoding="async">
-          <div class="eq-hover">
-            <span>Asesoría comercial</span>
-            <a class="eq-wa" data-wa="Hola, quiero que un asesor comercial de Seguros Willisch me acompañe." data-evento="clic_whatsapp" data-producto="Equipo · Comercial">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-              Escribir por WhatsApp
-            </a>
+        <article class="eq-card reveal" data-delay="2" tabindex="0">
+          <div class="eq-foto">
+            <img src="/assets/img/equipo/comercial.webp?v=2026100802" alt="Asesoría comercial de Seguros Willisch" width="1086" height="1448" loading="lazy" decoding="async">
+            <div class="eq-hover">
+              <span>Asesoría comercial</span>
+              <a class="eq-wa" data-wa="Hola, quiero que un asesor comercial de Seguros Willisch me acompañe." data-evento="clic_whatsapp" data-producto="Equipo · Comercial">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+                Escribir por WhatsApp
+              </a>
+            </div>
           </div>
-        </div>
-        <p class="eq-cargo">Asesoría comercial</p>
-        <p>Te asesoramos por WhatsApp, comparamos opciones y te explicamos cada cobertura para que elijas con confianza.</p>
-      </article>
+          <p class="eq-cargo">Asesoría comercial</p>
+          <p>Te asesoramos por WhatsApp, comparamos opciones y te explicamos cada cobertura para que elijas con confianza.</p>
+        </article>
 
+      </div>
     </div>
 
 
