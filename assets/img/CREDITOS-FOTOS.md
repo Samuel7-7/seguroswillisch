@@ -7,12 +7,11 @@ Licencia: https://unsplash.com/license
 
 Ninguna repite una imagen que el sitio ya usaba.
 
-Las fotos de Operaciones y Asesoría comercial (`assets/img/equipo/`) son
-fotos propias del equipo y no están en esta lista.
+Las tres fotos del equipo (`assets/img/equipo/`) son fotos propias y no
+están en esta lista.
 
 | Archivo | Foto original |
 |---|---|
-| `assets/img/equipo/gerencia.webp` | https://images.unsplash.com/photo-1603394151492-5e9b974b090b |
 | `assets/img/nosotros/comparamos.webp` | https://images.unsplash.com/photo-1626105985445-6430a31f6f96 |
 | `assets/img/nosotros/persona.webp` | https://images.unsplash.com/photo-1758874383719-7c801adb7e5c |
 | `assets/img/nosotros/siniestro.webp` | https://images.unsplash.com/photo-1673187139612-6bf684a74815 |
