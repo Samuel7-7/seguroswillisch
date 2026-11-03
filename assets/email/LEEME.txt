@@ -1,0 +1,11 @@
+Imágenes para correos (email marketing).
+
+Ninguna página del sitio las enlaza: solo las usan las plantillas de correo
+que se envían desde el CRM. No borrar ni renombrar mientras haya correos
+enviados que las usen, porque esas imágenes dejarían de verse.
+
+moto-accidente.jpg     Correo seguro todo riesgo motos. Foto gratuita de Pixabay
+                       (licencia Pixabay): https://pixabay.com/photos/accident-car-crash-motorcycle-speed-7507756/
+c2bpo-coworking.jpg    Correo beneficio Connect2BPO. Foto del coworking (material de Connect2BPO).
+c2bpo-sala-juntas.jpg  Correo beneficio Connect2BPO. Foto de la sala de juntas (material de Connect2BPO).
+logo-connect2bpo.png   Logo de Connect2BPO para el correo de beneficio.
